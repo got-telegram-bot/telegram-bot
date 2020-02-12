@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: got_telegram_bot
+server:
+  port: 8080
