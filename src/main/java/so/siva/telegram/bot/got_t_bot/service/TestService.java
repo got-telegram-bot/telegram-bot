@@ -1,7 +1,7 @@
 package so.siva.telegram.bot.got_t_bot.service;
 
 import org.springframework.stereotype.Service;
-import so.siva.telegram.bot.got_t_bot.dao.dto.ITestDto;
+import so.siva.telegram.bot.got_t_bot.dao.dto.api.ITestDto;
 import so.siva.telegram.bot.got_t_bot.dao.dto.TestDto;
 
 @Service

@@ -1,6 +1,8 @@
 package so.siva.telegram.bot.got_t_bot.dao.dto;
 
 
+import so.siva.telegram.bot.got_t_bot.dao.dto.api.ITestDto;
+
 public class TestDto implements ITestDto {
 
     private String testField;
