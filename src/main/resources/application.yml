@@ -3,5 +3,7 @@ spring:
     name: got_telegram_bot
   jackson:
     property-naming-strategy: SNAKE_CASE
+  banner:
+    location: banner/banner.txt
 server:
   port: 8080
