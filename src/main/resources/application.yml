@@ -7,3 +7,8 @@ spring:
     location: banner/banner.txt
 server:
   port: 8080
+
+telegram:
+  bot:
+    token: 1085351467:AAET2sqvY35U96D-nImy9ZVYPP7bkD-Nczc
+    username: got_board_bot

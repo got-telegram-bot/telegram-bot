@@ -32,6 +32,11 @@
             <artifactId>spring-hateoas</artifactId>
             <version>0.21.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambots</artifactId>
+            <version>4.1</version>
+        </dependency>
     </dependencies>
 
 	<build>
