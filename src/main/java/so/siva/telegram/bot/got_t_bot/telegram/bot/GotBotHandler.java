@@ -47,13 +47,13 @@ public class GotBotHandler extends TelegramLongPollingBot {
 
                 outMessage.setChatId(inMessage.getChatId());
 
-                Long inChatId = inMessage.getChatId();
-                if (inChatId.equals(chatIdDrenal) || inChatId.equals(chatIdSiva)){
-                    outMessage.setChatId(chatIdRainbow);
-                }
-                if (inChatId.equals(chatIdRainbow)){
-                    outMessage.setChatId(chatIdDrenal);
-                }
+//                Long inChatId = inMessage.getChatId();
+//                if (inChatId.equals(chatIdDrenal) || inChatId.equals(chatIdSiva)){
+//                    outMessage.setChatId(chatIdRainbow);
+//                }
+//                if (inChatId.equals(chatIdRainbow)){
+//                    outMessage.setChatId(chatIdDrenal);
+//                }
 
 
                 //Указываем текст сообщения
@@ -79,13 +79,13 @@ public class GotBotHandler extends TelegramLongPollingBot {
 
                 outMessage.setChatId(inMessage.getChatId());
 
-                Long inChatId = inMessage.getChatId();
-                if (inChatId.equals(chatIdDrenal) || inChatId.equals(chatIdSiva)){
-                    outMessage.setChatId(chatIdRainbow);
-                }
-                if (inChatId.equals(chatIdRainbow)){
-                    outMessage.setChatId(chatIdDrenal);
-                }
+//                Long inChatId = inMessage.getChatId();
+//                if (inChatId.equals(chatIdDrenal) || inChatId.equals(chatIdSiva)){
+//                    outMessage.setChatId(chatIdRainbow);
+//                }
+//                if (inChatId.equals(chatIdRainbow)){
+//                    outMessage.setChatId(chatIdDrenal);
+//                }
 
 
                 //Указываем текст сообщения
@@ -104,4 +104,5 @@ public class GotBotHandler extends TelegramLongPollingBot {
     public String getBotUsername() {
         return this.botUserName;
     }
+
 }

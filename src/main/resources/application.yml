@@ -6,7 +6,7 @@ spring:
   banner:
     location: banner/banner.txt
 server:
-  port: 8080
+  port: 8443
 
 telegram:
   bot:
