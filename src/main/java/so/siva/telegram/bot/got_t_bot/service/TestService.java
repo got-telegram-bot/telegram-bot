@@ -10,7 +10,7 @@ public class TestService implements ITestService {
     @Override
     public ITestDto getTestDto(){
         ITestDto testDto = new TestDto();
-        testDto.setTestField("Ты пидор");
+        testDto.setTestField("Валар Моргулис");
         return testDto;
     }
 }

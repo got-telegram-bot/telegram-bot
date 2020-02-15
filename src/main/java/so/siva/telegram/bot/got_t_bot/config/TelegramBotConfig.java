@@ -1,20 +1,19 @@
 package so.siva.telegram.bot.got_t_bot.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotHandler;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 @Configuration
 public class TelegramBotConfig {
 
     @Bean
-    public TelegramBotsApi telegramBotsApi(GotBotHandler gotBotHandler){
+    public TelegramBotsApi telegramBotsApi(GotBotListenerController gotBotListenerController){
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot(gotBotHandler);
+            telegramBotsApi.registerBot(gotBotListenerController);
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
