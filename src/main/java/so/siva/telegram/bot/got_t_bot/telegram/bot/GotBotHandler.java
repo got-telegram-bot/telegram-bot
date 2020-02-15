@@ -1,5 +1,6 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,11 +12,13 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class GotBotHandler extends TelegramLongPollingBot {
 
-//    @Value("${telegram.bot.token}")
-    private final String botToken = "1085351467:AAET2sqvY35U96D-nImy9ZVYPP7bkD-Nczc";
+    private final String botToken;
+    private final String botUserName;
 
-//    @Value("${telegram.bot.username}")
-    private final String botUserName = "got_board_bot";
+    public GotBotHandler(@Value("${telegram.bot.token}") String botToken, @Value("${telegram.bot.username}") String botUserName) {
+        this.botToken = botToken;
+        this.botUserName = botUserName;
+    }
 
     private final Long chatIdDrenal = 427924506L;
     private final Long chatIdRainbow = 416724770L;
