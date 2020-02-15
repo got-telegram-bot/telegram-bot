@@ -8,7 +8,11 @@ spring:
 server:
   port: 8443
 
+
+#   Для запуска локально в параметрах запуска явно указать параметры
+#   Edit configuration -> Override parameters:
+#   Параметры можно посмотреть в настройках Heroku, раздел Config Vars
 telegram:
   bot:
-    token: 1085351467:AAET2sqvY35U96D-nImy9ZVYPP7bkD-Nczc
-    username: got_board_bot
+    token: ${TELEGRAM_BOT_TOKEN}
+    username: ${BOT_USER_NAME}

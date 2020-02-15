@@ -10,11 +10,8 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotHandler;
 @Configuration
 public class TelegramBotConfig {
 
-    @Autowired
-    private GotBotHandler gotBotHandler;
-
     @Bean
-    public TelegramBotsApi telegramBotsApi(){
+    public TelegramBotsApi telegramBotsApi(GotBotHandler gotBotHandler){
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
             telegramBotsApi.registerBot(gotBotHandler);
