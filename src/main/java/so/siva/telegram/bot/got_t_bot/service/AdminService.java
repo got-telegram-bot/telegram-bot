@@ -42,8 +42,7 @@ public class AdminService implements IAdminService {
                 getPath().
                 replaceFirst("/", "").
                 replaceFirst("%20", " ").
-                replaceFirst("target/classes/","")
-                + "postgres/ddl/";
+                replaceFirst("target/classes/","target/");
 
 
         try {
@@ -51,6 +50,7 @@ public class AdminService implements IAdminService {
             executeSqlFile(sqlFile.getPath());
 
         }catch (Throwable throwable){
+            System.out.println(throwable.getMessage());
             throw new RuntimeException("Ошибка доступа к файлу");
         }
 
@@ -76,13 +76,13 @@ public class AdminService implements IAdminService {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         try {
             executeSqlScript(dataSource.getConnection(), new StringBuffer(sqlBuilder));
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -92,6 +92,7 @@ public class AdminService implements IAdminService {
             ScriptUtils.executeSqlScript(connection, new ByteArrayResource(sql.toString().getBytes()));
             connection.commit();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             connection.rollback();
         }finally{
             connection.close();
