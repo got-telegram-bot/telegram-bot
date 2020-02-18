@@ -1,0 +1,111 @@
+<!--<%@page contentType="text/html" pageEncoding="UTF-8"%>-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Окно регистрации</title>
+	</head>
+
+	
+	<body background="images/game-thrones-map.jpg", text="#f0ffff">
+        <center>
+            <h1>Регистрация</h1>
+        </center>
+		<center>
+		<div id="user_form">
+			<table>
+				<tr>
+                    <td><b>Логин: </b></td>
+					<td>
+						<input required type="text" name="login" id="input_login"/>
+					</td>
+				</tr>
+				<tr>
+                    <td><b>ФИО: </b></td>
+					<td>
+						<input required type="text" name="initials" id="input_initials"/>
+					</td>
+				</tr>
+				<tr>
+					<td><b>Пароль: </b></td>
+					<td>
+						<input required type="text" name="password" id="input_password" />
+					</td>	
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+                        <center>
+                            <button name="sign_up" onclick="submitLoginForm()">Зарегистрироваться</button>
+                        </center>
+					</td>
+				</tr>
+			</table>
+		</div>
+        </center>
+        <script>
+
+            function submitLoginForm() {
+                // var formData = document.forms.user_form;
+                var input_login_value = document.getElementById("input_login").value;
+                var input_initials_value = document.getElementById("input_initials").value;
+                var input_password_value = document.getElementById("input_password").value;
+
+
+                var object = {
+                    login : input_login_value,
+                    initials : input_initials_value,
+                    password : input_password_value,
+                };
+
+                var json = JSON.stringify(object);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        var response_json;
+                        response_json = JSON.parse(xhr.responseText);
+                        if (response_json.login === input_login_value){
+                            alert("Регистрация прошла успешно");
+                        }
+                        else {
+                            alert("Ошибка регистрации, обратитесь к администратору")
+                        }
+                    }
+                };
+
+                xhr.open("POST", "/user/sign_up", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                // Отсылаем объект в формате JSON и с Content-Type application/json
+                xhr.send(json);
+                // try {
+                //     const response = fetch('/user/sign_up', {
+                //         method: 'POST',
+                //         headers: {
+                //             "Content-Type": "application/json",
+                //             Accept: 'application/json; utf-8'
+                //         },
+                //         body: JSON.stringify(object)
+                //     })
+                //         .then(response => response.text())
+                //         .catch(e => {
+                //             console.log(e);
+                //         })
+                // } catch (e) {
+                //     console.log(e);
+                // }
+
+            }
+        </script>
+<!--    <script>-->
+<!--        function onSubmit(e) {-->
+<!--            e.preventDefault();-->
+<!--        }-->
+
+<!--        document.forms.user_form.addEventListener('submit', onSubmit);-->
+<!--    </script>-->
+    </body>
+</html>
