@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AuthorizeCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.BattleCardsCommand;
 
 @Component
 public class GotBotListenerController extends TelegramLongPollingCommandBot {
@@ -20,12 +21,15 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
 
     public GotBotListenerController(@Value("${telegram.bot.token}") String botToken,
                                     @Value("${telegram.bot.username}") String botUserName,
-                                    AuthorizeCommand authorizeCommand) {
+                                    AuthorizeCommand authorizeCommand,
+                                    BattleCardsCommand battleCardsCommand
+    ) {
         super(new DefaultBotOptions(), false);
         this.botToken = botToken;
         this.botUserName = botUserName;
 
         register(authorizeCommand);
+        register(battleCardsCommand);
     }
 
     private final Long chatIdDrenal = 427924506L;
