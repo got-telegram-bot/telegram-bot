@@ -14,7 +14,7 @@ import so.siva.telegram.bot.got_t_bot.service.UserService;
 import java.util.Arrays;
 
 @Component
-public class AuthorizeCommand extends AbstractCommand{
+public class AuthorizeCommand extends ACommand {
 
 
     @Autowired

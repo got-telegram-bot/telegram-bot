@@ -6,9 +6,9 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public abstract class AbstractCommand extends BotCommand {
+public abstract class ACommand extends BotCommand {
 
-    public AbstractCommand(String commandIdentifier, String description) {
+    public ACommand(String commandIdentifier, String description) {
         super(commandIdentifier, description);
     }
 
