@@ -2,22 +2,30 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AuthorizeCommand;
 
 @Component
-public class GotBotListenerController extends TelegramLongPollingBot {
+public class GotBotListenerController extends TelegramLongPollingCommandBot {
 
     private final String botToken;
     private final String botUserName;
 
-    public GotBotListenerController(@Value("${telegram.bot.token}") String botToken, @Value("${telegram.bot.username}") String botUserName) {
+    public GotBotListenerController(@Value("${telegram.bot.token}") String botToken,
+                                    @Value("${telegram.bot.username}") String botUserName,
+                                    AuthorizeCommand authorizeCommand) {
+        super(new DefaultBotOptions(), false);
         this.botToken = botToken;
         this.botUserName = botUserName;
+
+        register(authorizeCommand);
     }
 
     private final Long chatIdDrenal = 427924506L;
@@ -30,21 +38,21 @@ public class GotBotListenerController extends TelegramLongPollingBot {
     }
 
     @Override
-    public void onUpdateReceived(Update update) {
-        Object sendObject = null;
+    public void processNonCommandUpdate(Update update) {
+
         try{
             if (update.hasMessage() && update.getMessage().hasText()) {
 
-            }
-            if (update.hasMessage() && update.getMessage().hasSticker()) {
+                SendMessage answer = new SendMessage();
+                answer.setChatId(update.getMessage().getChatId());
 
+                answer.setText(update.getMessage().getText());
+                execute(answer);
             }
-//            execute();
 
         }catch (TelegramApiException e){
             System.out.println(e.getMessage());
         }
-
     }
 
     @Override

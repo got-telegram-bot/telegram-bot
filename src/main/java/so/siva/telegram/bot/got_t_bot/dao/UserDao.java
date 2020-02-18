@@ -44,7 +44,7 @@ public class UserDao extends BasicDao implements so.siva.telegram.bot.got_t_bot.
     @Override
     public IUser readUserByLoginAndPassword(String login, String password){
         String selectQuery = String.format(SELECT_BY_LOGIN_AND_PASSWORD, login, password);
-        return jdbcTemplate.query(selectQuery, (resultSet, i) -> mapUser(resultSet)).get(0);
+        return getFirstUserInList(jdbcTemplate.query(selectQuery, (resultSet, i) -> mapUser(resultSet)));
     }
 
     @Override
@@ -82,6 +82,11 @@ public class UserDao extends BasicDao implements so.siva.telegram.bot.got_t_bot.
 
     }
 
+    private IUser getFirstUserInList(List<Object> users){
+        if (users == null || users.size() == 0){
+            return null;
+        }else return (IUser) users.get(0);
+    }
 
     private IUser mapUser(ResultSet rs){
         IUser user = new User();
