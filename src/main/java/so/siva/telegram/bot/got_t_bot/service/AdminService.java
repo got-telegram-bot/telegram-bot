@@ -42,11 +42,13 @@ public class AdminService implements IAdminService {
                 getPath().
                 replaceFirst("/", "").
                 replaceFirst("%20", " ").
-                replaceFirst("target/classes/","target/");
+                replaceFirst("target/classes/","target/ddl/").
+                replaceFirst("target/got_t_bot-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/","target/ddl/");
 
 
         try {
             File sqlFile = new File(packagePath + fileName);
+            System.out.println("DDL PATH" + sqlFile.getPath());
             executeSqlFile(sqlFile.getPath());
 
         }catch (Throwable throwable){

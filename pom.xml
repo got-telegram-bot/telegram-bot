@@ -80,10 +80,10 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <echo>Copying files into target</echo>
-                                <copy file="${basedir}/postgres/ddl/01_users.sql" tofile="${basedir}/target/01_users.sql"/>
-                            </tasks>
+                                <copy file="${basedir}/postgres/ddl/01_users.sql" tofile="${basedir}/target/ddl/01_users.sql"/>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
