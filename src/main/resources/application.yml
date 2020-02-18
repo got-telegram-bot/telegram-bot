@@ -5,8 +5,32 @@ spring:
     property-naming-strategy: SNAKE_CASE
   banner:
     location: banner/banner.txt
+
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .html
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    hikari:
+      connection-test-query: SELECT 1
+      auto-commit: false
+      minimum-idle: 1
+      maximum-pool-size: 5
+      pool-name: adminPool
+      type: com.zaxxer.hikari.HikariDataSource
 server:
-  port: 8443
+  port: 8080
+
+database:
+  schema:
+    users: users
+  tablename:
+    users: users
 
 
 #   Для запуска локально в параметрах запуска явно указать параметры
