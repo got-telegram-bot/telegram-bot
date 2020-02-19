@@ -1,17 +1,19 @@
 package so.siva.telegram.bot.got_t_bot.dao.api;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 
 import java.util.List;
 
 public interface IUserDao {
-    IUser readUserByLoginAndPassword(String login, String password);
+    IGUser readUserByLoginAndPassword(String login, String password);
 
-    void insertNewUser(IUser user);
+    IGUser readUserByChatId(String chatId);
 
-    List<IUser> selectAllUsers();
+    void insertNewUser(IGUser user);
+
+    List<IGUser> selectAllUsers();
 
     void deleteUserByLogin(String login);
 
-    IUser updateUser(IUser user);
+    IGUser updateUser(IGUser user);
 }

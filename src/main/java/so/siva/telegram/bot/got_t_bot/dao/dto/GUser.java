@@ -1,8 +1,9 @@
 package so.siva.telegram.bot.got_t_bot.dao.dto;
 
+import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
-public class User implements so.siva.telegram.bot.got_t_bot.dao.dto.api.IUser {
+public class GUser implements IGUser {
     private String login;
     private String initials;
     private Long chatId;
@@ -10,6 +11,20 @@ public class User implements so.siva.telegram.bot.got_t_bot.dao.dto.api.IUser {
     private Houses house;
     private Boolean isAdmin;
     private String roleName;
+
+
+    public GUser() {
+    }
+
+    public GUser(IGUser anotherGUser) {
+        this.login = anotherGUser.getLogin();
+        this.initials = anotherGUser.getInitials();
+        this.chatId = anotherGUser.getChatId();
+        this.password = anotherGUser.getPassword();
+        this.house = anotherGUser.getHouse();
+        this.isAdmin = anotherGUser.getAdmin();
+        this.roleName = anotherGUser.getRoleName();
+    }
 
     @Override
     public String getLogin() {

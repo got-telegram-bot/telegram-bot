@@ -2,11 +2,14 @@ package so.siva.telegram.bot.got_t_bot.dao.dto.api;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import so.siva.telegram.bot.got_t_bot.dao.dto.User;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
-@JsonDeserialize(as = User.class)
-public interface IUser {
+/**
+ * Сущность пользователя системы, G - от GoT - от Game of thrones
+ */
+@JsonDeserialize(as = GUser.class)
+public interface IGUser {
     String LOGIN = "login";
     String INITIALS = "initials";
     String CHAT_ID = "chat_id";

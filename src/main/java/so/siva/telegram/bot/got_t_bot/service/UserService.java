@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.I
     private IUserDao dao;
 
     @Override
-    public IUser getUserByLoginAndPassword(IUser user){
+    public IGUser getUserByLoginAndPassword(IGUser user){
         validate(user);
 
 
@@ -24,7 +24,7 @@ public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.I
     }
 
     @Override
-    public IUser signUpUser(IUser userForSignUp){
+    public IGUser signUpUser(IGUser userForSignUp){
         validate(userForSignUp);
         if (StringUtils.isEmpty(userForSignUp.getInitials())){
             throw new IllegalArgumentException("Не заполнены инициалы");
@@ -35,12 +35,12 @@ public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.I
     }
 
     @Override
-    public List<IUser> getAllUsers(){
+    public List<IGUser> getAllUsers(){
         return dao.selectAllUsers();
     }
 
     @Override
-    public IUser authorizeUser(IUser user, Long chatId){
+    public IGUser authorizeUser(IGUser user, Long chatId){
         validate(user);
         if (chatId == null){
             throw new IllegalArgumentException("Не передан id чата");
@@ -51,13 +51,13 @@ public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.I
     }
 
     @Override
-    public IUser updateUser(IUser user){
+    public IGUser updateUser(IGUser user){
         validate(user);
         return dao.updateUser(user);
     }
 
     @Override
-    public List<IUser> deleteUser(String login){
+    public List<IGUser> deleteUser(String login){
         if (StringUtils.isEmpty(login))
             throw new IllegalArgumentException("Не передан логин");
 
@@ -65,7 +65,7 @@ public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.I
         return this.getAllUsers();
     }
 
-    private void validate(IUser user){
+    private void validate(IGUser user){
         if (StringUtils.isEmpty(user.getLogin()) || StringUtils.isEmpty(user.getPassword())){
             throw new IllegalArgumentException("Не заполнен логин или пароль");
         }

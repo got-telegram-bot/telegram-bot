@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import so.siva.telegram.bot.got_t_bot.dao.api.BasicDao;
-import so.siva.telegram.bot.got_t_bot.dao.dto.User;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
 import java.sql.ResultSet;
@@ -40,21 +40,28 @@ public class UserDao extends BasicDao implements so.siva.telegram.bot.got_t_bot.
             " WHERE login = '%s' "
             +" RETURNING * ;";
 
+    private String SELECT_USER_BY_CHAT_ID = "SELECT * FROM " + SCHEMA_TABLE + " WHERE chat_id = '%s'";
+
 
     @Override
-    public IUser readUserByLoginAndPassword(String login, String password){
+    public IGUser readUserByLoginAndPassword(String login, String password){
         String selectQuery = String.format(SELECT_BY_LOGIN_AND_PASSWORD, login, password);
         return getFirstUserInList(jdbcTemplate.query(selectQuery, (resultSet, i) -> mapUser(resultSet)));
     }
 
     @Override
-    public void insertNewUser(IUser user){
+    public IGUser readUserByChatId(String chatId){
+        return getFirstUserInList(jdbcTemplate.query(String.format(SELECT_USER_BY_CHAT_ID, chatId), (resultSet, i) -> mapUser(resultSet)));
+    }
+
+    @Override
+    public void insertNewUser(IGUser user){
         String insertQuery = String.format(SIGN_UP_NEW_USER, user.getLogin(), user.getInitials(), user.getPassword());
         jdbcTemplate.execute(insertQuery);
     }
 
     @Override
-    public List<IUser> selectAllUsers(){
+    public List<IGUser> selectAllUsers(){
         return jdbcTemplate.query(SELECT_ALL_FROM_USERS, (resultSet,i) -> mapUser(resultSet));
     }
 
@@ -64,7 +71,7 @@ public class UserDao extends BasicDao implements so.siva.telegram.bot.got_t_bot.
     }
 
     @Override
-    public IUser updateUser(IUser user){
+    public IGUser updateUser(IGUser user){
         List<Object> params = new ArrayList<>();
         params.add(user.getLogin());
         params.add(user.getInitials());
@@ -82,22 +89,22 @@ public class UserDao extends BasicDao implements so.siva.telegram.bot.got_t_bot.
 
     }
 
-    private IUser getFirstUserInList(List<Object> users){
+    private IGUser getFirstUserInList(List<Object> users){
         if (users == null || users.size() == 0){
             return null;
-        }else return (IUser) users.get(0);
+        }else return (IGUser) users.get(0);
     }
 
-    private IUser mapUser(ResultSet rs){
-        IUser user = new User();
+    private IGUser mapUser(ResultSet rs){
+        IGUser user = new GUser();
         try {
-            user.setLogin(rs.getString(User.LOGIN));
-            user.setInitials(rs.getString(User.INITIALS));
-            user.setChatId(rs.getLong(User.CHAT_ID));
-            user.setPassword(rs.getString(User.PASSWORD));
-            user.setHouse(rs.getString(User.HOUSE) == null ? null : Houses.valueOf(rs.getString(User.HOUSE).trim()));
-            user.setAdmin(rs.getBoolean(User.IS_ADMIN));
-            user.setRoleName(rs.getString(User.ROLE_NAME) == null ? null : rs.getString(User.ROLE_NAME).trim());
+            user.setLogin(rs.getString(GUser.LOGIN));
+            user.setInitials(rs.getString(GUser.INITIALS));
+            user.setChatId(rs.getObject(GUser.CHAT_ID) == null ? null : rs.getLong(GUser.CHAT_ID));
+            user.setPassword(rs.getString(GUser.PASSWORD));
+            user.setHouse(rs.getString(GUser.HOUSE) == null ? null : Houses.valueOf(rs.getString(GUser.HOUSE).trim()));
+            user.setAdmin(rs.getBoolean(GUser.IS_ADMIN));
+            user.setRoleName(rs.getString(GUser.ROLE_NAME) == null ? null : rs.getString(GUser.ROLE_NAME).trim());
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

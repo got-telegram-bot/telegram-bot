@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS users.users;
 CREATE TABLE users.users (
     login character varying(100) NOT NULL PRIMARY KEY,
     initials character varying NOT NULL,
-    chat_id bigint,
+    chat_id bigint UNIQUE,
     password character varying NOT NULL,
-    house character varying,
+    house character varying UNIQUE,
     is_admin boolean,
     role_name character(100)
 );
@@ -21,4 +21,4 @@ VALUES ('got_admin', 'Бринден Риверс', '416724770', 'tob.margelet.t
 
 INSERT INTO users.users(
     login, initials, chat_id, password, house, is_admin, role_name)
-VALUES ('got_admin1', 'Сива', '381855899', '111', NULL, true, 'ROLE_ADMIN');
+VALUES ('siva', 'Сива', null, '111', NULL, false, null);
