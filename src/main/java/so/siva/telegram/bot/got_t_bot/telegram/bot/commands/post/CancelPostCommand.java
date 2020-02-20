@@ -40,7 +40,7 @@ public class CancelPostCommand extends ACommand {
         }catch (Throwable throwable){
             logger.error(throwable.getMessage());
         }
-        if (adminPostMessageService.getMessages(chatId).size() > 0){
+        if (adminPostMessageService.getMessages(chatId).size() == 0){
             message.setText("Запись сообщений отменена");
             execute(absSender, message, telegramUser);
             return;
