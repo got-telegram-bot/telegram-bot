@@ -16,9 +16,12 @@ public abstract class BasicDao {
     protected final String schemaName;
     protected final String tableName;
 
+    protected final String SCHEMA_TABLE;
+
     public BasicDao(String schemaName, String tableName) {
         this.schemaName = schemaName;
         this.tableName = tableName;
+        this.SCHEMA_TABLE = schemaName + "." + tableName;
 
     }
 

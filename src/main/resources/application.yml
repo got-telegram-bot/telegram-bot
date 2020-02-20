@@ -23,8 +23,10 @@ server:
 database:
   schema:
     users: users
+    messages: messages
   tablename:
     users: users
+    current_post: current_post
 
 
 #   Для запуска локально в параметрах запуска явно указать параметры

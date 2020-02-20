@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import so.siva.telegram.bot.got_t_bot.dao.api.BasicDao;
+import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
@@ -17,13 +18,11 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class UserDao extends BasicDao implements so.siva.telegram.bot.got_t_bot.dao.api.IUserDao {
+public class UserDao extends BasicDao implements IUserDao {
 
     public UserDao(@Value("${database.schema.users}") String schemaName, @Value("${database.tablename.users}")String tableName) {
         super(schemaName, tableName);
     }
-
-    private String SCHEMA_TABLE = this.schemaName + "." + this.tableName;
 
     private String SELECT_BY_LOGIN_AND_PASSWORD = "SELECT * FROM " + SCHEMA_TABLE + " WHERE login = '%s' AND password = '%s'";
 
