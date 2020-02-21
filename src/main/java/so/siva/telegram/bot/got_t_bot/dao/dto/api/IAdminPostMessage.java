@@ -9,6 +9,7 @@ public interface IAdminPostMessage {
     String CONTENT = "content";
     String FILE_ID = "file_id";
     String ADMIN_LOGIN = "admin_login";
+//    String MEDIA_GROUP_ID = "media_group_id";
 
     Integer getNumberInPost();
 
@@ -29,4 +30,8 @@ public interface IAdminPostMessage {
     String getAdminLogin();
 
     void setAdminLogin(String adminLogin);
+
+//    String getMediaGroupId();
+//
+//    void setMediaGroupId(String mediaGroupId);
 }

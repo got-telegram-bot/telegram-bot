@@ -25,8 +25,12 @@ public class AdminPostMessageDao extends BasicDao implements IAdminPostMessageDa
     private String SELECT_ALL_BY_ADMIN_LOGIN = "SELECT * FROM " + SCHEMA_TABLE + " WHERE admin_login = '%s' ORDER BY number_in_post ASC;";
     private String DELETE_ALL_BY_ADMIN_LOGIN = "DELETE FROM " + SCHEMA_TABLE + " WHERE admin_login = '%s';";
     private String INSERT_MESSAGE = "INSERT INTO " + SCHEMA_TABLE + "(" +
-            " number_in_post, type, content, file_id, admin_login) " +
-            " VALUES (?, ?, ?, ?, ?) RETURNING *;";
+            " number_in_post, type, content, file_id, admin_login" +
+//            ", media_group_id" +
+            ") " +
+            " VALUES (?, ?, ?, ?, ?" +
+//            ", ?" +
+            ") RETURNING *;";
 
     @Override
     public List<IAdminPostMessage> readAllMessagesByAdmin(String adminLogin){
@@ -42,6 +46,7 @@ public class AdminPostMessageDao extends BasicDao implements IAdminPostMessageDa
         params.add(message.getContent());
         params.add(message.getFileId());
         params.add(message.getAdminLogin());
+//        params.add(message.getMediaGroupId());
 
         jdbcTemplate.query(INSERT_MESSAGE, params.toArray(), resultSet -> {resultSet.next(); return mapAdminPostMessage(resultSet);});
     }
@@ -60,6 +65,7 @@ public class AdminPostMessageDao extends BasicDao implements IAdminPostMessageDa
             message.setContent(rs.getString(AdminPostMessage.CONTENT));
             message.setFileId(rs.getString(AdminPostMessage.FILE_ID));
             message.setAdminLogin(rs.getString(AdminPostMessage.ADMIN_LOGIN));
+//            message.setMediaGroupId(rs.getString(AdminPostMessage.MEDIA_GROUP_ID));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }

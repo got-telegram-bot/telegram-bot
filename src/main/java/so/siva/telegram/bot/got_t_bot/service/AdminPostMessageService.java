@@ -13,6 +13,8 @@ import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class AdminPostMessageService implements IAdminPostMessageService {
@@ -49,6 +51,66 @@ public class AdminPostMessageService implements IAdminPostMessageService {
         String adminLogin = getLoginByChatId(chatId);
         validateAdminLogin(adminLogin);
         return new ArrayList<>(adminPostMessageDao.readAllMessagesByAdmin(adminLogin));
+    }
+
+    /**
+     * Все идущие подряд текстовые сообщения, склеиваем в одно
+     * @param chatId
+     * @return
+     */
+    @Override
+    public List<IAdminPostMessage> getCombinedMessages(String chatId){
+        List<IAdminPostMessage> fullMessageList = getMessages(chatId);
+        List<IAdminPostMessage> combinedMessageList = new ArrayList<>();
+
+        AtomicReference<StringBuilder> messageBuilder = new AtomicReference<>(new StringBuilder());
+        AtomicInteger countMessages = new AtomicInteger(1);
+        if (fullMessageList.size() > 0){
+
+            String adminLogin = fullMessageList.get(0).getAdminLogin();
+            fullMessageList.stream().filter(
+                    m -> !AdminPostMessageType.START_POST.equals(m.getAdminPostMessageType())
+            ).forEach(m -> {
+
+                if (AdminPostMessageType.TEXT.equals(m.getAdminPostMessageType())) {
+                    messageBuilder.get().append(m.getContent() == null ? "" : m.getContent());
+                    messageBuilder.get().append(" \n");
+
+                } else {
+                    if (messageBuilder.get().length() > 0) {
+                        IAdminPostMessage combinedTextMessage = new AdminPostMessage();
+                        combinedTextMessage.setNumberInPost(countMessages.get());
+                        combinedTextMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
+                        combinedTextMessage.setAdminLogin(adminLogin);
+                        combinedTextMessage.setContent(messageBuilder.toString());
+                        combinedMessageList.add(combinedTextMessage);
+                        countMessages.getAndIncrement();
+                        messageBuilder.set(new StringBuilder());
+                    }
+                }
+                if (AdminPostMessageType.PHOTO.equals(m.getAdminPostMessageType())) {
+                    IAdminPostMessage combinedTextMessage = new AdminPostMessage();
+                    combinedTextMessage.setNumberInPost(countMessages.get());
+                    combinedTextMessage.setAdminPostMessageType(AdminPostMessageType.PHOTO);
+                    combinedTextMessage.setAdminLogin(adminLogin);
+                    combinedTextMessage.setFileId(m.getFileId());
+                    combinedMessageList.add(combinedTextMessage);
+                    countMessages.getAndIncrement();
+                }
+            });
+
+            if (messageBuilder.get().length() > 0){
+                IAdminPostMessage combinedTextMessage = new AdminPostMessage();
+                combinedTextMessage.setNumberInPost(countMessages.get());
+                combinedTextMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
+                combinedTextMessage.setAdminLogin(adminLogin);
+                combinedTextMessage.setContent(messageBuilder.toString());
+                combinedMessageList.add(combinedTextMessage);
+                countMessages.getAndIncrement();
+            }
+        }
+
+        return combinedMessageList;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AuthorizeCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.BattleCardsCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.HouseRandomCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.CancelPostCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.SendPostCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.StartPostCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.ViewPostCommand;
 import so.siva.telegram.bot.got_t_bot.web.aop.LooperHack;
@@ -30,6 +33,8 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
     @Autowired
     private LooperHack looperHack;
 
+    private Logger logger = LoggerFactory.getLogger(GotBotListenerController.class);
+
     public GotBotListenerController(@Value("${telegram.bot.token}") String botToken,
                                     @Value("${telegram.bot.username}") String botUserName,
                                     AdminPostMessageService postMessageService,
@@ -38,7 +43,8 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
                                     HouseRandomCommand houseRandomCommand,
                                     StartPostCommand startPostCommand,
                                     ViewPostCommand viewPostCommand,
-                                    CancelPostCommand cancelPostCommand
+                                    CancelPostCommand cancelPostCommand,
+                                    SendPostCommand sendPostCommand
     ) {
         super(new DefaultBotOptions(), false);
         this.botToken = botToken;
@@ -50,6 +56,7 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
         register(startPostCommand);
         register(viewPostCommand);
         register(cancelPostCommand);
+        register(sendPostCommand);
     }
 
     @Override
@@ -61,6 +68,10 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
     public void processNonCommandUpdate(Update update) {
         //Оборачиваем обработку для АОП
         update = looperHack.apply(update);
+        if (update == null){
+            logger.warn("Update was null");
+            return;
+        }
         try{
             if (update.hasMessage() && update.getMessage().hasText()) {
 
@@ -77,13 +88,13 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
                 answer.setChatId(update.getMessage().getChatId());
 
                 answer.setPhoto(update.getMessage().getPhoto().get(0).getFileId());
-                answer.setCaption("блаблаблаблаблаблаблаблаблаблаблаблаблаблабблаблабалбалбалаблабал");
+                answer.setCaption(update.getMessage().getCaption());
                 execute(answer);
             }
 
 
         }catch (TelegramApiException e){
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 

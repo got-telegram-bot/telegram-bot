@@ -11,6 +11,7 @@ public class AdminPostMessage implements IAdminPostMessage {
     private String content;
     private String fileId;
     private String adminLogin;
+//    private String mediaGroupId;
 
     @Override
     public Integer getNumberInPost() {
@@ -61,4 +62,14 @@ public class AdminPostMessage implements IAdminPostMessage {
     public void setAdminLogin(String adminLogin) {
         this.adminLogin = adminLogin;
     }
+
+//    @Override
+//    public String getMediaGroupId() {
+//        return mediaGroupId;
+//    }
+//
+//    @Override
+//    public void setMediaGroupId(String mediaGroupId) {
+//        this.mediaGroupId = mediaGroupId;
+//    }
 }

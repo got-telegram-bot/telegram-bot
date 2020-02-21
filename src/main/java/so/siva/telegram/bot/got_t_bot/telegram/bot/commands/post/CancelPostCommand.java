@@ -16,7 +16,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEFAULT_COMMAND_ERROR_MESSAGE;
 
 @Component
-public class CancelPostCommand extends ACommand {
+public class CancelPostCommand extends APostCommand {
 
     public CancelPostCommand() {
         super("/cancel_post", "Отменить пост");
@@ -25,16 +25,19 @@ public class CancelPostCommand extends ACommand {
     @Autowired
     private IAdminPostMessageService adminPostMessageService;
 
-    @Autowired
-    private IUserService userService;
-
     private Logger logger = LoggerFactory.getLogger(CancelPostCommand.class);
 
     @Override
     public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
         SendMessage message = new SendMessage();
         String chatId = chat.getId().toString();
+
         message.setChatId(chatId);
+        if (adminPostMessageService.getMessages(chatId).size() == 0){
+            message.setText("Запись сообщений не была начата");
+            execute(absSender, message, telegramUser);
+            return;
+        }
         try {
             adminPostMessageService.cancelPost(chatId);
         }catch (Throwable throwable){

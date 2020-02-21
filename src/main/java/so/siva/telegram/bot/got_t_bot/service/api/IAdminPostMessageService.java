@@ -11,6 +11,8 @@ public interface IAdminPostMessageService {
 
     List<IAdminPostMessage> getMessages(String chatId);
 
+    List<IAdminPostMessage> getCombinedMessages(String chatId);
+
     void cancelPost(String chatId);
 
     String getLoginByChatId(String chatId);

@@ -10,12 +10,13 @@ CREATE TABLE messages.current_post (
     content character varying(1500),
     file_id character varying(100),
     admin_login character varying NOT NULL,
+--     media_group_id character varying,
     PRIMARY KEY (number_in_post, admin_login),
     FOREIGN KEY (admin_login) REFERENCES users.users (login)
 );
 
 COMMENT ON TABLE messages.current_post IS 'Первое и последнее сообщение для текущего админа - служебные, и служат для проверки, что пост начат и закочнен соответственно. Если в базе присутствует сообщение с типом start_post, значит все последующие сообщения от админа сохраняются в базу до тех пор, пока не будет получено сообщение end_post или cancel_post';
-
+-- COMMENT ON column messages.current_post.media_group_id IS 'Айдишник для файлов (изображений), которые приходят вместе. Телеграм не хранит это значение, так что это только способ узнать, какие файлы пришли в одной группе';
 
 CREATE OR REPLACE FUNCTION messages.start_post_trigger() RETURNS TRIGGER AS $$
     BEGIN

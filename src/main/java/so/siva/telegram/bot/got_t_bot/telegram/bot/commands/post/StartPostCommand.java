@@ -16,7 +16,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEFAULT_COMMAND_ERROR_MESSAGE;
 
 @Component
-public class StartPostCommand extends ACommand {
+public class StartPostCommand extends APostCommand {
 
     public StartPostCommand() {
         super("/start_post", "Начать пост");
@@ -35,6 +35,11 @@ public class StartPostCommand extends ACommand {
         SendMessage message = new SendMessage();
         String chatId = chat.getId().toString();
         message.setChatId(chatId);
+        if (adminPostMessageService.getMessages(chatId).size() > 0){
+            message.setText("Запись сообщений уже начата");
+            execute(absSender, message, telegramUser);
+            return;
+        }
         try {
             adminPostMessageService.startPost(chatId);
         }catch (Throwable throwable){
