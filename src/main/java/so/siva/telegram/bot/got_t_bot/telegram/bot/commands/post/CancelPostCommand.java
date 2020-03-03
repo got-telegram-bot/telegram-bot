@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEFAULT_COMMAND_ERROR_MESSAGE;
@@ -18,12 +19,9 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 @Component
 public class CancelPostCommand extends APostCommand {
 
-    public CancelPostCommand() {
-        super("/cancel_post", "Отменить пост");
+    public CancelPostCommand(GotBotListenerController gotBotListenerController) {
+        super("/cancel_post", "Отменить пост", gotBotListenerController);
     }
-
-    @Autowired
-    private IAdminPostMessageService adminPostMessageService;
 
     private Logger logger = LoggerFactory.getLogger(CancelPostCommand.class);
 

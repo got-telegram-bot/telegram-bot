@@ -36,27 +36,11 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
     private Logger logger = LoggerFactory.getLogger(GotBotListenerController.class);
 
     public GotBotListenerController(@Value("${telegram.bot.token}") String botToken,
-                                    @Value("${telegram.bot.username}") String botUserName,
-                                    AdminPostMessageService postMessageService,
-                                    AuthorizeCommand authorizeCommand,
-                                    BattleCardsCommand battleCardsCommand,
-                                    HouseRandomCommand houseRandomCommand,
-                                    StartPostCommand startPostCommand,
-                                    ViewPostCommand viewPostCommand,
-                                    CancelPostCommand cancelPostCommand,
-                                    SendPostCommand sendPostCommand
+                                    @Value("${telegram.bot.username}") String botUserName
     ) {
         super(new DefaultBotOptions(), false);
         this.botToken = botToken;
         this.botUserName = botUserName;
-
-        register(authorizeCommand);
-        register(battleCardsCommand);
-        register(houseRandomCommand);
-        register(startPostCommand);
-        register(viewPostCommand);
-        register(cancelPostCommand);
-        register(sendPostCommand);
     }
 
     @Override

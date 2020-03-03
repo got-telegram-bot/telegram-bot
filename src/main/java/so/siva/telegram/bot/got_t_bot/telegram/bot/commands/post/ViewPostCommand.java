@@ -14,6 +14,7 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.ArrayList;
@@ -24,12 +25,9 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 @Component
 public class ViewPostCommand extends APostCommand {
 
-    public ViewPostCommand() {
-        super("/view_post", "Просмотреть пост");
+    public ViewPostCommand(GotBotListenerController gotBotListenerController) {
+        super("/view_post", "Просмотреть пост", gotBotListenerController);
     }
-
-    @Autowired
-    private IAdminPostMessageService adminPostMessageService;
 
     private Logger logger = LoggerFactory.getLogger(ViewPostCommand.class);
 

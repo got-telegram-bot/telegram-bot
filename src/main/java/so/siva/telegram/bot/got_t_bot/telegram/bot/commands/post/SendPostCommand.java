@@ -12,6 +12,7 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +23,9 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 @Component
 public class SendPostCommand extends APostCommand {
 
-    public SendPostCommand() {
-        super("/send_post", "Отправить всем авторизованным пользователям");
+    public SendPostCommand(GotBotListenerController gotBotListenerController) {
+        super("/send_post", "Отправить всем авторизованным пользователям", gotBotListenerController);
     }
-
-    @Autowired
-    private IAdminPostMessageService adminPostMessageService;
 
     @Autowired
     private CancelPostCommand cancelPostCommand;

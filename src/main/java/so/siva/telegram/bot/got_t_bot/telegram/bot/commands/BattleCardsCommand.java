@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,8 @@ public class BattleCardsCommand extends ACommand {
     }};
 
 
-    public BattleCardsCommand() {
-        super("battle_cards", "выдать карты перевеса \n");
+    public BattleCardsCommand(GotBotListenerController gotBotListenerController) {
+        super("battle_cards", "выдать карты перевеса \n", gotBotListenerController);
     }
 
     @Override

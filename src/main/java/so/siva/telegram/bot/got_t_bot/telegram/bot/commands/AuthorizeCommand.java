@@ -13,6 +13,7 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.service.UserService;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 
 import java.util.Arrays;
@@ -28,8 +29,8 @@ public class AuthorizeCommand extends ACommand {
 
     private Logger logger = LoggerFactory.getLogger(AuthorizeCommand.class);
 
-    public AuthorizeCommand() {
-        super("authorize", "авторизация\n");
+    public AuthorizeCommand(GotBotListenerController gotBotListenerController) {
+        super("authorize", "авторизация\n", gotBotListenerController);
     }
 
     /**
