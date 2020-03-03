@@ -51,6 +51,7 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
     @Override
     public void processNonCommandUpdate(Update update) {
         //Оборачиваем обработку для АОП
+        //Если начата запись поста, то сообщения складываются в базу
         update = looperHack.apply(update);
         if (update == null){
             logger.warn("Update was null");
