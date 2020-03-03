@@ -36,10 +36,12 @@ public class AdNewCombatCommand extends AAdCommand {
             throw new IllegalArgumentException("Неверное количество параметров");
         }
 
-        for (String param : params)
-        if (StringUtils.isEmpty(param)){
-            throw new IllegalArgumentException("Не передан парметр");
+        for (String param : params){
+            if (StringUtils.isEmpty(param)){
+                throw new IllegalArgumentException("Не передан парметр");
+            }
         }
+
     }
 
 }
