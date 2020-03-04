@@ -13,7 +13,7 @@ public class AdNewCombatCommand extends AAdCommand {
 
 
     public AdNewCombatCommand(GotBotListenerController gotBotListenerController) {
-        super("/ad_new_combat", "объявить новый бой (название_локации, нападающий, обороняющийся)", gotBotListenerController);
+        super("/ad_new_combat", "объявить новый бой (название_локации нападающий обороняющийся)", gotBotListenerController);
     }
 
     @Override
