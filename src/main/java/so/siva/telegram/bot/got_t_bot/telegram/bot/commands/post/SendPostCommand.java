@@ -24,7 +24,7 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 public class SendPostCommand extends APostCommand {
 
     public SendPostCommand(GotBotListenerController gotBotListenerController) {
-        super("/send_post", "Отправить всем авторизованным пользователям", gotBotListenerController);
+        super("/send_post", "отправить пост всем авторизованным пользователям", gotBotListenerController);
     }
 
     @Autowired

@@ -26,7 +26,7 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 public class ViewPostCommand extends APostCommand {
 
     public ViewPostCommand(GotBotListenerController gotBotListenerController) {
-        super("/view_post", "Просмотреть пост", gotBotListenerController);
+        super("/view_post", "просмотреть пост", gotBotListenerController);
     }
 
     private Logger logger = LoggerFactory.getLogger(ViewPostCommand.class);

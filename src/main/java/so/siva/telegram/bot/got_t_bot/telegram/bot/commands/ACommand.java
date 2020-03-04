@@ -16,9 +16,18 @@ import java.util.List;
 
 public abstract class ACommand extends BotCommand {
 
+    protected final boolean isAdminCommand;
+
     public ACommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController) {
         super(commandIdentifier, description);
         gotBotListenerController.register(this);
+        this.isAdminCommand = true;
+    }
+
+    public ACommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController, boolean isAdminCommand) {
+        super(commandIdentifier, description);
+        gotBotListenerController.register(this);
+        this.isAdminCommand = isAdminCommand;
     }
 
 

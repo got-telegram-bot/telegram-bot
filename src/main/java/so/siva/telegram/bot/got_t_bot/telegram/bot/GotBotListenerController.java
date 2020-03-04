@@ -6,22 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import so.siva.telegram.bot.got_t_bot.service.AdminPostMessageService;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AuthorizeCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.BattleCardsCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.HouseRandomCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.CancelPostCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.SendPostCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.StartPostCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.ViewPostCommand;
 import so.siva.telegram.bot.got_t_bot.web.aop.LooperHack;
 
 @Component

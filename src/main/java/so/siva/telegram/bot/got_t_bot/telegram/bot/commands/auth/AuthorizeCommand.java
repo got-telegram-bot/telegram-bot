@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.auth;
 
 
 import org.slf4j.Logger;
@@ -14,11 +14,11 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.service.UserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 public class AuthorizeCommand extends ACommand {
@@ -30,7 +30,7 @@ public class AuthorizeCommand extends ACommand {
     private Logger logger = LoggerFactory.getLogger(AuthorizeCommand.class);
 
     public AuthorizeCommand(GotBotListenerController gotBotListenerController) {
-        super("authorize", "авторизация\n", gotBotListenerController);
+        super("authorize", "авторизация, привязка аккаунта к чату в телеграме (логин пароль)", gotBotListenerController, false);
     }
 
     /**

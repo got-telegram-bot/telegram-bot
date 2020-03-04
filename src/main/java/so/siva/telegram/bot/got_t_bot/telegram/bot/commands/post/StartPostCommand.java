@@ -20,7 +20,7 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 public class StartPostCommand extends APostCommand {
 
     public StartPostCommand(GotBotListenerController gotBotListenerController) {
-        super("/start_post", "Начать пост", gotBotListenerController);
+        super("/start_post", "начать пост", gotBotListenerController);
     }
 
 

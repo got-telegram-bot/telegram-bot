@@ -20,7 +20,7 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 public class CancelPostCommand extends APostCommand {
 
     public CancelPostCommand(GotBotListenerController gotBotListenerController) {
-        super("/cancel_post", "Отменить пост", gotBotListenerController);
+        super("/cancel_post", "отменить пост", gotBotListenerController);
     }
 
     private Logger logger = LoggerFactory.getLogger(CancelPostCommand.class);

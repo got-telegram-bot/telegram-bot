@@ -10,7 +10,7 @@ public class AdNewTurnCommand extends AAdCommand {
 
 
     public AdNewTurnCommand(GotBotListenerController gotBotListenerController) {
-        super("/ad_new_turn", "Объявить новый ход (номер хода)", gotBotListenerController);
+        super("/ad_new_turn", "объявить новый ход (номер_хода)", gotBotListenerController);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.actions;
 
 
 import org.springframework.stereotype.Component;
@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.ArrayList;
 import java.util.List;
