@@ -32,9 +32,10 @@ public class AdminPostMessageCollector {
 
     @Around(value = "execution(* so.siva.telegram.bot.got_t_bot.web.aop.LooperHack.apply(..)) && args(update))")
     public Object captureAdminPostMessagesListening(ProceedingJoinPoint joinPoint, Update update) throws Throwable {
-        Message telegramMessage = update.getMessage();
+        Message telegramMessage;
         List<IAdminPostMessage> adminPostMessages;
         try {
+            telegramMessage = update.getMessage();
             adminPostMessages = new ArrayList<>(adminPostMessageService.getMessages(telegramMessage.getChatId().toString()));
         }catch (Throwable throwable){
             logger.error("Error get admin Messages");

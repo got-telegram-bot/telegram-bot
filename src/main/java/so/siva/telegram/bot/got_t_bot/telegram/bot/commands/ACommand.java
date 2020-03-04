@@ -5,6 +5,9 @@ import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
@@ -34,7 +37,6 @@ public abstract class ACommand extends BotCommand {
     public void execute(AbsSender sender, SendMessage message, User user) {
         try {
             sender.execute(message);
-
         } catch (TelegramApiException e) {
             System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
         }
@@ -43,7 +45,29 @@ public abstract class ACommand extends BotCommand {
     public void execute(AbsSender sender, SendPhoto photo, User user) {
         try {
             sender.execute(photo);
+        } catch (TelegramApiException e) {
+            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+        }
+    }
 
+    public void execute(AbsSender sender, DeleteMessage deleteMessage, User user) {
+        try {
+            sender.execute(deleteMessage);
+        } catch (TelegramApiException e) {
+            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+        }
+    }
+
+    public void execute(AbsSender sender, EditMessageReplyMarkup replyMarkup, User user) {
+        try {
+            sender.execute(replyMarkup);
+        } catch (TelegramApiException e) {
+            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+        }
+    }
+    public void execute(AbsSender sender, EditMessageText messageText, User user) {
+        try {
+            sender.execute(messageText);
         } catch (TelegramApiException e) {
             System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
         }
