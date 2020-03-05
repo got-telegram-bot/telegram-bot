@@ -1,0 +1,52 @@
+house:
+  cards:
+    deck:
+      a:
+        houses:
+          - houseName: bar
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: lan
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+      b:
+        houses:
+          - houseName: bar
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: lan
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA

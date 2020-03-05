@@ -17,7 +17,7 @@ import java.util.Random;
 
 
 @Component
-public class InfoCommand extends ACommand {
+public class InfoCommand extends AInfoCommand {
 
 
     public InfoCommand(GotBotListenerController gotBotListenerController) {

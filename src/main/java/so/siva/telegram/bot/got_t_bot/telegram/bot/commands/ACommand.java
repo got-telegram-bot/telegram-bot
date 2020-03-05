@@ -1,11 +1,14 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot.commands;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.User;
@@ -20,6 +23,8 @@ import java.util.List;
 public abstract class ACommand extends BotCommand {
 
     protected final boolean isAdminCommand;
+
+    private Logger logger = LoggerFactory.getLogger(ACommand.class);
 
     public ACommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController) {
         super(commandIdentifier, description);
@@ -38,7 +43,7 @@ public abstract class ACommand extends BotCommand {
         try {
             sender.execute(message);
         } catch (TelegramApiException e) {
-            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
         }
     }
 
@@ -46,7 +51,7 @@ public abstract class ACommand extends BotCommand {
         try {
             sender.execute(photo);
         } catch (TelegramApiException e) {
-            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
         }
     }
 
@@ -54,7 +59,7 @@ public abstract class ACommand extends BotCommand {
         try {
             sender.execute(deleteMessage);
         } catch (TelegramApiException e) {
-            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
         }
     }
 
@@ -62,14 +67,30 @@ public abstract class ACommand extends BotCommand {
         try {
             sender.execute(replyMarkup);
         } catch (TelegramApiException e) {
-            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
         }
     }
     public void execute(AbsSender sender, EditMessageText messageText, User user) {
         try {
             sender.execute(messageText);
         } catch (TelegramApiException e) {
-            System.out.println("[ERROR] - command error: " + user.getId() + getCommandIdentifier() +  e.getMessage());
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
+        }
+    }
+
+    public void execute(AbsSender sender, SendMediaGroup sendMediaGroup, User user) {
+        try {
+            sender.execute(sendMediaGroup);
+        } catch (TelegramApiException e) {
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
+        }
+    }
+
+    public void execute(AbsSender sender, EditMessageMedia editMessageMedia, User user) {
+        try {
+            sender.execute(editMessageMedia);
+        } catch (TelegramApiException e) {
+            logger.error(user.getId() + " " + getCommandIdentifier() + " " + e.getMessage());
         }
     }
 

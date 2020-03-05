@@ -17,6 +17,9 @@ spring:
       maximum-pool-size: 5
       pool-name: adminPool
       type: com.zaxxer.hikari.HikariDataSource
+  profiles:
+    include:
+      - info_config
 server:
   port: 8080
 
