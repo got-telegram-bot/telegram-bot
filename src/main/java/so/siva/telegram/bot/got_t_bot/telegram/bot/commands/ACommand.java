@@ -101,6 +101,15 @@ public abstract class ACommand extends BotCommand {
         return sendMessage;
     }
 
+    protected InputMediaPhoto prepareInputMediaPhoto(String fileId, String caption){
+        InputMediaPhoto sendPhoto = new InputMediaPhoto();
+        sendPhoto.setMedia(fileId);
+        if (caption!=null){
+            sendPhoto.setCaption(caption);
+        }
+        return sendPhoto;
+    }
+
     protected SendPhoto prepareSendPhoto(String fileId, String caption, String chatId){
         SendPhoto sendPhoto = new SendPhoto();
         sendPhoto.setChatId(chatId);

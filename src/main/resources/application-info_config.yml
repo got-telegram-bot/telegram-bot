@@ -33,6 +33,55 @@ house:
 
               - cardName: Гора
                 fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: str
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: grj
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: tyr
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: mar
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: arr
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+          - houseName: tar
+            cards:
+              - cardName: Тайвин
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
+              - cardName: Гора
+                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+
       b:
         houses:
           - houseName: bar

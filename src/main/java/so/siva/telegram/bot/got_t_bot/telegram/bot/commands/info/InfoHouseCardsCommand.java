@@ -1,6 +1,8 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.info;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -16,6 +18,7 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.config.InfoHouseCardsCommandsConfig;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,8 +32,11 @@ public class InfoHouseCardsCommand extends AInfoCommand {
     @Autowired
     private InfoHouseCardsCommandsConfig infoHouseCardsCommandsConfig;
 
+    private Logger logger = LoggerFactory.getLogger(InfoHouseCardsCommand.class);
+
     private final static String DECK_A = "a";
     private final static String DECK_B = "b";
+    private final static String placeHolderFileID = "AgACAgIAAxkBAAIE0V5iH6z3GRm7uarnW98Ob87SvMF7AAJCrDEb_o8QS4J_YLLMmWuVAoDBDwAEAQADAgADeQADnjEFAAEYBA";
 
     public InfoHouseCardsCommand(GotBotListenerController gotBotListenerController) {
         super("info_house_cards", "список карт дома", gotBotListenerController, false);
@@ -43,90 +49,75 @@ public class InfoHouseCardsCommand extends AInfoCommand {
             SendPhoto message = startInlineMessage(chat.getId());
             execute(absSender, message, telegramUser);
         }else {
+
+            String deckDomainParam = "";
+            String houseDomainParam = "";
+            String cardDomainParam = "";
             Integer messageId = Integer.valueOf(strings[strings.length - 1]);
+            try {
+                deckDomainParam = strings[0];
+                houseDomainParam = strings[1];
+                cardDomainParam = strings[2];
+            }catch (IndexOutOfBoundsException e){
+                logger.warn(e.getMessage());
+            }
+
             if (CLOSE_BUTTON_CALLBACK.equals(strings[0])){
 
                 cancelInfoWindow(absSender, telegramUser, chat, messageId);
                 return;
             }
-            if (DECK_A.equals(strings[0])){
-                if (Arrays.stream(Houses.values()).noneMatch(houses -> houses.getDomain().equals(strings[1]))){
+            if (DECK_A.equals(deckDomainParam)){
+
+                List<InfoHouseCardsCommandsConfig.House> houseList = infoHouseCardsCommandsConfig.getDeck().get(DECK_A).getHouses();
+
+                String finalHouseDomainParam = houseDomainParam;
+                if (Arrays.stream(Houses.values()).noneMatch(houses -> houses.getDomain().equals(finalHouseDomainParam))){
 
                     EditMessageMedia editMessageMedia = new EditMessageMedia();
                     InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-                    List<InlineKeyboardButton> houses = getHouses(DECK_A);
                     List<InlineKeyboardButton> rowActions = prepareCloseButtonRow();
-                    List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-                    rowList.add(houses);
+                    List<List<InlineKeyboardButton>> rowList = new ArrayList<>(prepareHouseButtons(houseList, DECK_A));
                     rowList.add(rowActions);
                     markup.setKeyboard(rowList);
                     editMessageMedia.setReplyMarkup(markup);
 
-                    InputMediaPhoto inputMediaPhoto = new InputMediaPhoto();
-                    inputMediaPhoto.setMedia("AgACAgIAAxkBAAIE0V5iH6z3GRm7uarnW98Ob87SvMF7AAJCrDEb_o8QS4J_YLLMmWuVAoDBDwAEAQADAgADeQADnjEFAAEYBA");
-                    inputMediaPhoto.setCaption("Выберите дом");
-                    editMessageMedia.setMedia(inputMediaPhoto);
+                    editMessageMedia.setMedia(prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"));
                     editMessageMedia.setChatId(chat.getId());
                     editMessageMedia.setMessageId(messageId);
 
                     execute(absSender, editMessageMedia, telegramUser);
                     return;
-                }
+                }else {
+                    if (Houses.BARATHEON.getDomain().equals(houseDomainParam)){
+                        List<InfoHouseCardsCommandsConfig.Card> cardList = houseList.stream().filter(
+                                house -> house.getHouseName().equals(Houses.BARATHEON.getDomain())
+                        ).findFirst()
+                                .orElseThrow(() -> new IllegalArgumentException("Ошибка создания списка кнопок домов - не удалось определить наименование дома"))
+                                .getCards();
 
-                if (Houses.BARATHEON.getDomain().equals(strings[1])){
-                    EditMessageMedia editMessageMedia = new EditMessageMedia();
-                    InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-                    List<InlineKeyboardButton> houses = getCards(DECK_A);
-                    List<InlineKeyboardButton> rowActions = prepareCloseButtonRow();
-                    List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-                    rowList.add(houses);
-                    rowList.add(rowActions);
-                    markup.setKeyboard(rowList);
-                    editMessageMedia.setReplyMarkup(markup);
+                        EditMessageMedia editMessageMedia = new EditMessageMedia();
+                        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+                        List<InlineKeyboardButton> rowActions = prepareCloseButtonRow();
+                        List<List<InlineKeyboardButton>> rowList = new ArrayList<>(prepareCardsButtons(cardList, DECK_A, Houses.BARATHEON.getDomain()));
+                        rowList.add(rowActions);
+                        markup.setKeyboard(rowList);
+                        editMessageMedia.setReplyMarkup(markup);
 
-                    InputMediaPhoto inputMediaPhoto = new InputMediaPhoto();
+                        String finalCardDomainParam = cardDomainParam;
+                        InfoHouseCardsCommandsConfig.Card card = cardList.stream()
+                                .filter(card1 -> card1.getCardName().equals(finalCardDomainParam))
+                                .findFirst().orElse(cardList.get(0));
 
+                        InputMediaPhoto inputMediaPhoto = prepareInputMediaPhoto( card.getFileId(), card.getCardName());
 
-                    inputMediaPhoto.setMedia(getCardFileId("Станнис"));
+                        editMessageMedia.setMedia(inputMediaPhoto);
+                        editMessageMedia.setChatId(chat.getId());
+                        editMessageMedia.setMessageId(messageId);
 
-                    if ("Станнис".equals(strings[2])) {
-                        inputMediaPhoto.setMedia(getCardFileId("Станнис"));
+                        execute(absSender, editMessageMedia, telegramUser);
+                        return;
                     }
-                    if ("Давос".equals(strings[2])) {
-                        inputMediaPhoto.setMedia(getCardFileId("Давос"));
-                    }
-                    if ("Пестряк".equals(strings[2])) {
-                        inputMediaPhoto.setMedia(getCardFileId("Пестряк"));
-                    }
-
-                    inputMediaPhoto.setCaption("Выберите карту");
-                    editMessageMedia.setMedia(inputMediaPhoto);
-                    editMessageMedia.setChatId(chat.getId());
-                    editMessageMedia.setMessageId(messageId);
-
-                    execute(absSender, editMessageMedia, telegramUser);
-                    return;
-
-//                    SendMediaGroup sendMediaGroup = new SendMediaGroup();
-//                    List<InputMedia> deckAlbumList = new ArrayList<>();
-
-//                    infoHouseCardsCommandsConfig.getDeck().get(DECK_A)
-//                            .getHouses()
-//                            .stream().filter(house -> house.getHouseName().equals(Houses.BARATHEON.getDomain()))
-//                            .forEach(house -> {
-//                                house.getCards().forEach(card -> {
-//                                    InputMediaPhoto inputMediaPhoto = new InputMediaPhoto();
-//                                    inputMediaPhoto.setMedia(card.getFileId());
-//                                    deckAlbumList.add(inputMediaPhoto);
-//                                });
-//                            });
-//
-//                    sendMediaGroup.setMedia(deckAlbumList);
-//                    sendMediaGroup.setChatId(chat.getId());
-//
-//                    execute(absSender, sendMediaGroup, telegramUser);
-//                    cancelInfoWindow(absSender, telegramUser, chat, messageId);
-//                    return;
                 }
             }
 
@@ -149,14 +140,62 @@ public class InfoHouseCardsCommand extends AInfoCommand {
     }
 
 
+    /**
+     * Формируем ряды кнопок для выбора дома
+     * @param houseList
+     * @param deck
+     * @return
+     */
+    private List<List<InlineKeyboardButton>> prepareHouseButtons(List<InfoHouseCardsCommandsConfig.House> houseList, String deck){
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        List<InlineKeyboardButton> houseButtonRow = new ArrayList<>();
+        houseList.forEach(house -> {
 
-    private List<InlineKeyboardButton> getHouses(String deck){
-        return new ArrayList<InlineKeyboardButton>(){{
-            add(createButton("Баратеон",  deck + "." + Houses.BARATHEON.getDomain()));
-            add(createButton("Ланнистер",  deck + "." + Houses.LANNISTER.getDomain()));
-            add(createButton("Старк",  deck + "." + Houses.STARK.getDomain()));
-        }};
+            String buttonLabel = Arrays.stream(Houses.values())
+                    .filter(housesFromEnum ->
+                            housesFromEnum.getDomain().equals(house.getHouseName())
+                    ).findFirst()
+                    .orElseThrow(
+                            () -> new IllegalArgumentException("Ошибка создания списка кнопок домов - не удалось определить наименование дома")
+                    ).getRusName();
+            if (houseButtonRow.size() > 2){
+                List<InlineKeyboardButton> copyRow = new ArrayList<>(houseButtonRow);
+                rowList.add(copyRow);
+
+                houseButtonRow.clear();
+
+                houseButtonRow.add(createButton(buttonLabel, deck + "." + house.getHouseName()));
+            }else {
+                houseButtonRow.add(createButton(buttonLabel, deck + "." + house.getHouseName()));
+            }
+
+        });
+        rowList.add(houseButtonRow);
+        return rowList;
     }
+
+    private List<List<InlineKeyboardButton>> prepareCardsButtons(List<InfoHouseCardsCommandsConfig.Card> cardList, String deck, String houseName){
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        List<InlineKeyboardButton> houseButtonRow = new ArrayList<>();
+        cardList.forEach(card -> {
+
+            String buttonLabel = card.getCardName();
+            if (houseButtonRow.size() > 2){
+                List<InlineKeyboardButton> copyRow = new ArrayList<>(houseButtonRow);
+                rowList.add(copyRow);
+
+                houseButtonRow.clear();
+
+                houseButtonRow.add(createButton(buttonLabel, deck + "." + houseName + "." + buttonLabel));
+            }else {
+                houseButtonRow.add(createButton(buttonLabel, deck + "." + houseName + "." + buttonLabel));
+            }
+
+        });
+        rowList.add(houseButtonRow);
+        return rowList;
+    }
+
     private List<InlineKeyboardButton> getCards(String deck){
         return new ArrayList<InlineKeyboardButton>(){{
             add(createButton("Станнис",  deck + "." + Houses.BARATHEON.getDomain() + "." + "Станнис"));
