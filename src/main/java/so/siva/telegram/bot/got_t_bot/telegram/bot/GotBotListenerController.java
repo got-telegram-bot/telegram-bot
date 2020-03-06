@@ -12,7 +12,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import so.siva.telegram.bot.got_t_bot.web.aop.LooperHack;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack;
 
 import java.util.Arrays;
 import java.util.List;
@@ -67,18 +67,19 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
                 answer.setChatId(update.getMessage().getChatId());
 
                 answer.setPhoto(update.getMessage().getPhoto().get(0).getFileId());
-                answer.setCaption(update.getMessage().getCaption());
+                answer.setCaption(update.getMessage().getCaption() + "\n" + update.getMessage().getPhoto().get(0).getFileId());
                 execute(answer);
             }
             if (update.hasCallbackQuery()){
                 String data = update.getCallbackQuery().getData();
 
                 String[] trimmedData = data.split("\\.");
-                if ("info_house_cards".equals(trimmedData[0])){
+                String commandIdentifier = trimmedData[0];
+                if (getRegisteredCommands().stream().anyMatch(iBotCommand -> iBotCommand.getCommandIdentifier().equals(commandIdentifier))){
                     List<String> arguments = Arrays.stream(trimmedData).skip(1).collect(Collectors.toList());
                     arguments.add(update.getCallbackQuery().getMessage().getMessageId().toString());
 
-                    IBotCommand command = getRegisteredCommand("info_house_cards");
+                    IBotCommand command = getRegisteredCommand(commandIdentifier);
                     command.processMessage(this, update.getCallbackQuery().getMessage(), arguments.toArray(new String[0]));
                 }
             }

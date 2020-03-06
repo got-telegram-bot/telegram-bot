@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.*;
 
@@ -37,7 +38,7 @@ public class HelpCommand extends ACommand {
                     .append(aCommand.getCommandIdentifier())
                     .append(" - ")
                     .append(aCommand.getDescription())
-                    .append(aCommand.isAdminCommand ? " [только админ];" : ";")
+                    .append(aCommand.isAdminCommand() ? " [только админ];" : ";")
                     .append(" \n\n")
         );
 

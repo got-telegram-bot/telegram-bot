@@ -120,7 +120,11 @@ public abstract class ACommand extends BotCommand {
         return sendPhoto;
     }
 
-//    protected SendMediaGroup prepareMediaGroup(List<InputMedia> photos, String chatId){
+    public boolean isAdminCommand() {
+        return this.isAdminCommand;
+    }
+
+    //    protected SendMediaGroup prepareMediaGroup(List<InputMedia> photos, String chatId){
 //        SendMediaGroup sendMediaGroup = new SendMediaGroup();
 //        sendMediaGroup.setChatId(chatId);
 //        sendMediaGroup.setMedia(photos);

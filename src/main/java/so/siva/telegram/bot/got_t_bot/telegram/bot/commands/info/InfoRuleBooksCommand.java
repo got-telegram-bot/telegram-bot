@@ -12,22 +12,30 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 
 @Component
-public class InfoCommand extends AInfoCommand {
+public class InfoRuleBooksCommand extends AInfoCommand {
 
 
-    public InfoCommand(GotBotListenerController gotBotListenerController) {
-        super("info", "инфо со ссылками на документы ", gotBotListenerController, false);
+    public InfoRuleBooksCommand(GotBotListenerController gotBotListenerController) {
+        super("info_rule_books", "инфо со ссылками на правила игры ", gotBotListenerController, false);
     }
 
     @Override
     public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
-        SendMessage message = prepareInlineKeyBoardMessage(chat.getId());
 
+
+        if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
+            Integer messageId = Integer.valueOf(strings[strings.length - 1]);
+            cancelInfoWindow(absSender, telegramUser, chat, messageId);
+            return;
+        }
+
+        SendMessage message = prepareInlineKeyBoardMessage(chat.getId());
         execute(absSender, message, telegramUser);
     }
 
@@ -57,6 +65,7 @@ public class InfoCommand extends AInfoCommand {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
         rowList.add(keyboardButtonsRow1);
         rowList.add(keyboardButtonsRow2);
+        rowList.add(prepareNavigateButtonRow());
 
         inlineKeyboardMarkup.setKeyboard(rowList);
         return new SendMessage().setChatId(chatId).setText("Ссылки: ").setReplyMarkup(inlineKeyboardMarkup);

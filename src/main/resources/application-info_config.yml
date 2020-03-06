@@ -28,74 +28,347 @@ house:
 
           - houseName: lan
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: str
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: grj
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: tyr
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: mar
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: arr
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: tar
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
       b:
         houses:
           - houseName: bar
             cards:
               - cardName: Станнис
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
 
               - cardName: Давос
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
 
           - houseName: lan
             cards:
-              - cardName: Тайвин
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
 
-              - cardName: Гора
-                fileId: AgACAgIAAxkBAAIEUl5fwpSmYCmnG5-3GuXa6SSixw5zAALlrjEbYyf4SuBXxRWLR9_CSsZ-kS4AAwEAAwIAA3gAAwKRAAIYBA
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: str
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: grj
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: tyr
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: mar
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: arr
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA
+
+          - houseName: tar
+            cards:
+              - cardName: Станнис
+                fileId: AgACAgIAAxkBAAIEqV5hEIe5CespNjFtHxBW0UY_cxsIAALDqzEbfyEJS28AAR5IwdgCFMtTyw4ABAEAAwIAA3gAA_D4AgABGAQ
+
+              - cardName: Ренли
+                fileId: AgACAgIAAxkBAAIErV5hEImhlGig_P314H6bFMxs7pw3AAKUrDEbYycIS09ffjC3AAH7OfZEyw4ABAEAAwIAA3gAA8r-AgABGAQ
+
+              - cardName: Давос
+                fileId: AgACAgIAAxkBAAIEq15hEIgfSQ9r640lBSkqDF2Ynu3pAAKTrDEbYycIS-ZHUUpaQPR-jh3BDgAEAQADAgADeAAD6pcDAAEYBA
+
+              - cardName: Бриена
+                fileId: AgACAgIAAxkBAAIEqF5hEIZ07VCWfn6q0ktL6XjxnXToAAKSrDEbYycIS2KcksH5tSuxeEfLDgAEAQADAgADeAADUfgCAAEYBA
+
+              - cardName: Мелисандра
+                fileId: AgACAgIAAxkBAAIEql5hEIhig9Aa8O3YnJi3SLPTDWGQAALEqzEbfyEJSxfAMkcaE8-ut551kS4AAwEAAwIAA3gAA66ZAAIYBA
+
+              - cardName: Саан
+                fileId: AgACAgIAAxkBAAIEp15hEIY3-YQS8OkcW5qzF4VG4M_lAAKRrDEbYycIS47TAAFg1CMvuxSUcpEuAAMBAAMCAAN4AAMjlwACGAQ
+
+              - cardName: Пестряк
+                fileId: AgACAgIAAxkBAAIErF5hEImodSbaucPWjKrIDm_FLRg_AALFqzEbfyEJSzXaDORZ-UIjLcbCDwAEAQADAgADeAADGVwEAAEYBA

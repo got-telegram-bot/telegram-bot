@@ -1,5 +1,6 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.info;
 
+import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
@@ -14,8 +15,8 @@ import java.util.List;
 
 public abstract class AInfoCommand extends ACommand {
 
-
     protected final static String CLOSE_BUTTON_CALLBACK = "CANCEL";
+    protected final static String BACK_BUTTON_CALLBACK = "BACK";
 
 
     public AInfoCommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController) {
@@ -44,9 +45,25 @@ public abstract class AInfoCommand extends ACommand {
         return button;
     }
 
-    protected List<InlineKeyboardButton> prepareCloseButtonRow(){
+    protected InlineKeyboardButton createBackButton(String callBackData){
+        InlineKeyboardButton button = new InlineKeyboardButton();
+        button.setText("« Назад");
+        button.setCallbackData(getCommandIdentifier() + "." + (StringUtils.isEmpty(callBackData) ? BACK_BUTTON_CALLBACK : callBackData + "." + BACK_BUTTON_CALLBACK));
+
+        return button;
+    }
+
+    protected List<InlineKeyboardButton> prepareNavigateButtonRow(InlineKeyboardButton backButton){
+        return new ArrayList<InlineKeyboardButton>(prepareNavigateButtonRow()){{
+            if (backButton != null){
+                add(backButton);
+            }
+        }};
+    }
+
+    protected List<InlineKeyboardButton> prepareNavigateButtonRow(){
         return new ArrayList<InlineKeyboardButton>(){{
-            add(createButton("*Выход*", CLOSE_BUTTON_CALLBACK));
+            add(createButton("⊗ Выход ⊗", CLOSE_BUTTON_CALLBACK));
         }};
     }
 

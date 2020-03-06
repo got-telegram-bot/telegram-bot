@@ -1,8 +1,7 @@
-package so.siva.telegram.bot.got_t_bot.web.aop;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.aop;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.function.Function;
 

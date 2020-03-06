@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.web.aop;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -18,7 +18,6 @@ import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Aspect
 @Component
@@ -30,7 +29,7 @@ public class AdminPostMessageCollector {
     private IAdminPostMessageService adminPostMessageService;
 
 
-    @Around(value = "execution(* so.siva.telegram.bot.got_t_bot.web.aop.LooperHack.apply(..)) && args(update))")
+    @Around(value = "execution(* so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack.apply(..)) && args(update))")
     public Object captureAdminPostMessagesListening(ProceedingJoinPoint joinPoint, Update update) throws Throwable {
         Message telegramMessage;
         List<IAdminPostMessage> adminPostMessages;
