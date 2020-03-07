@@ -8,7 +8,9 @@ public enum Houses {
     TYRELL("Тирелл", "tyr"),
     MARTELL("Мартелл", "mar"),
     ARRYN("Аррен", "arr"),
-    TARGARIEN("Таргариен", "tar");
+    TARGARIEN("Таргариен", "tar"),
+
+    VASSAL("Вассал", "vassal");
 
     private String rusName;
 

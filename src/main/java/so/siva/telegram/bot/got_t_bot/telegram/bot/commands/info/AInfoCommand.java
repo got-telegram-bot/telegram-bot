@@ -3,8 +3,11 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.info;
 import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
@@ -65,6 +68,22 @@ public abstract class AInfoCommand extends ACommand {
         return new ArrayList<InlineKeyboardButton>(){{
             add(createButton("⊗ Выход ⊗", CLOSE_BUTTON_CALLBACK));
         }};
+    }
+
+    protected EditMessageMedia prepareEditMessagePhoto(
+            List<List<InlineKeyboardButton>> commonRowList,
+            InputMediaPhoto inputMediaPhoto,
+            InlineKeyboardButton backButton,
+            Long chatId, Integer messageId
+    ){
+        EditMessageMedia editMessageMedia = new EditMessageMedia();
+        List<List<InlineKeyboardButton>> completeRowList = new ArrayList<>(commonRowList);
+        completeRowList.add(prepareNavigateButtonRow(backButton));
+        editMessageMedia.setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(completeRowList));
+        editMessageMedia.setMedia(inputMediaPhoto);
+        editMessageMedia.setChatId(chatId);
+        editMessageMedia.setMessageId(messageId);
+        return editMessageMedia;
     }
 
 }

@@ -4,10 +4,10 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.info;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
@@ -33,7 +33,10 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
     private final static String DECK_A = "a";
     private final static String DECK_B = "b";
-    private final static String placeHolderFileID = "AgACAgIAAxkBAAIE0V5iH6z3GRm7uarnW98Ob87SvMF7AAJCrDEb_o8QS4J_YLLMmWuVAoDBDwAEAQADAgADeQADnjEFAAEYBA";
+    private final static String DECK_VASSAL = "vassal";
+
+    @Value("${infoHouseCard.imagePlaceholder.fileId}")
+    private String placeHolderFileID;
 
     public InfoHouseCardsCommand(GotBotListenerController gotBotListenerController) {
         super("info_house_cards", "список карт дома", gotBotListenerController, false);
@@ -53,7 +56,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
         //Если нажали кнопку назад из следующего по вложенности меню, попадаем сюда
         //Формируем сообщение аналогично первому попаданию в команду
         if (BACK_BUTTON_CALLBACK.equals(strings[0])){
-            execute(absSender, prepareEditMessageMedia(
+            execute(absSender, prepareEditMessagePhoto(
                     new ArrayList<>(),
                     (InputMediaPhoto) new InputMediaPhoto().setMedia(placeHolderFileID),
                     null,
@@ -61,7 +64,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
                     messageId
 
             ).setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
-                add(prepareCardTypesRow());
+                add(prepareDecksRow());
                 add(prepareNavigateButtonRow());
             }})), telegramUser);
             return;
@@ -83,14 +86,14 @@ public class InfoHouseCardsCommand extends AInfoCommand {
             logger.warn(e.toString());
         }
 
-        if (!StringUtils.isEmpty(deckDomainParam) && (DECK_A.equals(deckDomainParam) || DECK_B.equals(deckDomainParam))){
+        if (!StringUtils.isEmpty(deckDomainParam) && (DECK_A.equals(deckDomainParam) || DECK_B.equals(deckDomainParam) || DECK_VASSAL.equals(deckDomainParam))){
 
             List<InfoHouseCardsCommandsConfig.House> houseList = infoHouseCardsCommandsConfig.getDeck().get(deckDomainParam).getHouses();
             String finalHouseDomainParam = houseDomainParam;
 
             if (Arrays.stream(Houses.values()).noneMatch(houses -> houses.getDomain().equals(finalHouseDomainParam))){
 
-                execute(absSender, prepareEditMessageMedia(
+                execute(absSender, prepareEditMessagePhoto(
                         prepareHouseButtons(houseList, deckDomainParam),
                         prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
                         createBackButton(""),
@@ -109,7 +112,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
                         .filter(card1 -> card1.getCardName().equals(finalCardDomainParam))
                         .findFirst().orElse(cardList.get(0));
 
-                execute(absSender, prepareEditMessageMedia(
+                execute(absSender, prepareEditMessagePhoto(
                         prepareCardsButtons(cardList, deckDomainParam, finalHouseDomainParam),
                         prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
                         createBackButton(deckDomainParam),
@@ -119,22 +122,6 @@ public class InfoHouseCardsCommand extends AInfoCommand {
             }
         }
 
-    }
-
-    private EditMessageMedia prepareEditMessageMedia(
-            List<List<InlineKeyboardButton>> commonRowList,
-            InputMediaPhoto inputMediaPhoto,
-            InlineKeyboardButton backButton,
-            Long chatId, Integer messageId
-    ){
-        EditMessageMedia editMessageMedia = new EditMessageMedia();
-        List<List<InlineKeyboardButton>> completeRowList = new ArrayList<>(commonRowList);
-        completeRowList.add(prepareNavigateButtonRow(backButton));
-        editMessageMedia.setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(completeRowList));
-        editMessageMedia.setMedia(inputMediaPhoto);
-        editMessageMedia.setChatId(chatId);
-        editMessageMedia.setMessageId(messageId);
-        return editMessageMedia;
     }
 
     /**
@@ -188,16 +175,17 @@ public class InfoHouseCardsCommand extends AInfoCommand {
         return new SendPhoto().setChatId(chatId)
                 .setPhoto(placeHolderFileID)
                 .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
-                    add(prepareCardTypesRow());
+                    add(prepareDecksRow());
                     add(prepareNavigateButtonRow());
                 }}));
     }
 
-    private List<InlineKeyboardButton> prepareCardTypesRow(){
+    private List<InlineKeyboardButton> prepareDecksRow(){
 
         return new ArrayList<InlineKeyboardButton>(){{
-            add(createButton("Набор А (классик)", DECK_A));
-            add(createButton("Набор Б (пир+танец)", DECK_B));
+            add(createButton("Набор А", DECK_A));
+            add(createButton("Набор Б", DECK_B));
+            add(createButton("Другие", DECK_VASSAL));
         }};
     }
 }
