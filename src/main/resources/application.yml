@@ -31,6 +31,8 @@ database:
     users: users
     current_post: current_post
 
+alarm:
+  message: Проснулся на хироку
 
 #   Для запуска локально в параметрах запуска явно указать параметры
 #   Edit configuration -> Override parameters:
