@@ -17,9 +17,20 @@ spring:
       maximum-pool-size: 5
       pool-name: adminPool
       type: com.zaxxer.hikari.HikariDataSource
+
   profiles:
     include:
       - info_config
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
 server:
   port: 8080
 

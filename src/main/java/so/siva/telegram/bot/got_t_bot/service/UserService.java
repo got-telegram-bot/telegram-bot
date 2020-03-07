@@ -6,37 +6,47 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.IUserService {
+public class UserService implements IUserService {
 
-    @Autowired
-    private IUserDao dao;
+    private final IUserDao dao;
+
+    public UserService(IUserDao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public GUser getUserByLoginAndPassword(GUser user){
         validate(user);
 
 
-        return dao.readUserByLoginAndPassword(user.getLogin(), user.getPassword());
+        return dao.findByLoginAndPassword(user.getLogin(), user.getPassword());
     }
 
     @Override
     public GUser signUpUser(GUser userForSignUp){
-        validate(userForSignUp);
-        if (StringUtils.isEmpty(userForSignUp.getInitials())){
-            throw new IllegalArgumentException("Не заполнены инициалы");
-        }
-        dao.insertNewUser(userForSignUp);
-
-        return dao.readUserByLoginAndPassword(userForSignUp.getLogin(), userForSignUp.getPassword());
+//        validate(userForSignUp);
+//        if (StringUtils.isEmpty(userForSignUp.getInitials())){
+//            throw new IllegalArgumentException("Не заполнены инициалы");
+//        }
+//        dao.insertNewUser(userForSignUp);
+//
+//        return dao.readUserByLoginAndPassword(userForSignUp.getLogin(), userForSignUp.getPassword());
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public List<GUser> getAllUsers(){
-        return dao.selectAllUsers();
+        Iterable<GUser> users = dao.findAll();
+        List<GUser> userList = new ArrayList<>();
+        users.forEach(userList::add);
+        return userList;
+//        return dao.selectAllUsers();
     }
 
     @Override
@@ -52,17 +62,19 @@ public class UserService implements so.siva.telegram.bot.got_t_bot.service.api.I
 
     @Override
     public GUser updateUser(GUser user){
-        validate(user);
-        return dao.updateUser(user);
+//        validate(user);
+//        return dao.updateUser(user);
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public List<GUser> deleteUser(String login){
-        if (StringUtils.isEmpty(login))
-            throw new IllegalArgumentException("Не передан логин");
-
-        dao.deleteUserByLogin(login);
-        return this.getAllUsers();
+//        if (StringUtils.isEmpty(login))
+//            throw new IllegalArgumentException("Не передан логин");
+//
+//        dao.deleteUserByLogin(login);
+//        return this.getAllUsers();
+        throw new UnsupportedOperationException();
     }
 
     private void validate(GUser user){

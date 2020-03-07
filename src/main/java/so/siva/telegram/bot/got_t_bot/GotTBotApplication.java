@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.PropertySource;
 import org.telegram.telegrambots.ApiContextInitializer;
 import so.siva.telegram.bot.got_t_bot.config.InfoHouseCardsCommandsConfig;
+import so.siva.telegram.bot.got_t_bot.config.JpaConfig;
 
 @SpringBootApplication
 @EnableConfigurationProperties({InfoHouseCardsCommandsConfig.class})

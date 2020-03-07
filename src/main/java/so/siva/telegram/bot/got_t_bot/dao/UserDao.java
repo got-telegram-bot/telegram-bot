@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository
-@Transactional
-public class UserDao extends BasicDao implements IUserDao {
+//@Repository
+//@Transactional
+public class UserDao extends BasicDao
+//        implements IUserDao
+{
 
     public UserDao(@Value("${database.schema.users}") String schemaName, @Value("${database.tablename.users}")String tableName) {
         super(schemaName, tableName);
@@ -41,34 +43,34 @@ public class UserDao extends BasicDao implements IUserDao {
     private String SELECT_USER_BY_CHAT_ID = "SELECT * FROM " + SCHEMA_TABLE + " WHERE chat_id = '%s'";
 
 
-    @Override
+//    @Override
     public GUser readUserByLoginAndPassword(String login, String password){
         String selectQuery = String.format(SELECT_BY_LOGIN_AND_PASSWORD, login, password);
         return getFirstUserInList(jdbcTemplate.query(selectQuery, (resultSet, i) -> mapUser(resultSet)));
     }
 
-    @Override
+//    @Override
     public GUser readUserByChatId(String chatId){
         return getFirstUserInList(jdbcTemplate.query(String.format(SELECT_USER_BY_CHAT_ID, chatId), (resultSet, i) -> mapUser(resultSet)));
     }
 
-    @Override
+//    @Override
     public void insertNewUser(GUser user){
         String insertQuery = String.format(SIGN_UP_NEW_USER, user.getLogin(), user.getInitials(), user.getPassword());
         jdbcTemplate.execute(insertQuery);
     }
 
-    @Override
+//    @Override
     public List<GUser> selectAllUsers(){
         return jdbcTemplate.query(SELECT_ALL_FROM_USERS, (resultSet,i) -> mapUser(resultSet));
     }
 
-    @Override
+//    @Override
     public void deleteUserByLogin(String login){
         jdbcTemplate.execute(String.format(DELETE_USER_BY_LOGIN, login));
     }
 
-    @Override
+//    @Override
     public GUser updateUser(GUser user){
         List<Object> params = new ArrayList<>();
         params.add(user.getLogin());

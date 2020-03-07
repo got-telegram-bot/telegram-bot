@@ -3,10 +3,14 @@ package so.siva.telegram.bot.got_t_bot.dao.dto;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
+import javax.persistence.*;
+
 /**
  * Сущность пользователя системы, G - от GoT - от Game of thrones
  */
 @JsonDeserialize
+@Entity
+@Table(name = "users", schema = "users")
 public class GUser {
     public final static String LOGIN = "login";
     public final static String INITIALS = "initials";
@@ -16,12 +20,17 @@ public class GUser {
     public final static String IS_ADMIN = "is_admin";
     public final static String ROLE_NAME = "role_name";
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private String login;
     private String initials;
+    @Column(name = "chat_id")
     private Long chatId;
     private String password;
     private Houses house;
+    @Column(name = "is_admin")
     private Boolean isAdmin;
+    @Column(name = "role_name")
     private String roleName;
 
 
