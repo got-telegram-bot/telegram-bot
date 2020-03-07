@@ -2,20 +2,13 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
-import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +32,7 @@ public class ViewPostCommand extends APostCommand {
         errorMessage.setChatId(chatId);
         String errorMessageText = DEFAULT_COMMAND_ERROR_MESSAGE;
         try {
-            List<IAdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(chatId));
+            List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(chatId));
 
             if (messageList.size() > 0){
                 sendPostMessages(absSender, telegramUser, messageList, chatId);

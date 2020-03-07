@@ -11,7 +11,6 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.service.UserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
@@ -61,9 +60,9 @@ public class AuthorizeCommand extends ACommand {
             final String currentGUserLogin = strings[0];
             final String currentGUserPassword = strings[1];
 
-            List<IGUser> fullGUserList = userService.getAllUsers();
+            List<GUser> fullGUserList = userService.getAllUsers();
 
-            IGUser foundGUserByLoginAndPassword = fullGUserList.stream()
+            GUser foundGUserByLoginAndPassword = fullGUserList.stream()
                     .filter(igUser ->
                             (igUser.getLogin().equals(currentGUserLogin) && igUser.getPassword().equals(currentGUserPassword))
                     ).findFirst().orElse(null);
@@ -76,7 +75,7 @@ public class AuthorizeCommand extends ACommand {
                 String answerMessage;
 
                 //Ищем пользователя с таким же chat_id, если находим, инвалидируем его, и авторизуем текущего
-                IGUser foundGUserByChatId = fullGUserList.stream().filter(igUser -> currentChatId.equals(igUser.getChatId())).findFirst().orElse(null);
+                GUser foundGUserByChatId = fullGUserList.stream().filter(igUser -> currentChatId.equals(igUser.getChatId())).findFirst().orElse(null);
                 if (foundGUserByChatId != null){
                     if (!foundGUserByChatId.getLogin().equals(foundGUserByLoginAndPassword.getLogin())){
                         invalidateUser(absSender, telegramUser, foundGUserByChatId, currentChatId);
@@ -93,7 +92,7 @@ public class AuthorizeCommand extends ACommand {
 
                 userService.authorizeUser(foundGUserByLoginAndPassword, chat.getId());
 
-                IGUser updatedInnerUser = userService.getUserByLoginAndPassword(foundGUserByLoginAndPassword);
+                GUser updatedInnerUser = userService.getUserByLoginAndPassword(foundGUserByLoginAndPassword);
                 answerMessage = "Пользователь " + updatedInnerUser.getInitials() + " авторизован\n";
                 logger.info(answerMessage + " [" + updatedInnerUser.getLogin() + "]");
                 message.setText(answerMessage);
@@ -106,11 +105,11 @@ public class AuthorizeCommand extends ACommand {
         execute(absSender, message, telegramUser);
     }
 
-    private void invalidateUser(AbsSender absSender, User telegramUser, IGUser igUser,Long chatId){
-        IGUser igUserForInvalidate = new GUser(igUser);
+    private void invalidateUser(AbsSender absSender, User telegramUser, GUser igUser,Long chatId){
+        GUser igUserForInvalidate = new GUser(igUser);
         igUserForInvalidate.setChatId(null);
 
-        IGUser invalidatedUser =  userService.updateUser(igUserForInvalidate);
+        GUser invalidatedUser =  userService.updateUser(igUserForInvalidate);
 
         if (invalidatedUser.getChatId() != null){
             logger.error("User " + invalidatedUser.getLogin() + " haven't been invalidate");

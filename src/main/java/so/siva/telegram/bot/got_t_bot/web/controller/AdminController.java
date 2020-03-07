@@ -3,7 +3,7 @@ package so.siva.telegram.bot.got_t_bot.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminService;
 
 import java.util.List;
@@ -19,12 +19,12 @@ public class AdminController{
     private IAdminService service;
 
     @GetMapping("/execute_user_ddl")
-    public List<IGUser> executeUserDdlScript(@RequestParam String fileName){
+    public List<GUser> executeUserDdlScript(@RequestParam String fileName){
         return service.executeUserDdl(fileName);
     }
 
     @PostMapping("/upload_ddl")
-    public List<IGUser> uploadDdl(@RequestParam("ddl_file")MultipartFile file){
+    public List<GUser> uploadDdl(@RequestParam("ddl_file")MultipartFile file){
         if (file != null) {
             try {
                 return service.uploadDdl(file.getInputStream());

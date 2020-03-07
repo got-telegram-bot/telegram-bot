@@ -1,9 +1,21 @@
 package so.siva.telegram.bot.got_t_bot.dao.dto;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
-public class GUser implements IGUser {
+/**
+ * Сущность пользователя системы, G - от GoT - от Game of thrones
+ */
+@JsonDeserialize
+public class GUser {
+    public final static String LOGIN = "login";
+    public final static String INITIALS = "initials";
+    public final static String CHAT_ID = "chat_id";
+    public final static String PASSWORD = "password";
+    public final static String HOUSE = "house";
+    public final static String IS_ADMIN = "is_admin";
+    public final static String ROLE_NAME = "role_name";
+
     private String login;
     private String initials;
     private Long chatId;
@@ -16,7 +28,7 @@ public class GUser implements IGUser {
     public GUser() {
     }
 
-    public GUser(IGUser anotherGUser) {
+    public GUser(GUser anotherGUser) {
         this.login = anotherGUser.getLogin();
         this.initials = anotherGUser.getInitials();
         this.chatId = anotherGUser.getChatId();
@@ -26,72 +38,58 @@ public class GUser implements IGUser {
         this.roleName = anotherGUser.getRoleName();
     }
 
-    @Override
     public String getLogin() {
         return login;
     }
 
-    @Override
     public void setLogin(String login) {
         this.login = login;
     }
 
-    @Override
     public String getInitials() {
         return initials;
     }
 
-    @Override
     public void setInitials(String initials) {
         this.initials = initials;
     }
 
-    @Override
     public Long getChatId() {
         return chatId;
     }
 
-    @Override
     public void setChatId(Long chatId) {
         this.chatId = chatId;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
 
-    @Override
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Override
     public Houses getHouse() {
         return house;
     }
 
-    @Override
     public void setHouse(Houses house) {
         this.house = house;
     }
 
-    @Override
     public Boolean getAdmin() {
         return isAdmin;
     }
 
-    @Override
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
     }
 
-    @Override
     public String getRoleName() {
         return roleName;
     }
 
-    @Override
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }

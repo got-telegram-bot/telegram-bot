@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import so.siva.telegram.bot.got_t_bot.dao.api.BasicDao;
 import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
 import java.sql.ResultSet;
@@ -43,24 +42,24 @@ public class UserDao extends BasicDao implements IUserDao {
 
 
     @Override
-    public IGUser readUserByLoginAndPassword(String login, String password){
+    public GUser readUserByLoginAndPassword(String login, String password){
         String selectQuery = String.format(SELECT_BY_LOGIN_AND_PASSWORD, login, password);
         return getFirstUserInList(jdbcTemplate.query(selectQuery, (resultSet, i) -> mapUser(resultSet)));
     }
 
     @Override
-    public IGUser readUserByChatId(String chatId){
+    public GUser readUserByChatId(String chatId){
         return getFirstUserInList(jdbcTemplate.query(String.format(SELECT_USER_BY_CHAT_ID, chatId), (resultSet, i) -> mapUser(resultSet)));
     }
 
     @Override
-    public void insertNewUser(IGUser user){
+    public void insertNewUser(GUser user){
         String insertQuery = String.format(SIGN_UP_NEW_USER, user.getLogin(), user.getInitials(), user.getPassword());
         jdbcTemplate.execute(insertQuery);
     }
 
     @Override
-    public List<IGUser> selectAllUsers(){
+    public List<GUser> selectAllUsers(){
         return jdbcTemplate.query(SELECT_ALL_FROM_USERS, (resultSet,i) -> mapUser(resultSet));
     }
 
@@ -70,7 +69,7 @@ public class UserDao extends BasicDao implements IUserDao {
     }
 
     @Override
-    public IGUser updateUser(IGUser user){
+    public GUser updateUser(GUser user){
         List<Object> params = new ArrayList<>();
         params.add(user.getLogin());
         params.add(user.getInitials());
@@ -88,14 +87,14 @@ public class UserDao extends BasicDao implements IUserDao {
 
     }
 
-    private IGUser getFirstUserInList(List<Object> users){
+    private GUser getFirstUserInList(List<Object> users){
         if (users == null || users.size() == 0){
             return null;
-        }else return (IGUser) users.get(0);
+        }else return (GUser) users.get(0);
     }
 
-    private IGUser mapUser(ResultSet rs){
-        IGUser user = new GUser();
+    private GUser mapUser(ResultSet rs){
+        GUser user = new GUser();
         try {
             user.setLogin(rs.getString(GUser.LOGIN));
             user.setInitials(rs.getString(GUser.INITIALS));

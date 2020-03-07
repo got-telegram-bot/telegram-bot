@@ -11,7 +11,6 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 
@@ -32,7 +31,7 @@ public class AdminPostMessageCollector {
     @Around(value = "execution(* so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack.apply(..)) && args(update))")
     public Object captureAdminPostMessagesListening(ProceedingJoinPoint joinPoint, Update update) throws Throwable {
         Message telegramMessage;
-        List<IAdminPostMessage> adminPostMessages;
+        List<AdminPostMessage> adminPostMessages;
         try {
             telegramMessage = update.getMessage();
             adminPostMessages = new ArrayList<>(adminPostMessageService.getMessages(telegramMessage.getChatId().toString()));
@@ -45,7 +44,7 @@ public class AdminPostMessageCollector {
         if (adminPostMessageService.getMessages(telegramMessage.getChatId().toString()).size() > 0){
 
             if (telegramMessage.hasText()){
-                IAdminPostMessage newAdminPostMessage = new AdminPostMessage();
+                AdminPostMessage newAdminPostMessage = new AdminPostMessage();
                 newAdminPostMessage.setNumberInPost(adminPostMessages.get(adminPostMessages.size() - 1).getNumberInPost() + 1);
                 newAdminPostMessage.setAdminLogin(adminPostMessageService.getLoginByChatId(telegramMessage.getChatId().toString()));
                 newAdminPostMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
@@ -56,7 +55,7 @@ public class AdminPostMessageCollector {
             if (telegramMessage.hasPhoto()){
                 PhotoSize photoSize = telegramMessage.getPhoto().stream().max(Comparator.comparing(PhotoSize::getFileSize)).orElse(null);
                 if (photoSize != null){
-                    IAdminPostMessage newAdminPostMessage = new AdminPostMessage();
+                    AdminPostMessage newAdminPostMessage = new AdminPostMessage();
                     newAdminPostMessage.setNumberInPost(adminPostMessages.get(adminPostMessages.size() - 1).getNumberInPost() + 1);
                     newAdminPostMessage.setAdminLogin(adminPostMessageService.getLoginByChatId(telegramMessage.getChatId().toString()));
                     newAdminPostMessage.setAdminPostMessageType(AdminPostMessageType.PHOTO);

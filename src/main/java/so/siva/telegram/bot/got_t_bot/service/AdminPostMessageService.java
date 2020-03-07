@@ -6,7 +6,6 @@ import org.springframework.util.StringUtils;
 import so.siva.telegram.bot.got_t_bot.dao.api.IAdminPostMessageDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
@@ -29,7 +28,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
     public void startPost(String chatId){
         String adminLogin = getLoginByChatId(chatId);
         validateAdminLogin(adminLogin);
-        IAdminPostMessage message = new AdminPostMessage();
+        AdminPostMessage message = new AdminPostMessage();
         message.setAdminLogin(adminLogin);
         message.setNumberInPost(0);
         message.setAdminPostMessageType(AdminPostMessageType.START_POST);
@@ -37,7 +36,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
     }
 
     @Override
-    public void addMessage(IAdminPostMessage message){
+    public void addMessage(AdminPostMessage message){
         validateAdminLogin(message.getAdminLogin());
         if (message.getAdminPostMessageType() == null || message.getNumberInPost() == null){
             throw new IllegalArgumentException("Не передан тип или номер сообщения");
@@ -47,7 +46,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
     }
 
     @Override
-    public List<IAdminPostMessage> getMessages(String chatId){
+    public List<AdminPostMessage> getMessages(String chatId){
         String adminLogin = getLoginByChatId(chatId);
         validateAdminLogin(adminLogin);
         return new ArrayList<>(adminPostMessageDao.readAllMessagesByAdmin(adminLogin));
@@ -59,9 +58,9 @@ public class AdminPostMessageService implements IAdminPostMessageService {
      * @return
      */
     @Override
-    public List<IAdminPostMessage> getCombinedMessages(String chatId){
-        List<IAdminPostMessage> fullMessageList = getMessages(chatId);
-        List<IAdminPostMessage> combinedMessageList = new ArrayList<>();
+    public List<AdminPostMessage> getCombinedMessages(String chatId){
+        List<AdminPostMessage> fullMessageList = getMessages(chatId);
+        List<AdminPostMessage> combinedMessageList = new ArrayList<>();
 
         AtomicReference<StringBuilder> messageBuilder = new AtomicReference<>(new StringBuilder());
         AtomicInteger countMessages = new AtomicInteger(1);
@@ -78,7 +77,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
 
                 } else {
                     if (messageBuilder.get().length() > 0) {
-                        IAdminPostMessage combinedTextMessage = new AdminPostMessage();
+                        AdminPostMessage combinedTextMessage = new AdminPostMessage();
                         combinedTextMessage.setNumberInPost(countMessages.get());
                         combinedTextMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
                         combinedTextMessage.setAdminLogin(adminLogin);
@@ -89,7 +88,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
                     }
                 }
                 if (AdminPostMessageType.PHOTO.equals(m.getAdminPostMessageType())) {
-                    IAdminPostMessage combinedTextMessage = new AdminPostMessage();
+                    AdminPostMessage combinedTextMessage = new AdminPostMessage();
                     combinedTextMessage.setNumberInPost(countMessages.get());
                     combinedTextMessage.setAdminPostMessageType(AdminPostMessageType.PHOTO);
                     combinedTextMessage.setAdminLogin(adminLogin);
@@ -100,7 +99,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
             });
 
             if (messageBuilder.get().length() > 0){
-                IAdminPostMessage combinedTextMessage = new AdminPostMessage();
+                AdminPostMessage combinedTextMessage = new AdminPostMessage();
                 combinedTextMessage.setNumberInPost(countMessages.get());
                 combinedTextMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
                 combinedTextMessage.setAdminLogin(adminLogin);

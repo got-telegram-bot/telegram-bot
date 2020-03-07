@@ -1,13 +1,13 @@
 package so.siva.telegram.bot.got_t_bot.dao.api;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 
 import java.util.List;
 
 public interface IAdminPostMessageDao {
-    List<IAdminPostMessage> readAllMessagesByAdmin(String adminLogin);
+    List<AdminPostMessage> readAllMessagesByAdmin(String adminLogin);
 
-    void insertNewMessage(IAdminPostMessage message);
+    void insertNewMessage(AdminPostMessage message);
 
     void deleteAllMessagesByAdmin(String adminLogin);
 }

@@ -1,19 +1,19 @@
 package so.siva.telegram.bot.got_t_bot.service.api;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 
 import java.util.List;
 
 public interface IUserService {
-    IGUser getUserByLoginAndPassword(IGUser user);
+    GUser getUserByLoginAndPassword(GUser user);
 
-    IGUser signUpUser(IGUser userForSignUp);
+    GUser signUpUser(GUser userForSignUp);
 
-    List<IGUser> getAllUsers();
+    List<GUser> getAllUsers();
 
-    IGUser authorizeUser(IGUser user, Long chatId);
+    GUser authorizeUser(GUser user, Long chatId);
 
-    IGUser updateUser(IGUser user);
+    GUser updateUser(GUser user);
 
-    List<IGUser> deleteUser(String login);
+    List<GUser> deleteUser(String login);
 }

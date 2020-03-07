@@ -1,6 +1,6 @@
 package so.siva.telegram.bot.got_t_bot.service.api;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 
 import java.io.InputStream;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public interface IAdminService {
 
 
-    List<IGUser> uploadDdl(InputStream inputStream);
+    List<GUser> uploadDdl(InputStream inputStream);
 
-    List<IGUser> executeUserDdl(String fileName);
+    List<GUser> executeUserDdl(String fileName);
 }

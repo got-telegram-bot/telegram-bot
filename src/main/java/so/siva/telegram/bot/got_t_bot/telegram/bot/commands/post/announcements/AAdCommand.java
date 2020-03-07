@@ -6,12 +6,10 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.AdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.APostCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.SendPostCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.StartPostCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.ViewPostCommand;
 
@@ -47,7 +45,7 @@ public abstract class AAdCommand extends APostCommand {
         }
 
         startPostCommand.execute(absSender, telegramUser, chat, null);
-        IAdminPostMessage adminPostMessage = new AdminPostMessage();
+        AdminPostMessage adminPostMessage = new AdminPostMessage();
         adminPostMessage.setNumberInPost(1);
         adminPostMessage.setAdminLogin(adminPostMessageService.getLoginByChatId(chat.getId().toString()));
         adminPostMessage.setContent(prepareTemplate(strings));

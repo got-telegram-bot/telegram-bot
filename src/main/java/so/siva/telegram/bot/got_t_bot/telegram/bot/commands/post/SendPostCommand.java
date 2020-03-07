@@ -8,9 +8,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
+import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
@@ -37,7 +36,7 @@ public class SendPostCommand extends APostCommand {
 
     @Override
     public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
-        List<IGUser> usersToSendPost = userService.getAllUsers();
+        List<GUser> usersToSendPost = userService.getAllUsers();
 
         usersToSendPost = usersToSendPost.stream().filter(igUser -> igUser.getChatId() != null).collect(Collectors.toList());
 
@@ -47,7 +46,7 @@ public class SendPostCommand extends APostCommand {
         errorMessage.setChatId(posterChatId);
         String errorMessageText = DEFAULT_COMMAND_ERROR_MESSAGE;
         try {
-            List<IAdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(posterChatId));
+            List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(posterChatId));
 
             if (messageList.size() > 0){
                 usersToSendPost.forEach(igUser -> sendPostMessages(absSender, telegramUser, messageList, igUser.getChatId().toString()));

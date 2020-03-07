@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import so.siva.telegram.bot.got_t_bot.dao.api.BasicDao;
 import so.siva.telegram.bot.got_t_bot.dao.api.IAdminPostMessageDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 
 import java.sql.ResultSet;
@@ -33,13 +32,13 @@ public class AdminPostMessageDao extends BasicDao implements IAdminPostMessageDa
             ") RETURNING *;";
 
     @Override
-    public List<IAdminPostMessage> readAllMessagesByAdmin(String adminLogin){
+    public List<AdminPostMessage> readAllMessagesByAdmin(String adminLogin){
         return jdbcTemplate.query(String.format(SELECT_ALL_BY_ADMIN_LOGIN, adminLogin), (resultSet,i) -> mapAdminPostMessage(resultSet));
 
     }
 
     @Override
-    public void insertNewMessage(IAdminPostMessage message){
+    public void insertNewMessage(AdminPostMessage message){
         List<Object> params = new ArrayList<>();
         params.add(message.getNumberInPost());
         params.add(message.getAdminPostMessageType().name());
@@ -57,8 +56,8 @@ public class AdminPostMessageDao extends BasicDao implements IAdminPostMessageDa
     }
 
 
-    private IAdminPostMessage mapAdminPostMessage(ResultSet rs){
-        IAdminPostMessage message = new AdminPostMessage();
+    private AdminPostMessage mapAdminPostMessage(ResultSet rs){
+        AdminPostMessage message = new AdminPostMessage();
         try {
             message.setNumberInPost(rs.getInt(AdminPostMessage.NUMBER_IN_POST));
             message.setAdminPostMessageType(rs.getObject(AdminPostMessage.TYPE) == null ? null : AdminPostMessageType.valueOf(rs.getString(AdminPostMessage.TYPE).trim()));

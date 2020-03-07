@@ -3,7 +3,7 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IAdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
@@ -20,7 +20,7 @@ public abstract class APostCommand extends ACommand {
         super(commandIdentifier, description, gotBotListenerController);
     }
 
-    protected void sendPostMessages(AbsSender absSender, User telegramUser, List<IAdminPostMessage> messageList, String chatIdToSend){
+    protected void sendPostMessages(AbsSender absSender, User telegramUser, List<AdminPostMessage> messageList, String chatIdToSend){
 
         messageList.forEach(m -> {
             if (AdminPostMessageType.TEXT.equals(m.getAdminPostMessageType())){

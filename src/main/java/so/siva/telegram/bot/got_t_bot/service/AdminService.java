@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Service;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IGUser;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminService;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
@@ -34,7 +34,7 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public List<IGUser> uploadDdl(InputStream inputStream){
+    public List<GUser> uploadDdl(InputStream inputStream){
 
         try {
             executeSqlFile(inputStream);
@@ -46,7 +46,7 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public List<IGUser> executeUserDdl(String fileName){
+    public List<GUser> executeUserDdl(String fileName){
         String packagePath = this.getClass().
                 getProtectionDomain().
                 getCodeSource().
