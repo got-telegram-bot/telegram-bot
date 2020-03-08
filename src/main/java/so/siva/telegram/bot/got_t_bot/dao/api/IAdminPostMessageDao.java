@@ -1,13 +1,17 @@
 package so.siva.telegram.bot.got_t_bot.dao.api;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 
 import java.util.List;
 
-public interface IAdminPostMessageDao {
-    List<AdminPostMessage> readAllMessagesByAdmin(String adminLogin);
+@Repository
+@Transactional
+public interface IAdminPostMessageDao extends CrudRepository<AdminPostMessage, AdminPostMessage.NumberAndLoginPrimaryKey> {
 
-    void insertNewMessage(AdminPostMessage message);
+    List<AdminPostMessage> findAllByAdminLogin(String adminLogin);
 
-    void deleteAllMessagesByAdmin(String adminLogin);
+    void deleteAllByAdminLogin(String adminLogin);
 }

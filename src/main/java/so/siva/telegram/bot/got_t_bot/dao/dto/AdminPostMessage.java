@@ -3,19 +3,27 @@ package so.siva.telegram.bot.got_t_bot.dao.dto;
 
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 
-public class AdminPostMessage {
-    public static final String NUMBER_IN_POST = "number_in_post";
-    public static final String TYPE = "type";
-    public static final String CONTENT = "content";
-    public static final String FILE_ID = "file_id";
-    public static final String ADMIN_LOGIN = "admin_login";
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
+@Table(schema = "messages", name = "current_post")
+@IdClass(AdminPostMessage.NumberAndLoginPrimaryKey.class)
+public class AdminPostMessage {
+
+    @Id
+    @Column(name = "number_in_post")
     private Integer numberInPost;
+    @Column(name = "type")
     private AdminPostMessageType adminPostMessageType;
+    @Column(name = "content")
     private String content;
+    @Column(name = "file_id")
     private String fileId;
+    @Id
+    @Column(name = "admin_login")
     private String adminLogin;
-//    private String mediaGroupId;
 
     public Integer getNumberInPost() {
         return numberInPost;
@@ -57,13 +65,42 @@ public class AdminPostMessage {
         this.adminLogin = adminLogin;
     }
 
-//    @Override
-//    public String getMediaGroupId() {
-//        return mediaGroupId;
-//    }
-//
-//    @Override
-//    public void setMediaGroupId(String mediaGroupId) {
-//        this.mediaGroupId = mediaGroupId;
-//    }
+
+
+    public static class NumberAndLoginPrimaryKey implements Serializable {
+        static final long serialVersionUID = 1L;
+
+        private Integer numberInPost;
+        private String adminLogin;
+
+        public NumberAndLoginPrimaryKey() {
+        }
+
+        public NumberAndLoginPrimaryKey(Integer numberInPost, String adminLogin) {
+            this.numberInPost = numberInPost;
+            this.adminLogin = adminLogin;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage.NumberAndLoginPrimaryKey that = (so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage.NumberAndLoginPrimaryKey) o;
+            return Objects.equals(numberInPost, that.numberInPost) &&
+                    Objects.equals(adminLogin, that.adminLogin);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(numberInPost, adminLogin);
+        }
+
+        @Override
+        public String toString() {
+            return "NumberAndLoginPrimaryKey{" +
+                    "numberInPost='" + numberInPost + '\'' +
+                    ", adminLogin='" + adminLogin + '\'' +
+                    '}';
+        }
+    }
 }

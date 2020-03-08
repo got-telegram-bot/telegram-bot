@@ -21,7 +21,6 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories("so.siva.telegram.bot.got_t_bot.dao.*")
-@EntityScan("so.siva.telegram.bot.got_t_bot.dao.dto.*")
 public class JpaConfig {
 
     @Bean
@@ -33,11 +32,6 @@ public class JpaConfig {
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-
-        Properties jpaProperties = new Properties();
-        jpaProperties.put(org.hibernate.cfg.Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        jpaProperties.put(org.hibernate.cfg.Environment.HBM2DDL_AUTO, "update");
-        em.setJpaProperties(jpaProperties);
 
         return em;
     }

@@ -30,14 +30,13 @@ public class UserService implements IUserService {
 
     @Override
     public GUser signUpUser(GUser userForSignUp){
-//        validate(userForSignUp);
-//        if (StringUtils.isEmpty(userForSignUp.getInitials())){
-//            throw new IllegalArgumentException("Не заполнены инициалы");
-//        }
-//        dao.insertNewUser(userForSignUp);
-//
-//        return dao.readUserByLoginAndPassword(userForSignUp.getLogin(), userForSignUp.getPassword());
-        throw new UnsupportedOperationException();
+        validate(userForSignUp);
+        if (StringUtils.isEmpty(userForSignUp.getInitials())){
+            throw new IllegalArgumentException("Не заполнены инициалы");
+        }
+        dao.save(userForSignUp);
+
+        return dao.findByLoginAndPassword(userForSignUp.getLogin(), userForSignUp.getPassword());
     }
 
     @Override
@@ -46,7 +45,6 @@ public class UserService implements IUserService {
         List<GUser> userList = new ArrayList<>();
         users.forEach(userList::add);
         return userList;
-//        return dao.selectAllUsers();
     }
 
     @Override
@@ -62,19 +60,17 @@ public class UserService implements IUserService {
 
     @Override
     public GUser updateUser(GUser user){
-//        validate(user);
-//        return dao.updateUser(user);
-        throw new UnsupportedOperationException();
+        validate(user);
+        return dao.save(user);
     }
 
     @Override
     public List<GUser> deleteUser(String login){
-//        if (StringUtils.isEmpty(login))
-//            throw new IllegalArgumentException("Не передан логин");
-//
-//        dao.deleteUserByLogin(login);
-//        return this.getAllUsers();
-        throw new UnsupportedOperationException();
+        if (StringUtils.isEmpty(login))
+            throw new IllegalArgumentException("Не передан логин");
+
+        dao.deleteById(login);
+        return this.getAllUsers();
     }
 
     private void validate(GUser user){

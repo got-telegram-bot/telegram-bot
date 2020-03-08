@@ -12,16 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users", schema = "users")
 public class GUser {
-    public final static String LOGIN = "login";
-    public final static String INITIALS = "initials";
-    public final static String CHAT_ID = "chat_id";
-    public final static String PASSWORD = "password";
-    public final static String HOUSE = "house";
-    public final static String IS_ADMIN = "is_admin";
-    public final static String ROLE_NAME = "role_name";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     private String login;
     private String initials;
     @Column(name = "chat_id")

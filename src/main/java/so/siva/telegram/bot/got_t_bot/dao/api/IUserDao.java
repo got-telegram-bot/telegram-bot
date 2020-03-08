@@ -10,16 +10,7 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 @Repository
 @Transactional
 public interface IUserDao extends CrudRepository<GUser, String> {
-//    GUser readUserByLoginAndPassword(String login, String password);
+
     GUser findByLoginAndPassword(String login, String password);
 
-//    GUser readUserByChatId(String chatId);
-
-//    void insertNewUser(GUser user);
-
-//    List<GUser> selectAllUsers();
-
-//    void deleteUserByLogin(String login);
-
-//    GUser updateUser(GUser user);
 }

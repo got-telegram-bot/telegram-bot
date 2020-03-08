@@ -32,7 +32,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
         message.setAdminLogin(adminLogin);
         message.setNumberInPost(0);
         message.setAdminPostMessageType(AdminPostMessageType.START_POST);
-        adminPostMessageDao.insertNewMessage(message);
+        adminPostMessageDao.save(message);
     }
 
     @Override
@@ -42,14 +42,14 @@ public class AdminPostMessageService implements IAdminPostMessageService {
             throw new IllegalArgumentException("Не передан тип или номер сообщения");
         }
 
-        adminPostMessageDao.insertNewMessage(message);
+        adminPostMessageDao.save(message);
     }
 
     @Override
     public List<AdminPostMessage> getMessages(String chatId){
         String adminLogin = getLoginByChatId(chatId);
         validateAdminLogin(adminLogin);
-        return new ArrayList<>(adminPostMessageDao.readAllMessagesByAdmin(adminLogin));
+        return new ArrayList<>(adminPostMessageDao.findAllByAdminLogin(adminLogin));
     }
 
     /**
@@ -116,7 +116,7 @@ public class AdminPostMessageService implements IAdminPostMessageService {
     public void cancelPost(String chatId){
         String adminLogin = getLoginByChatId(chatId);
         validateAdminLogin(adminLogin);
-        adminPostMessageDao.deleteAllMessagesByAdmin(adminLogin);
+        adminPostMessageDao.deleteAllByAdminLogin(adminLogin);
     }
 
 
