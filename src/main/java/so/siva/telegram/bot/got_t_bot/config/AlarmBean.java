@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -30,18 +31,25 @@ public class AlarmBean {
     private final IUserService userService;
 
     private final String awakeMsg;
+    private final String shutdownMsg;
 
-    public AlarmBean(AbsSender absSender, IUserService userService, @Value("${alarm.message}") String awakeMsg) {
+    public AlarmBean(AbsSender absSender, IUserService userService,
+                     @Value("${alarm.message.awake}") String awakeMsg, @Value("${alarm.message.shutdown}") String shutdownMsg) {
         this.absSender = absSender;
         this.userService = userService;
         this.awakeMsg = awakeMsg;
-        alarm(awakeMsg);
+        this.shutdownMsg = shutdownMsg;
+        if (!StringUtils.isEmpty(this.awakeMsg)){
+            alarm(this.awakeMsg);
+        }
     }
 
 
     @PreDestroy
     public void onDestroy(){
-        alarm("Выключаюсь");
+        if (!StringUtils.isEmpty(this.shutdownMsg)){
+            alarm(this.shutdownMsg);
+        }
         logger.info("--------------TEST_DESTROY_BEAN-----------");
     }
 

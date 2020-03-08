@@ -32,7 +32,9 @@ database:
     current_post: current_post
 
 alarm:
-  message: Проснулся на хироку
+  message:
+    awake: Проснулся на хироку
+    shutdown: Выключаюсь
 
 #   Для запуска локально в параметрах запуска явно указать параметры
 #   Edit configuration -> Override parameters:
