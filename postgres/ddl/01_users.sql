@@ -22,12 +22,12 @@ VALUES ('got_admin', 'Бринден Риверс', '381855899', 'tob.margelet.t
 
 INSERT INTO users.users(
     login, initials, chat_id, password, house, is_admin, is_ready)
-VALUES ('rainbow', 'Артем', '416724770', '111', NULL, false, false);
+VALUES ('rainbow', 'Артем', '416724770', '111', 'BARATHEON', false, false);
 
 INSERT INTO users.users(
     login, initials, chat_id, password, house, is_admin, is_ready)
-VALUES ('Drenal', 'Астахов А.с.', '427924506', '123', NULL, false, false);
+VALUES ('Drenal', 'Астахов А.с.', '427924506', '123', 'TYRELL', false, false);
 
 INSERT INTO users.users(
     login, initials, chat_id, password, house, is_admin, is_ready)
-VALUES ('xodov', 'ходов', '644472233', 'ходов', NULL, false, false);
+VALUES ('xodov', 'ходов', '644472233', 'ходов', 'LANNISTER', false, false);
