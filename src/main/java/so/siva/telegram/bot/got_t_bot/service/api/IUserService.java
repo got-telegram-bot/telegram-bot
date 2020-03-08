@@ -11,6 +11,10 @@ public interface IUserService {
 
     List<GUser> getAllUsers();
 
+    List<GUser> getUsersForReadyCheck();
+
+    GUser getUserByChatId(Long chatId);
+
     GUser authorizeUser(GUser user, Long chatId);
 
     GUser updateUser(GUser user);

@@ -10,15 +10,24 @@ CREATE TABLE users.users (
     chat_id bigint UNIQUE,
     password character varying NOT NULL,
     house character varying UNIQUE,
-    is_admin boolean,
-    role_name character(100)
+    is_admin boolean NOT NULL,
+    is_ready boolean NOT NULL,
+    last_order_message character varying
 );
 
 
 INSERT INTO users.users(
-    login, initials, chat_id, password, house, is_admin, role_name)
-VALUES ('got_admin', 'Бринден Риверс', '416724770', 'tob.margelet.tog', NULL, true, 'ROLE_ADMIN');
+    login, initials, chat_id, password, house, is_admin, is_ready)
+VALUES ('got_admin', 'Бринден Риверс', '381855899', 'tob.margelet.tog', NULL, true,  false);
 
 INSERT INTO users.users(
-    login, initials, chat_id, password, house, is_admin, role_name)
-VALUES ('siva', 'Сива', '381855899', '111', NULL, false, null);
+    login, initials, chat_id, password, house, is_admin, is_ready)
+VALUES ('rainbow', 'Артем', '416724770', '111', NULL, false, false);
+
+INSERT INTO users.users(
+    login, initials, chat_id, password, house, is_admin, is_ready)
+VALUES ('Drenal', 'Астахов А.с.', '427924506', '123', NULL, false, false);
+
+INSERT INTO users.users(
+    login, initials, chat_id, password, house, is_admin, is_ready)
+VALUES ('xodov', 'ходов', '644472233', 'ходов', NULL, false, false);

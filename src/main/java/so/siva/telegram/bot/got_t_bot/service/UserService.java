@@ -8,8 +8,10 @@ import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
+import java.security.Guard;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
@@ -41,10 +43,19 @@ public class UserService implements IUserService {
 
     @Override
     public List<GUser> getAllUsers(){
-        Iterable<GUser> users = dao.findAll();
-        List<GUser> userList = new ArrayList<>();
-        users.forEach(userList::add);
-        return userList;
+        return transformIterable(dao.findAll());
+    }
+
+    @Override
+    public List<GUser> getUsersForReadyCheck(){
+        List<GUser> gUsers = this.getAllUsers();
+        gUsers = gUsers.stream().filter(gUser -> gUser.getChatId() != null && (gUser.isAdmin() || (gUser.getHouse() != null))).collect(Collectors.toList());
+        return gUsers;
+    }
+
+    @Override
+    public GUser getUserByChatId(Long chatId){
+        return dao.findByChatId(chatId);
     }
 
     @Override
@@ -77,5 +88,11 @@ public class UserService implements IUserService {
         if (StringUtils.isEmpty(user.getLogin()) || StringUtils.isEmpty(user.getPassword())){
             throw new IllegalArgumentException("Не заполнен логин или пароль");
         }
+    }
+
+    private List<GUser> transformIterable(Iterable<GUser> users){
+        List<GUser> userList = new ArrayList<>();
+        users.forEach(userList::add);
+        return userList;
     }
 }

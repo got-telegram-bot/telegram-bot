@@ -1,5 +1,8 @@
 package so.siva.telegram.bot.got_t_bot.dao.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 
@@ -19,12 +22,14 @@ public class GUser {
     @Column(name = "chat_id")
     private Long chatId;
     private String password;
+    @Enumerated(EnumType.STRING)
     private Houses house;
     @Column(name = "is_admin")
-    private Boolean isAdmin;
-    @Column(name = "role_name")
-    private String roleName;
-
+    private boolean isAdmin;
+    @Column(name = "is_ready")
+    private boolean isReady;
+    @Column(name = "last_order_message")
+    private String lastOrderMessage;
 
     public GUser() {
     }
@@ -35,8 +40,9 @@ public class GUser {
         this.chatId = anotherGUser.getChatId();
         this.password = anotherGUser.getPassword();
         this.house = anotherGUser.getHouse();
-        this.isAdmin = anotherGUser.getAdmin();
-        this.roleName = anotherGUser.getRoleName();
+        this.isAdmin = anotherGUser.isAdmin();
+        this.isReady = anotherGUser.isReady();
+        this.lastOrderMessage = anotherGUser.getLastOrderMessage();
     }
 
     public String getLogin() {
@@ -79,20 +85,31 @@ public class GUser {
         this.house = house;
     }
 
-    public Boolean getAdmin() {
+    @JsonProperty("is_admin")
+    public boolean isAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(Boolean admin) {
+    @JsonProperty("is_admin")
+    public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
 
-    public String getRoleName() {
-        return roleName;
+    @JsonProperty("is_ready")
+    public boolean isReady() {
+        return isReady;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    @JsonProperty("is_ready")
+    public void setReady(boolean ready) {
+        isReady = ready;
     }
 
+    public String getLastOrderMessage() {
+        return lastOrderMessage;
+    }
+
+    public void setLastOrderMessage(String lastOrderMessage) {
+        this.lastOrderMessage = lastOrderMessage;
+    }
 }

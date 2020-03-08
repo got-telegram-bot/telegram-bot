@@ -98,6 +98,7 @@ public abstract class ACommand extends BotCommand {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(message);
+        sendMessage.setParseMode("HTML");
         return sendMessage;
     }
 
