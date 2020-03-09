@@ -10,10 +10,12 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +24,10 @@ import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEF
 @Component
 public class SendPostCommand extends APostCommand {
 
+    private final String CANCEL_FLAG = "cancel";
+
     public SendPostCommand(GotBotListenerController gotBotListenerController) {
-        super("/send_post", "отправить пост всем авторизованным пользователям", gotBotListenerController);
+        super("/send_post", "отправить пост всем авторизованным пользователям (cancel, house_domain[bar, lan, str,...])", gotBotListenerController);
     }
 
     @Autowired
@@ -38,7 +42,14 @@ public class SendPostCommand extends APostCommand {
     public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
         List<GUser> usersToSendPost = userService.getAllUsers();
 
+        List<String> housesToSend = Arrays.stream(strings).filter(s -> Arrays.stream(Houses.values()).anyMatch(houses -> houses.getDomain().equals(s))).collect(Collectors.toList());
+
         usersToSendPost = usersToSendPost.stream().filter(igUser -> igUser.getChatId() != null).collect(Collectors.toList());
+
+        if (housesToSend.size() != 0){
+            usersToSendPost = usersToSendPost.stream().filter(gUser -> (gUser.getHouse() != null) || gUser.isAdmin())
+                    .filter(gUser -> (housesToSend.stream().anyMatch(house -> gUser.getHouse().getDomain().equals(house))) || gUser.isAdmin()).collect(Collectors.toList());
+        }
 
         String posterChatId = chat.getId().toString();
 
@@ -51,12 +62,13 @@ public class SendPostCommand extends APostCommand {
             if (messageList.size() > 0){
                 usersToSendPost.forEach(igUser -> sendPostMessages(absSender, telegramUser, messageList, igUser.getChatId().toString()));
 
-                cancelPostCommand.execute(absSender, telegramUser, chat, strings);
-                return;
+                if (Arrays.asList(strings).contains(CANCEL_FLAG)){
+                    cancelPostCommand.execute(absSender, telegramUser, chat, strings);
+                }
             }else {
                 errorMessage.setText("Нет доступных сообщений");
-                return;
             }
+            return;
         }catch (Throwable throwable){
             logger.error(throwable.getMessage());
         }
