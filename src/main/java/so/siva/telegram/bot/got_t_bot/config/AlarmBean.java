@@ -50,7 +50,6 @@ public class AlarmBean {
         if (!StringUtils.isEmpty(this.shutdownMsg)){
             alarm(this.shutdownMsg);
         }
-        logger.info("--------------TEST_DESTROY_BEAN-----------");
     }
 
     private void alarm(String msg){

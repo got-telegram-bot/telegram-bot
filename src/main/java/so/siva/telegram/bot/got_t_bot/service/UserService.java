@@ -36,6 +36,9 @@ public class UserService implements IUserService {
         if (StringUtils.isEmpty(userForSignUp.getInitials())){
             throw new IllegalArgumentException("Не заполнены инициалы");
         }
+        if (dao.existsById(userForSignUp.getLogin())){
+            throw new IllegalArgumentException("Такой пользователь уже существует");
+        }
         dao.save(userForSignUp);
 
         return dao.findByLoginAndPassword(userForSignUp.getLogin(), userForSignUp.getPassword());
