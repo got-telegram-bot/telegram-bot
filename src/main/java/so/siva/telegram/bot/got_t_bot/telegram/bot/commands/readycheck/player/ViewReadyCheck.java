@@ -34,10 +34,10 @@ public class ViewReadyCheck extends ACommand {
         }
 
         StringBuffer message = new StringBuffer();
-        message.append("Готовы: \n");
+        message.append("<b>").append("Готовы: \n").append("</b>").append("<pre>");
         players.forEach(player -> {
-            int fillCount = 20 - player.getHouse().getRusName().length();
-            message.append("<b>").append(player.getHouse().getRusName()).append("</b>");
+            int fillCount = 15 - player.getHouse().getRusName().length();
+            message.append(player.getHouse().getRusName());
             message.append(" ");
             for (int i = 0; i < fillCount; i++) {
                 message.append("-");
@@ -47,6 +47,6 @@ public class ViewReadyCheck extends ACommand {
                    .append("\n");
         });
 
-        execute(absSender, prepareSendMessage(message.toString(), String.valueOf(chat.getId())), tUser);
+        execute(absSender, prepareSendMessage(message.append("</pre>").toString(), String.valueOf(chat.getId())), tUser);
     }
 }
