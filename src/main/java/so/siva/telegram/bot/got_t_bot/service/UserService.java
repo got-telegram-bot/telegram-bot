@@ -50,6 +50,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public List<GUser> getAdmins(){
+        return dao.findByIsAdminTrue();
+    }
+
+    @Override
     public List<GUser> getUsersForReadyCheck(){
         List<GUser> gUsers = this.getAllUsers();
         gUsers = gUsers.stream().filter(gUser -> gUser.getChatId() != null && (gUser.isAdmin() || (gUser.getHouse() != null))).collect(Collectors.toList());

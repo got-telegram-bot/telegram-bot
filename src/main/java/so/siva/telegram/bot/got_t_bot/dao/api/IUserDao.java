@@ -16,4 +16,6 @@ public interface IUserDao extends CrudRepository<GUser, String> {
     GUser findByLoginAndPassword(String login, String password);
 
     GUser findByChatId(Long chatId);
+
+    List<GUser> findByIsAdminTrue();
 }

@@ -11,6 +11,8 @@ public interface IUserService {
 
     List<GUser> getAllUsers();
 
+    List<GUser> getAdmins();
+
     List<GUser> getUsersForReadyCheck();
 
     GUser getUserByChatId(Long chatId);
