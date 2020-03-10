@@ -27,7 +27,7 @@ public class AdNewCombatCommand extends AAdCommand {
             });
         }
 
-        return String.format("-- Бой. %s. %s vs %s --", (Object[]) params);
+        return String.format("-- ⚔ Бой. «%s». %s vs %s ⚔ --", (Object[]) params);
     }
 
     @Override

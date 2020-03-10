@@ -9,12 +9,10 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 
 @Component
@@ -31,7 +29,7 @@ public class InfoRuleBooksCommand extends AInfoCommand {
 
         if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
             Integer messageId = Integer.valueOf(strings[strings.length - 1]);
-            cancelInfoWindow(absSender, telegramUser, chat, messageId);
+            cancelInfoMessage(absSender, telegramUser, chat, messageId);
             return;
         }
 

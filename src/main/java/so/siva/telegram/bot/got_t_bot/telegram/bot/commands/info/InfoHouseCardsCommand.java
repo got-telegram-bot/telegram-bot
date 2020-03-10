@@ -33,7 +33,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
     private final static String DECK_A = "a";
     private final static String DECK_B = "b";
-    private final static String DECK_VASSAL = "vassal";
+    private final static String DECK_VASSAL = Houses.VASSAL.getDomain();
 
     @Value("${infoHouseCard.imagePlaceholder.fileId}")
     private String placeHolderFileID;
@@ -71,7 +71,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
         }
 
         if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
-            cancelInfoWindow(absSender, telegramUser, chat, messageId);
+            cancelInfoMessage(absSender, telegramUser, chat, messageId);
             return;
         }
 

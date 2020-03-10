@@ -43,7 +43,7 @@ public class ViewReadyCheck extends ACommand {
                 message.append("-");
             }
             message.append(" ");
-            message.append(player.isReady() ? "✔" : "✖")
+            message.append(player.isReady() ? "✅" : "❌")
                    .append("\n");
         });
 

@@ -28,8 +28,8 @@ public class BattleCardsCommand extends ACommand {
         add("0");
         add("0");
 
-        add("0 + череп");
-        add("0 + череп");
+        add("0 + \uD83D\uDC80");
+        add("0 + \uD83D\uDC80");
 
         add("1 + меч");
         add("1 + меч");

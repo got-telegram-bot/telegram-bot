@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-@Controller
 public interface IBotUpdateHandler {
     Object handleIncomingMessage(Update update) throws TelegramApiException;
 }
