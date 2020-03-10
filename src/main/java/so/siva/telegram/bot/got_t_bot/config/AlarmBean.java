@@ -55,7 +55,7 @@ public class AlarmBean {
     private void alarm(String msg){
 
         List<GUser> usersToSendPost = userService.getAllUsers();
-        usersToSendPost = usersToSendPost.stream().filter(igUser -> igUser.getChatId() != null).collect(Collectors.toList());
+        usersToSendPost = usersToSendPost.stream().filter(igUser -> igUser.getChatId() != null && igUser.isAdmin()).collect(Collectors.toList());
 
         try {
             usersToSendPost.forEach(igUser -> {
