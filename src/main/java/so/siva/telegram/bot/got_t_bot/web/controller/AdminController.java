@@ -60,7 +60,7 @@ public class AdminController{
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText(adminToNotify.getLogin() + ": ping " + new Date().toString());
-        sendMessage.setChatId("381855899");
+        sendMessage.setChatId(adminToNotify.getChatId());
         try {
             absSender.execute(sendMessage);
         } catch (TelegramApiException e) {

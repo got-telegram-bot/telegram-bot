@@ -22,10 +22,10 @@ public class CronAwakeConfig {
 
     private Logger logger = LoggerFactory.getLogger(CronAwakeConfig.class);
 
-    @Scheduled(cron = "0 0/1 8-15 * * ?")
+    @Scheduled(cron = "0 0/30 8-15 * * ?")
     public void scheduledPingToAwakeApp(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(pingUrlPath + "/admin/ping", String.class);
-        logger.warn("scheduled cron get:" +  responseEntity.getBody());
+        logger.info("scheduled cron get:" +  responseEntity.getBody());
     }
 }
