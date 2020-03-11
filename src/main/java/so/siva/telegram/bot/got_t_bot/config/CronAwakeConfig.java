@@ -13,7 +13,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.Date;
 
-@Component
+@Configuration
+@EnableScheduling
 public class CronAwakeConfig {
 
     @Autowired
