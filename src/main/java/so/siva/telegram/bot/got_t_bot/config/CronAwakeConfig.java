@@ -19,6 +19,10 @@ public class CronAwakeConfig {
     @Autowired
     private AbsSender absSender;
 
+    public CronAwakeConfig() {
+        logger.warn("Ping bean has been created");
+    }
+
     private Logger logger = LoggerFactory.getLogger(CronAwakeConfig.class);
 
     @Scheduled(cron = "0 0/1 8-15 * * ?")
