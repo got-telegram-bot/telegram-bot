@@ -1,13 +1,19 @@
 package so.siva.telegram.bot.got_t_bot.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.bots.AbsSender;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import so.siva.telegram.bot.got_t_bot.config.CronAwakeConfig;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminService;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +22,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin")
 public class AdminController{
+
+    private Logger logger = LoggerFactory.getLogger(CronAwakeConfig.class);
 
     @Autowired
     private IAdminService adminService;
@@ -49,7 +57,18 @@ public class AdminController{
     @GetMapping("/ping")
     public String awakeUrl(){
         GUser adminToNotify = userService.getAdmins().stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Администратор не найден"));
-        return adminToNotify.getInitials();
+
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText(adminToNotify.getLogin() + ": ping " + new Date().toString());
+        sendMessage.setChatId("381855899");
+        try {
+            absSender.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            logger.error(e.getMessage());
+        }
+        logger.info("-----------Ping " + new Date().toString());
+
+        return adminToNotify.getLogin();
     }
 
 }

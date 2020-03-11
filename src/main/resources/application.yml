@@ -48,6 +48,10 @@ alarm:
     awake: Проснулся на хироку
     shutdown: Выключаюсь
 
+awake:
+  server:
+    url: https://got-telegram-bot.herokuapp.com
+
 #   Для запуска локально в параметрах запуска явно указать параметры
 #   Edit configuration -> Override parameters:
 #   Параметры можно посмотреть в настройках Heroku, раздел Config Vars
