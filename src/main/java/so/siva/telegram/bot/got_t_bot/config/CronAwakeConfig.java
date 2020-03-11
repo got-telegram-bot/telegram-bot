@@ -21,7 +21,7 @@ public class CronAwakeConfig {
 
     private Logger logger = LoggerFactory.getLogger(CronAwakeConfig.class);
 
-    @Scheduled(cron = "0 0/30 8-15 * * ?")
+    @Scheduled(cron = "0 0/1 8-15 * * ?")
     public void scheduledPingToAwakeApp(){
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Ping " + new Date().toString());
