@@ -22,7 +22,7 @@ public class CronAwakeConfig {
 
     private Logger logger = LoggerFactory.getLogger(CronAwakeConfig.class);
 
-    @Scheduled(cron = "0 0/30 8-15 * * ?")
+    @Scheduled(cron = "0 0/31 8-20 * * ?")
     public void scheduledPingToAwakeApp(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(pingUrlPath + "/admin/ping", String.class);
