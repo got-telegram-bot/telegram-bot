@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 
+
 @Configuration
 @EnableScheduling
 public class CronAwakeConfig {
@@ -22,7 +23,7 @@ public class CronAwakeConfig {
 
     private Logger logger = LoggerFactory.getLogger(CronAwakeConfig.class);
 
-    @Scheduled(cron = "0 0/31 8-20 * * ?")
+    @Scheduled(cron = "0 0/10 12-20 * * ?", zone = "Europe/Minsk")
     public void scheduledPingToAwakeApp(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(pingUrlPath + "/admin/ping", String.class);
