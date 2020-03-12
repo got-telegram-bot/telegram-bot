@@ -5,8 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.User;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
@@ -25,7 +23,7 @@ public abstract class AReadyCheckCommand extends AAdminCommand {
     }
 
     @Override
-    public void execute(AbsSender absSender, User tUser, Chat chat, String[] strings) {
+    public void execute(Chat chat, String[] strings) {
         List<GUser> gUsers = userService.getUsersForReadyCheck();
         if (gUsers.stream().anyMatch(gUser -> gUser.getChatId() == null)){
             String errorMsg = "Пользователь не авторизован (chatId = null)";

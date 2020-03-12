@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.User;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
@@ -35,7 +33,7 @@ public class SendPostCommand extends APostCommand {
     private Logger logger = LoggerFactory.getLogger(SendPostCommand.class);
 
     @Override
-    public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
+    public void execute(Chat chat, String[] strings) {
         List<GUser> usersToSendPost = userService.getAllUsers();
 
         List<String> housesToSend = Arrays.stream(strings).filter(s -> Arrays.stream(Houses.values()).anyMatch(houses -> houses.getDomain().equals(s))).collect(Collectors.toList());
@@ -59,7 +57,7 @@ public class SendPostCommand extends APostCommand {
                 usersToSendPost.forEach(igUser -> sendPostMessages(messageList, igUser.getChatId().toString()));
 
                 if (Arrays.asList(strings).contains(CANCEL_FLAG)){
-                    cancelPostCommand.execute(absSender, telegramUser, chat, strings);
+                    cancelPostCommand.execute(chat, strings);
                 }
             }else {
                 errorMessage.setText("Нет доступных сообщений");

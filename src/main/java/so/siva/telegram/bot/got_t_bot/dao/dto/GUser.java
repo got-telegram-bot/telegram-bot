@@ -1,8 +1,6 @@
 package so.siva.telegram.bot.got_t_bot.dao.dto;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 

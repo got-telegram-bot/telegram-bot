@@ -1,5 +1,8 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin;
 
+import org.telegram.telegrambots.meta.api.objects.Chat;
+import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.IRoleAccessable;
@@ -11,6 +14,15 @@ public abstract class AAdminCommand extends AGUserCommand implements IRoleAccess
     public AAdminCommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController) {
         super(commandIdentifier, description, gotBotListenerController, true);
     }
+
+
+    @Override
+    public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
+        validateAccess(chat.getId());
+        execute(chat, arguments);
+    }
+
+    public abstract void execute(Chat chat, String[] arguments);
 
     @Override
     protected GUser getCurrentUser(Long chatId){
