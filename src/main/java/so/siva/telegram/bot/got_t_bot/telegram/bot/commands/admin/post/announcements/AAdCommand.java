@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.announcements;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.announcements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,9 +9,9 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.AdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.APostCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.StartPostCommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.ViewPostCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.APostCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.StartPostCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.ViewPostCommand;
 
 /**
  * Команды для общих оповещений (ad - анонс)
@@ -40,7 +40,7 @@ public abstract class AAdCommand extends APostCommand {
             SendMessage message = new SendMessage();
             message.setText(throwable.getMessage());
             message.setChatId(chat.getId());
-            execute(absSender, message, telegramUser);
+            execute(message);
             return;
         }
 

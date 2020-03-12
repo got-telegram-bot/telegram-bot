@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.actions;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.actions;
 
 
 import org.springframework.stereotype.Component;
@@ -28,6 +28,7 @@ public class BattleCardsCommand extends ACommand {
         add("0");
         add("0");
 
+        //череп в юникоде
         add("0 + \uD83D\uDC80");
         add("0 + \uD83D\uDC80");
 
@@ -67,6 +68,6 @@ public class BattleCardsCommand extends ACommand {
         }while (defender == attacker);
 
         message.setText("Нападающий: " + battleCards.get(attacker) + ", Защищающийся: " + battleCards.get(defender));
-        execute(absSender, message, telegramUser);
+        execute(message);
     }
 }

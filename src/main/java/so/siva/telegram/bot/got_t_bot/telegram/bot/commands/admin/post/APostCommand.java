@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.objects.User;
@@ -8,10 +8,11 @@ import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
 
 import java.util.List;
 
-public abstract class APostCommand extends ACommand {
+public abstract class APostCommand extends AAdminCommand {
 
     @Autowired
     protected IAdminPostMessageService adminPostMessageService;
@@ -20,14 +21,14 @@ public abstract class APostCommand extends ACommand {
         super(commandIdentifier, description, gotBotListenerController);
     }
 
-    protected void sendPostMessages(AbsSender absSender, User telegramUser, List<AdminPostMessage> messageList, String chatIdToSend){
+    protected void sendPostMessages(List<AdminPostMessage> messageList, String chatIdToSend){
 
         messageList.forEach(m -> {
             if (AdminPostMessageType.TEXT.equals(m.getAdminPostMessageType())){
-                execute(absSender, prepareSendMessage(m.getContent(), chatIdToSend), telegramUser);
+                execute(prepareSendMessage(m.getContent(), chatIdToSend));
             }
             if (AdminPostMessageType.PHOTO.equals(m.getAdminPostMessageType())){
-                execute(absSender, prepareSendPhoto(m.getFileId(), m.getContent(), chatIdToSend), telegramUser);
+                execute(prepareSendPhoto(m.getFileId(), m.getContent(), chatIdToSend));
             }
         });
 

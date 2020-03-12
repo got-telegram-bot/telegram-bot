@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,6 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
@@ -32,9 +31,6 @@ public class SendPostCommand extends APostCommand {
 
     @Autowired
     private CancelPostCommand cancelPostCommand;
-
-    @Autowired
-    private IUserService userService;
 
     private Logger logger = LoggerFactory.getLogger(SendPostCommand.class);
 
@@ -60,7 +56,7 @@ public class SendPostCommand extends APostCommand {
             List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(posterChatId));
 
             if (messageList.size() > 0){
-                usersToSendPost.forEach(igUser -> sendPostMessages(absSender, telegramUser, messageList, igUser.getChatId().toString()));
+                usersToSendPost.forEach(igUser -> sendPostMessages(messageList, igUser.getChatId().toString()));
 
                 if (Arrays.asList(strings).contains(CANCEL_FLAG)){
                     cancelPostCommand.execute(absSender, telegramUser, chat, strings);
@@ -74,6 +70,6 @@ public class SendPostCommand extends APostCommand {
         }
 
         errorMessage.setText(errorMessageText);
-        execute(absSender, errorMessage, telegramUser);
+        execute(errorMessage);
     }
 }

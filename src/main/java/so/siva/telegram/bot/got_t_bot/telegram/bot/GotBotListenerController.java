@@ -10,12 +10,16 @@ import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingC
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.IBotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.DefaultCommandRegistryConsumer;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 @Component
@@ -30,11 +34,13 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
     private Logger logger = LoggerFactory.getLogger(GotBotListenerController.class);
 
     public GotBotListenerController(@Value("${telegram.bot.token}") String botToken,
-                                    @Value("${telegram.bot.username}") String botUserName
+                                    @Value("${telegram.bot.username}") String botUserName,
+                                    DefaultCommandRegistryConsumer defaultCommandRegistryConsumer
     ) {
         super(new DefaultBotOptions(), false);
         this.botToken = botToken;
         this.botUserName = botUserName;
+        registerDefaultAction(defaultCommandRegistryConsumer);
     }
 
     @Override
@@ -87,6 +93,7 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
 
         }catch (TelegramApiException e){
             logger.error(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -94,5 +101,4 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
     public String getBotUsername() {
         return this.botUserName;
     }
-
 }

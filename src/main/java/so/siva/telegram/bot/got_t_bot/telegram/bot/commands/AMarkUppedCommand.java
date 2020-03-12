@@ -41,11 +41,11 @@ public abstract class AMarkUppedCommand extends ACommand {
     /**
      * Закрыть инфо, удалив сообщение
      */
-    protected void cancelInfoMessage(AbsSender absSender, User telegramUser, Chat chat, Integer messageId){
+    protected void cancelInfoMessage(Chat chat, Integer messageId){
         DeleteMessage deleteMessage = new DeleteMessage();
         deleteMessage.setChatId(chat.getId());
         deleteMessage.setMessageId(messageId);
-        execute(absSender, deleteMessage, telegramUser);
+        execute(deleteMessage);
     }
 
     protected InlineKeyboardButton createButton(String text, String callBackData){

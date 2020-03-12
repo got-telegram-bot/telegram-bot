@@ -52,6 +52,6 @@ public class HelpCommand extends ACommand {
         helpMessage.append("\n");
 
         message.setText(helpMessage.toString());
-        execute(absSender, message, telegramUser);
+        execute(message);
     }
 }

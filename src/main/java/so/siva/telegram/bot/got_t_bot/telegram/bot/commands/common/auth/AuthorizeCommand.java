@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.auth;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.auth;
 
 
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.UserService;
+import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
@@ -24,7 +24,7 @@ public class AuthorizeCommand extends ACommand {
 
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     private Logger logger = LoggerFactory.getLogger(AuthorizeCommand.class);
 
@@ -78,16 +78,16 @@ public class AuthorizeCommand extends ACommand {
                 GUser foundGUserByChatId = fullGUserList.stream().filter(igUser -> currentChatId.equals(igUser.getChatId())).findFirst().orElse(null);
                 if (foundGUserByChatId != null){
                     if (!foundGUserByChatId.getLogin().equals(foundGUserByLoginAndPassword.getLogin())){
-                        invalidateUser(absSender, telegramUser, foundGUserByChatId, currentChatId);
+                        invalidateUser(foundGUserByChatId, currentChatId);
                     }
                     else {
                         message.setText("Вы уже авторизованы в системе");
-                        execute(absSender, message, telegramUser);
+                        execute(message);
                         return;
                     }
                 }
                 if (foundGUserByLoginAndPassword.getChatId() != null && !currentChatId.equals(foundGUserByLoginAndPassword.getChatId())){
-                    invalidateUser(absSender, telegramUser, foundGUserByLoginAndPassword, foundGUserByLoginAndPassword.getChatId());
+                    invalidateUser(foundGUserByLoginAndPassword, foundGUserByLoginAndPassword.getChatId());
                 }
 
                 userService.authorizeUser(foundGUserByLoginAndPassword, chat.getId());
@@ -102,10 +102,10 @@ public class AuthorizeCommand extends ACommand {
             message.setText("Ошибка обработки команды");
         }
 
-        execute(absSender, message, telegramUser);
+        execute(message);
     }
 
-    private void invalidateUser(AbsSender absSender, User telegramUser, GUser igUser,Long chatId){
+    private void invalidateUser(GUser igUser,Long chatId){
         GUser igUserForInvalidate = new GUser(igUser);
         igUserForInvalidate.setChatId(null);
 
@@ -118,7 +118,7 @@ public class AuthorizeCommand extends ACommand {
         SendMessage invalidateMessage = new SendMessage();
         invalidateMessage.setChatId(chatId);
         invalidateMessage.setText("Ваша учетная запись " + invalidatedUser.getLogin() + " была авторизована в другом чате, текущий чат инвалидирован");
-        execute(absSender, invalidateMessage, telegramUser);
+        execute(invalidateMessage);
     }
 
 }

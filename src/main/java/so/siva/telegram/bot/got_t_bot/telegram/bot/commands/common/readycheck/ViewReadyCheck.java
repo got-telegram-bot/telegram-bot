@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.readycheck.player;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.readycheck;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class ViewReadyCheck extends ACommand {
         List<GUser> players = gUsers.stream().filter(gUser -> !gUser.isAdmin() && gUser.getHouse() != null).collect(Collectors.toList());
 
         if (gUsers.stream().noneMatch(gUser -> gUser.isAdmin() && gUser.isReady())){
-            execute(absSender, prepareSendMessage("Проверка готовности не была инициирована", String.valueOf(chat.getId())), tUser);
+            execute(prepareSendMessage("Проверка готовности не была инициирована", String.valueOf(chat.getId())));
             return;
         }
 
@@ -47,6 +47,6 @@ public class ViewReadyCheck extends ACommand {
                    .append("\n");
         });
 
-        execute(absSender, prepareSendMessage(message.append("</pre>").toString(), String.valueOf(chat.getId())), tUser);
+        execute(prepareSendMessage(message.append("</pre>").toString(), String.valueOf(chat.getId())));
     }
 }

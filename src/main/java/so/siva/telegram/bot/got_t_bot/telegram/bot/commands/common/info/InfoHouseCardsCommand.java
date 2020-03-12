@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.info;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.info;
 
 
 import org.slf4j.Logger;
@@ -47,7 +47,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
         //Если попали сюда первый раз, то подготавливаем сообщение
         if (strings.length == 0){
             SendPhoto message = startInlineMessage(chat.getId());
-            execute(absSender, message, telegramUser);
+            execute(message);
             return;
         }
         //Параметр messageId добавляет главный контроллер при парсинге пришедшего колбека при нажатии на кнопку
@@ -56,7 +56,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
         //Если нажали кнопку назад из следующего по вложенности меню, попадаем сюда
         //Формируем сообщение аналогично первому попаданию в команду
         if (BACK_BUTTON_CALLBACK.equals(strings[0])){
-            execute(absSender, prepareEditMessagePhoto(
+            execute(prepareEditMessagePhoto(
                     new ArrayList<>(),
                     (InputMediaPhoto) new InputMediaPhoto().setMedia(placeHolderFileID),
                     null,
@@ -66,12 +66,12 @@ public class InfoHouseCardsCommand extends AInfoCommand {
             ).setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
                 add(prepareDecksRow());
                 add(prepareNavigateButtonRow());
-            }})), telegramUser);
+            }})));
             return;
         }
 
         if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
-            cancelInfoMessage(absSender, telegramUser, chat, messageId);
+            cancelInfoMessage(chat, messageId);
             return;
         }
 
@@ -93,13 +93,13 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
             if (Arrays.stream(Houses.values()).noneMatch(houses -> houses.getDomain().equals(finalHouseDomainParam))){
 
-                execute(absSender, prepareEditMessagePhoto(
+                execute(prepareEditMessagePhoto(
                         prepareHouseButtons(houseList, deckDomainParam),
                         prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
                         createBackButton(""),
                         chat.getId(),
                         messageId
-                ), telegramUser);
+                ));
             }else {
                 List<InfoHouseCardsCommandsConfig.Card> cardList = houseList.stream().filter(
                         house -> house.getHouseName().equals(finalHouseDomainParam)
@@ -112,13 +112,13 @@ public class InfoHouseCardsCommand extends AInfoCommand {
                         .filter(card1 -> card1.getCardName().equals(finalCardDomainParam))
                         .findFirst().orElse(cardList.get(0));
 
-                execute(absSender, prepareEditMessagePhoto(
+                execute(prepareEditMessagePhoto(
                         prepareCardsButtons(cardList, deckDomainParam, finalHouseDomainParam),
                         prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
                         createBackButton(deckDomainParam),
                         chat.getId(),
                         messageId
-                ), telegramUser);
+                ));
             }
         }
 

@@ -1,26 +1,21 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.readycheck;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.readycheck;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post.SendPostCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.SendPostCommand;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class AReadyCheckCommand extends ACommand {
-
-    @Autowired
-    private IUserService userService;
+public abstract class AReadyCheckCommand extends AAdminCommand {
 
     private Logger logger = LoggerFactory.getLogger(SendPostCommand.class);
 
@@ -51,7 +46,7 @@ public abstract class AReadyCheckCommand extends ACommand {
 
         userService.updateUser(currentAdmin);
 
-        gUsers.forEach(gUser -> execute(absSender, prepareAdMessage(gUser.getChatId()), tUser));
+        gUsers.forEach(gUser -> execute(prepareAdMessage(gUser.getChatId())));
 
     }
 

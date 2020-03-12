@@ -1,14 +1,12 @@
 package so.siva.telegram.bot.got_t_bot.service;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
-import java.security.Guard;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,15 +56,16 @@ public class UserService implements IUserService {
 
     @Override
     public GUser getUserByChatId(Long chatId){
-        return dao.findByChatId(chatId);
+        validateChatId(chatId);
+        GUser gUser = dao.findByChatId(chatId);
+        return gUser;
     }
 
     @Override
     public GUser authorizeUser(GUser user, Long chatId){
         validate(user);
-        if (chatId == null){
-            throw new IllegalArgumentException("Не передан id чата");
-        }
+        validateChatId(chatId);
+
         user.setChatId(chatId);
         return this.updateUser(user);
 
@@ -97,5 +96,11 @@ public class UserService implements IUserService {
         List<GUser> userList = new ArrayList<>();
         users.forEach(userList::add);
         return userList;
+    }
+
+    private void validateChatId(Long chatId){
+        if (chatId == null){
+            throw new IllegalArgumentException("Не передан id чата");
+        }
     }
 }

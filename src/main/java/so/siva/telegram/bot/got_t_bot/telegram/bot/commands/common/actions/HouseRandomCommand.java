@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.actions;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.actions;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,6 +21,6 @@ public class HouseRandomCommand extends ACommand {
         message.setChatId(chat.getId());
 
         message.setText("Команда пока не работает");
-        execute(absSender, message, telegramUser);
+        execute(message);
     }
 }

@@ -51,6 +51,6 @@ public class StartCommand extends ACommand {
 //        replyKeyboardMarkup.setKeyboard(keyboard);
 
         message.setText("Команда пока не работает");
-        execute(absSender, message, telegramUser);
+        execute(message);
     }
 }

@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.post;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +35,7 @@ public class ViewPostCommand extends APostCommand {
             List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(chatId));
 
             if (messageList.size() > 0){
-                sendPostMessages(absSender, telegramUser, messageList, chatId);
+                sendPostMessages(messageList, chatId);
                 return;
             }else {
                 errorMessage.setText("Нет доступных сообщений");
@@ -46,6 +46,6 @@ public class ViewPostCommand extends APostCommand {
         }
 
         errorMessage.setText(errorMessageText);
-        execute(absSender, errorMessage, telegramUser);
+        execute(errorMessage);
     }
 }

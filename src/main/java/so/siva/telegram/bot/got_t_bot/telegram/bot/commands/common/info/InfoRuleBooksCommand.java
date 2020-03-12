@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.info;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.info;
 
 
 import org.springframework.stereotype.Component;
@@ -29,12 +29,12 @@ public class InfoRuleBooksCommand extends AInfoCommand {
 
         if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
             Integer messageId = Integer.valueOf(strings[strings.length - 1]);
-            cancelInfoMessage(absSender, telegramUser, chat, messageId);
+            cancelInfoMessage(chat, messageId);
             return;
         }
 
         SendMessage message = prepareInlineKeyBoardMessage(chat.getId());
-        execute(absSender, message, telegramUser);
+        execute(message);
     }
 
     private SendMessage prepareInlineKeyBoardMessage(long chatId) {
