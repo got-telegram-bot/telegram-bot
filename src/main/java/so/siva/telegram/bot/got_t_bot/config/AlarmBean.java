@@ -24,17 +24,15 @@ public class AlarmBean {
 
     private final IUserService userService;
 
-    private final String awakeMsg;
     private final String shutdownMsg;
 
     public AlarmBean(AbsSender absSender, IUserService userService,
                      @Value("${alarm.message.awake}") String awakeMsg, @Value("${alarm.message.shutdown}") String shutdownMsg) {
         this.absSender = absSender;
         this.userService = userService;
-        this.awakeMsg = awakeMsg;
         this.shutdownMsg = shutdownMsg;
-        if (!StringUtils.isEmpty(this.awakeMsg)){
-            alarm(this.awakeMsg);
+        if (!StringUtils.isEmpty(awakeMsg)){
+            alarm(awakeMsg);
         }
     }
 

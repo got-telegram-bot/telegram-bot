@@ -1,15 +1,11 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.aop;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.roled.admin;
 
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
-import org.telegram.telegrambots.meta.api.objects.Update;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
@@ -18,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-@Aspect
 @Component
 public class AdminPostMessageCollector {
 
@@ -27,19 +22,14 @@ public class AdminPostMessageCollector {
     @Autowired
     private IAdminPostMessageService adminPostMessageService;
 
-
-    @Around(value = "execution(* so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack.apply(..)) && args(update))")
-    public Object captureAdminPostMessagesListening(ProceedingJoinPoint joinPoint, Update update) throws Throwable {
-        Message telegramMessage;
+    public Message captureAdminPostMessages(Message telegramMessage){
         List<AdminPostMessage> adminPostMessages;
         try {
-            telegramMessage = update.getMessage();
             adminPostMessages = new ArrayList<>(adminPostMessageService.getMessages(telegramMessage.getChatId().toString()));
         }catch (Throwable throwable){
             logger.error("Error get admin Messages");
-            return joinPoint.proceed(new Object[]{update});
+            return telegramMessage;
         }
-
 
         if (adminPostMessageService.getMessages(telegramMessage.getChatId().toString()).size() > 0){
 
@@ -50,7 +40,7 @@ public class AdminPostMessageCollector {
                 newAdminPostMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
                 newAdminPostMessage.setContent(telegramMessage.getText());
                 adminPostMessageService.addMessage(newAdminPostMessage);
-                return joinPoint.proceed(new Object[]{new Update()});
+                return null;
             }
             if (telegramMessage.hasPhoto()){
                 PhotoSize photoSize = telegramMessage.getPhoto().stream().max(Comparator.comparing(PhotoSize::getFileSize)).orElse(null);
@@ -62,15 +52,14 @@ public class AdminPostMessageCollector {
                     newAdminPostMessage.setContent(telegramMessage.getCaption());
                     newAdminPostMessage.setFileId(photoSize.getFileId());
                     adminPostMessageService.addMessage(newAdminPostMessage);
-                    return joinPoint.proceed(new Object[]{new Update()});
+                    return null;
                 }
                 else {
                     logger.error("PhotoSize is null");
+                    throw new NullPointerException("PhotoSize is null");
                 }
-
             }
-
         }
-        return joinPoint.proceed(new Object[]{update});
+        return telegramMessage;
     }
 }

@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.roled;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.roled.admin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,26 +23,27 @@ public class AdminMessageHandler implements ISpecifiedMessageHandler {
     @Autowired
     private AbsSender absSender;
 
+    @Autowired
+    private AdminPostMessageCollector postMessageCollector;
+
     @Override
     public void processMessage(Message message, GUser currentAdmin) throws TelegramApiException {
+        if(postMessageCollector.captureAdminPostMessages(message) == null){
+            logger.info("admin message captured");
+            return;
+        }
+
         if (message.hasText()) {
-
             currentAdmin.setLastOrderMessage(message.getText());
-
             SendMessage answer = new SendMessage();
             answer.setChatId(message.getChatId());
             answer.setText(userService.updateUser(currentAdmin).getLastOrderMessage());
-
-
             absSender.execute(answer);
-
         }
 
         if (message.hasPhoto()) {
-
             SendPhoto answer = new SendPhoto();
             answer.setChatId(message.getChatId());
-
             answer.setPhoto(message.getPhoto().get(0).getFileId());
             answer.setCaption(message.getCaption() + "\n" + message.getPhoto().get(0).getFileId());
             absSender.execute(answer);

@@ -10,7 +10,6 @@ import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingC
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.IBotCommand;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.DefaultCommandRegistryConsumer;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.roled.UpdateHandlerFactory;
 
@@ -23,9 +22,6 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
 
     private final String botToken;
     private final String botUserName;
-
-    @Autowired
-    private LooperHack looperHack;
 
     @Autowired
     private UpdateHandlerFactory updateHandlerFactory;
@@ -49,13 +45,6 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
 
     @Override
     public void processNonCommandUpdate(Update update) {
-        //Оборачиваем обработку для АОП
-        //Если начата запись поста, то сообщения складываются в базу
-        update = looperHack.apply(update);
-        if (update == null){
-            logger.warn("Update was null");
-            return;
-        }
         try{
             if (update.hasMessage()) {
                 UpdateHandlerFactory.UserHandlerContainer updateHandler = updateHandlerFactory.provideHandler(update.getMessage());
