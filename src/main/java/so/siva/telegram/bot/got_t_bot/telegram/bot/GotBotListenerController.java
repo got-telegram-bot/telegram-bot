@@ -8,18 +8,14 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.IBotCommand;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.aop.LooperHack;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.DefaultCommandRegistryConsumer;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.roled.UpdateHandlerFactory;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 @Component
@@ -30,6 +26,9 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
 
     @Autowired
     private LooperHack looperHack;
+
+    @Autowired
+    private UpdateHandlerFactory updateHandlerFactory;
 
     private Logger logger = LoggerFactory.getLogger(GotBotListenerController.class);
 
@@ -58,23 +57,9 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
             return;
         }
         try{
-            if (update.hasMessage() && update.getMessage().hasText()) {
-
-                SendMessage answer = new SendMessage();
-                answer.setChatId(update.getMessage().getChatId());
-
-                answer.setText(update.getMessage().getText());
-                execute(answer);
-            }
-
-            if (update.hasMessage() && update.getMessage().hasPhoto()) {
-
-                SendPhoto answer = new SendPhoto();
-                answer.setChatId(update.getMessage().getChatId());
-
-                answer.setPhoto(update.getMessage().getPhoto().get(0).getFileId());
-                answer.setCaption(update.getMessage().getCaption() + "\n" + update.getMessage().getPhoto().get(0).getFileId());
-                execute(answer);
+            if (update.hasMessage()) {
+                UpdateHandlerFactory.UserHandlerContainer updateHandler = updateHandlerFactory.provideHandler(update.getMessage());
+                updateHandler.getHandler().processMessage(update.getMessage(), updateHandler.getUser());
             }
             if (update.hasCallbackQuery()){
                 String data = update.getCallbackQuery().getData();
@@ -89,7 +74,6 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
                     command.processMessage(this, update.getCallbackQuery().getMessage(), arguments.toArray(new String[0]));
                 }
             }
-
 
         }catch (TelegramApiException e){
             logger.error(e.getMessage());
