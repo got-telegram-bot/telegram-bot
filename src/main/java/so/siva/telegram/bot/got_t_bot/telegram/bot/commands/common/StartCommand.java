@@ -23,7 +23,7 @@ public class StartCommand extends ACommand {
     }
 
     @Override
-    public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
+    public void execute(Chat chat, String[] strings) {
 
         SendMessage message = new SendMessage();
         message.setChatId(chat.getId());

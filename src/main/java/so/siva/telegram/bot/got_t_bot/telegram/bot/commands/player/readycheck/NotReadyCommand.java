@@ -14,10 +14,9 @@ public class NotReadyCommand extends APlayerCommand {
     }
 
     @Override
-    public void execute(Chat chat, String[] strings) {
-        GUser gUser = getCurrentUser(chat.getId());
-        gUser.setReady(false);
-        updateCurrentUser(gUser);
+    public void execute(GUser currentPlayer, Chat chat, String[] strings) {
+        currentPlayer.setReady(false);
+        updateCurrentUser(currentPlayer);
 
         execute(prepareSendMessage("Готовность отменена", chat.getId().toString()));
     }

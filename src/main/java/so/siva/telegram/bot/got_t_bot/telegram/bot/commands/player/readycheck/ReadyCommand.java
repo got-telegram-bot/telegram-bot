@@ -14,10 +14,9 @@ public class ReadyCommand extends APlayerCommand {
     }
 
     @Override
-    public void execute(Chat chat, String[] strings) {
-        GUser gUser = getCurrentUser(chat.getId());
-        gUser.setReady(true);
-        updateCurrentUser(gUser);
+    public void execute(GUser currentPlayer, Chat chat, String[] strings) {
+        currentPlayer.setReady(true);
+        updateCurrentUser(currentPlayer);
 
         execute(prepareSendMessage("Готовность принята", chat.getId().toString()));
     }

@@ -1,12 +1,13 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
-import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AMarkUppedCommand;
 
-public abstract class AGUserCommand extends ACommand {
+public abstract class AGUserCommand extends AMarkUppedCommand {
 
     @Autowired
     protected IUserService userService;
@@ -15,12 +16,25 @@ public abstract class AGUserCommand extends ACommand {
         super(commandIdentifier, description, gotBotListenerController);
     }
 
-    public AGUserCommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController, boolean isAdminCommand) {
-        super(commandIdentifier, description, gotBotListenerController, isAdminCommand);
+    @Override
+    public void execute(Chat chat, String[] arguments) {
+        GUser currentUser = getCurrentUser(chat);
+        execute(currentUser, chat, arguments);
     }
+
+    @Override
+    protected String setExitButtonLabel() {
+        return DEFAULT_EXIT_BUTTON_LABEL;
+    }
+
+    public abstract void execute(GUser currentUser, Chat chat, String[] arguments);
 
     protected GUser getCurrentUser(Long chatId){
         return userService.getUserByChatId(chatId);
+    }
+
+    protected GUser getCurrentUser(Chat chat){
+        return getCurrentUser(chat.getId());
     }
 
     protected GUser getCurrentUser(String chatId){

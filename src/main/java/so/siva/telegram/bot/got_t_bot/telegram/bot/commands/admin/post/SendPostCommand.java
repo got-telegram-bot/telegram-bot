@@ -33,7 +33,7 @@ public class SendPostCommand extends APostCommand {
     private Logger logger = LoggerFactory.getLogger(SendPostCommand.class);
 
     @Override
-    public void execute(Chat chat, String[] strings) {
+    public void execute(GUser currentAdmin, Chat chat, String[] strings) {
         List<GUser> usersToSendPost = userService.getAllUsers();
 
         List<String> housesToSend = Arrays.stream(strings).filter(s -> Arrays.stream(Houses.values()).anyMatch(houses -> houses.getDomain().equals(s))).collect(Collectors.toList());
@@ -57,7 +57,7 @@ public class SendPostCommand extends APostCommand {
                 usersToSendPost.forEach(igUser -> sendPostMessages(messageList, igUser.getChatId().toString()));
 
                 if (Arrays.asList(strings).contains(CANCEL_FLAG)){
-                    cancelPostCommand.execute(chat, strings);
+                    cancelPostCommand.execute(currentAdmin, chat, strings);
                 }
             }else {
                 errorMessage.setText("Нет доступных сообщений");

@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -21,24 +22,20 @@ public abstract class ACommand extends BotCommand {
 
     protected final AbsSender sender;
 
-    protected final boolean isAdminCommand;
-
     private Logger logger = LoggerFactory.getLogger(ACommand.class);
 
     public ACommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController) {
         super(commandIdentifier, description);
         gotBotListenerController.register(this);
         this.sender = gotBotListenerController;
-        this.isAdminCommand = true;
     }
 
-    public ACommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController, boolean isAdminCommand) {
-        super(commandIdentifier, description);
-        gotBotListenerController.register(this);
-        this.sender = gotBotListenerController;
-        this.isAdminCommand = isAdminCommand;
+    @Override
+    public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
+        execute(chat, arguments);
     }
 
+    public abstract void execute(Chat chat, String[] arguments);
 
     public void execute(SendMessage message) {
         try {
@@ -111,6 +108,14 @@ public abstract class ACommand extends BotCommand {
         return sendMessage;
     }
 
+    protected SendMessage prepareSendMessage(String message, Chat chat){
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chat.getId());
+        sendMessage.setText(message);
+        sendMessage.setParseMode("HTML");
+        return sendMessage;
+    }
+
     protected InputMediaPhoto prepareInputMediaPhoto(String fileId, String caption){
         InputMediaPhoto sendPhoto = new InputMediaPhoto();
         sendPhoto.setMedia(fileId);
@@ -132,10 +137,49 @@ public abstract class ACommand extends BotCommand {
         return sendPhoto;
     }
 
-    public boolean isAdminCommand() {
-        return this.isAdminCommand;
+    protected SendPhoto prepareSendPhoto(String fileId, String caption, Chat chat){
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(chat.getId());
+        sendPhoto.setPhoto(fileId);
+        sendPhoto.setParseMode("HTML");
+        if (caption!=null){
+            sendPhoto.setCaption(caption);
+        }
+        return sendPhoto;
     }
 
+    protected SendPhoto prepareSendPhoto(String fileId, String caption, Long chatId){
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(chatId);
+        sendPhoto.setPhoto(fileId);
+        sendPhoto.setParseMode("HTML");
+        if (caption!=null){
+            sendPhoto.setCaption(caption);
+        }
+        return sendPhoto;
+    }
+
+    protected SendPhoto prepareSendPhoto(String fileId, String chatId){
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(chatId);
+        sendPhoto.setPhoto(fileId);
+        sendPhoto.setParseMode("HTML");
+        return sendPhoto;
+    }
+
+    protected SendPhoto prepareSendPhoto(String fileId, Chat chat){
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(chat.getId());
+        sendPhoto.setPhoto(fileId);
+        return sendPhoto;
+    }
+
+    protected SendPhoto prepareSendPhoto(String fileId, Long chatId){
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(chatId);
+        sendPhoto.setPhoto(fileId);
+        return sendPhoto;
+    }
     //    protected SendMediaGroup prepareMediaGroup(List<InputMedia> photos, String chatId){
 //        SendMediaGroup sendMediaGroup = new SendMediaGroup();
 //        sendMediaGroup.setChatId(chatId);

@@ -23,7 +23,7 @@ public abstract class AReadyCheckCommand extends AAdminCommand {
     }
 
     @Override
-    public void execute(Chat chat, String[] strings) {
+    public void execute(GUser currentUser, Chat chat, String[] strings) {
         List<GUser> gUsers = userService.getUsersForReadyCheck();
         if (gUsers.stream().anyMatch(gUser -> gUser.getChatId() == null)){
             String errorMsg = "Пользователь не авторизован (chatId = null)";

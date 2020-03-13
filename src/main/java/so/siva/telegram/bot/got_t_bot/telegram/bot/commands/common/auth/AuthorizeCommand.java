@@ -8,13 +8,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.User;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
-
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +26,7 @@ public class AuthorizeCommand extends ACommand {
     private Logger logger = LoggerFactory.getLogger(AuthorizeCommand.class);
 
     public AuthorizeCommand(GotBotListenerController gotBotListenerController) {
-        super("authorize", "авторизация, привязка аккаунта к чату в телеграме (логин пароль)", gotBotListenerController, false);
+        super("authorize", "авторизация, привязка аккаунта к чату в телеграме (логин пароль)", gotBotListenerController);
     }
 
     /**
@@ -38,13 +35,11 @@ public class AuthorizeCommand extends ACommand {
      * chat_id для авторизованного пользователя должен быть уникальным, поэтому при авторизации из нового чата, происходит
      * автоматический сброс chat_id у предыдущего пользователя.
      *
-     * @param absSender
-     * @param telegramUser
      * @param chat
      * @param strings
      */
     @Override
-    public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
+    public void execute(Chat chat, String[] strings) {
 
         SendMessage message = new SendMessage();
         Long currentChatId = chat.getId();

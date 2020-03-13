@@ -3,11 +3,10 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.info;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
@@ -20,12 +19,11 @@ public class InfoRuleBooksCommand extends AInfoCommand {
 
 
     public InfoRuleBooksCommand(GotBotListenerController gotBotListenerController) {
-        super("info_rule_books", "инфо со ссылками на правила игры ", gotBotListenerController, false);
+        super("info_rule_books", "инфо со ссылками на правила игры ", gotBotListenerController);
     }
 
     @Override
-    public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
-
+    public void execute(Chat chat, String[] strings) {
 
         if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
             Integer messageId = Integer.valueOf(strings[strings.length - 1]);
@@ -67,5 +65,24 @@ public class InfoRuleBooksCommand extends AInfoCommand {
 
         inlineKeyboardMarkup.setKeyboard(rowList);
         return new SendMessage().setChatId(chatId).setText("Ссылки: ").setReplyMarkup(inlineKeyboardMarkup);
+    }
+
+
+    @Override
+    protected SendMessage startInlineMessage(long chatId) {
+        return prepareInlineKeyBoardMessage(chatId);
+    }
+
+    @Override
+    protected void processUpperLevelBackButtonCallback(Chat chat, Integer messageId, String[] arguments) {
+    }
+
+    @Override
+    protected void processCallbackArguments(Chat chat, Integer messageId, String[] arguments) {
+    }
+
+    @Override
+    protected SendPhoto startInlineMessageWithPhoto(long chatId) {
+        return null;
     }
 }

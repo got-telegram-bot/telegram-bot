@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.config.InfoHouseCardsCommandsConfig;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
@@ -39,49 +39,42 @@ public class InfoHouseCardsCommand extends AInfoCommand {
     private String placeHolderFileID;
 
     public InfoHouseCardsCommand(GotBotListenerController gotBotListenerController) {
-        super("info_house_cards", "список карт дома", gotBotListenerController, false);
+        super("info_house_cards", "список карт дома", gotBotListenerController,true);
     }
 
     @Override
-    public void execute(AbsSender absSender, User telegramUser, Chat chat, String[] strings) {
-        //Если попали сюда первый раз, то подготавливаем сообщение
-        if (strings.length == 0){
-            SendPhoto message = startInlineMessage(chat.getId());
-            execute(message);
-            return;
-        }
-        //Параметр messageId добавляет главный контроллер при парсинге пришедшего колбека при нажатии на кнопку
-        Integer messageId = Integer.valueOf(strings[strings.length - 1]);
+    protected SendPhoto startInlineMessageWithPhoto(long chatId) {
+        return prepareSendPhoto(placeHolderFileID, chatId)
+                .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
+                    add(prepareDecksRow());
+                    add(prepareNavigateButtonRow());
+                }}));
+    }
 
-        //Если нажали кнопку назад из следующего по вложенности меню, попадаем сюда
-        //Формируем сообщение аналогично первому попаданию в команду
-        if (BACK_BUTTON_CALLBACK.equals(strings[0])){
-            execute(prepareEditMessagePhoto(
-                    new ArrayList<>(),
-                    (InputMediaPhoto) new InputMediaPhoto().setMedia(placeHolderFileID),
-                    null,
-                    chat.getId(),
-                    messageId
+    @Override
+    protected void processUpperLevelBackButtonCallback(Chat chat, Integer messageId, String[] arguments) {
+        execute(prepareEditMessagePhoto(
+                new ArrayList<>(),
+                (InputMediaPhoto) new InputMediaPhoto().setMedia(placeHolderFileID),
+                null,
+                chat.getId(),
+                messageId
 
-            ).setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
-                add(prepareDecksRow());
-                add(prepareNavigateButtonRow());
-            }})));
-            return;
-        }
+        ).setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
+            add(prepareDecksRow());
+            add(prepareNavigateButtonRow());
+        }})));
+    }
 
-        if (Arrays.asList(strings).contains(CLOSE_BUTTON_CALLBACK)){
-            cancelInfoMessage(chat, messageId);
-            return;
-        }
-
+    @Override
+    protected void processCallbackArguments(Chat chat, Integer messageId, String[] arguments){
         String deckDomainParam = "";
         String houseDomainParam = "";
         String cardDomainParam = "";
         try {
-            deckDomainParam = strings[0];
-            houseDomainParam = strings[1];
-            cardDomainParam = strings[2];
+            deckDomainParam = arguments[0];
+            houseDomainParam = arguments[1];
+            cardDomainParam = arguments[2];
         }catch (IndexOutOfBoundsException e){
             logger.warn(e.toString());
         }
@@ -121,7 +114,6 @@ public class InfoHouseCardsCommand extends AInfoCommand {
                 ));
             }
         }
-
     }
 
     /**
@@ -171,14 +163,6 @@ public class InfoHouseCardsCommand extends AInfoCommand {
         return rowList;
     }
 
-    private SendPhoto startInlineMessage(long chatId) {
-        return new SendPhoto().setChatId(chatId)
-                .setPhoto(placeHolderFileID)
-                .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
-                    add(prepareDecksRow());
-                    add(prepareNavigateButtonRow());
-                }}));
-    }
 
     private List<InlineKeyboardButton> prepareDecksRow(){
 
@@ -187,5 +171,10 @@ public class InfoHouseCardsCommand extends AInfoCommand {
             add(createButton("Набор Б", DECK_B));
             add(createButton("Другие", DECK_VASSAL));
         }};
+    }
+
+    @Override
+    protected SendMessage startInlineMessage(long chatId) {
+        return null;
     }
 }

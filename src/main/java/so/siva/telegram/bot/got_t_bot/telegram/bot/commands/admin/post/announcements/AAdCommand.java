@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.AdminPostMessageService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
@@ -31,7 +32,7 @@ public abstract class AAdCommand extends APostCommand {
 
 
     @Override
-    public void execute(Chat chat, String[] strings) {
+    public void execute(GUser currentAdmin, Chat chat, String[] strings) {
         try {
             checkParam(strings);
         }catch (Throwable throwable){
@@ -42,16 +43,16 @@ public abstract class AAdCommand extends APostCommand {
             return;
         }
 
-        startPostCommand.execute(chat, null);
+        startPostCommand.execute(currentAdmin, chat, null);
         AdminPostMessage adminPostMessage = new AdminPostMessage();
         adminPostMessage.setNumberInPost(1);
-        adminPostMessage.setAdminLogin(adminPostMessageService.getLoginByChatId(chat.getId().toString()));
+        adminPostMessage.setAdminLogin(currentAdmin.getLogin());
         adminPostMessage.setContent(prepareTemplate(strings));
         adminPostMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
 
         adminPostMessageService.addMessage(adminPostMessage);
 
-        viewPostCommand.execute(chat, null);
+        viewPostCommand.execute(currentAdmin, chat, null);
 
     }
 

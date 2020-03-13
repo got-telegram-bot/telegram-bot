@@ -5,11 +5,9 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
@@ -21,15 +19,11 @@ import java.util.List;
 public abstract class AMarkUppedCommand extends ACommand {
 
     private final String EXIT_BUTTON_LABEL;
+    public final String DEFAULT_EXIT_BUTTON_LABEL = "✖ Выход ✖";
     private final static String RETURN_BUTTON_LABEL = "⬅ Назад";
 
     protected final static String CLOSE_BUTTON_CALLBACK = "CANCEL";
     protected final static String BACK_BUTTON_CALLBACK = "BACK";
-
-    public AMarkUppedCommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController, boolean isAdminCommand) {
-        super(commandIdentifier, description, gotBotListenerController, isAdminCommand);
-        this.EXIT_BUTTON_LABEL = setExitButtonLabel();
-    }
 
     public AMarkUppedCommand(String commandIdentifier, String description, GotBotListenerController gotBotListenerController) {
         super(commandIdentifier, description, gotBotListenerController);

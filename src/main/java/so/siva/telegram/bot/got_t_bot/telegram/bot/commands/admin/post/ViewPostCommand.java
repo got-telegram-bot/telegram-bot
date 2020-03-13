@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ViewPostCommand extends APostCommand {
     private Logger logger = LoggerFactory.getLogger(ViewPostCommand.class);
 
     @Override
-    public void execute(Chat chat, String[] strings) {
+    public void execute(GUser currentAdmin, Chat chat, String[] strings) {
         String chatId = chat.getId().toString();
 
         SendMessage errorMessage = new SendMessage();
