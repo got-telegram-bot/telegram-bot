@@ -42,7 +42,7 @@ public class SendPostCommand extends APostCommand {
 
         if (housesToSend.size() != 0){
             usersToSendPost = usersToSendPost.stream().filter(gUser -> (gUser.getHouse() != null) || gUser.isAdmin())
-                    .filter(gUser -> (housesToSend.stream().anyMatch(house -> gUser.getHouse().getDomain().equals(house))) || gUser.isAdmin()).collect(Collectors.toList());
+                    .filter(gUser -> (housesToSend.stream().anyMatch(house -> gUser.isAdmin() ||  gUser.getHouse().getDomain().equals(house)))).collect(Collectors.toList());
         }
 
         String posterChatId = chat.getId().toString();
