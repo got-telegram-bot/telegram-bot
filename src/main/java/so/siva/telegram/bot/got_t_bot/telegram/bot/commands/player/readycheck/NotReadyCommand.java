@@ -18,6 +18,6 @@ public class NotReadyCommand extends APlayerCommand {
         currentPlayer.setReady(false);
         updateCurrentUser(currentPlayer);
 
-        execute(prepareSendMessage("Готовность отменена", chat.getId().toString()));
+        execute(responseProducer.prepareSendMessage("Готовность отменена", chat.getId().toString()));
     }
 }

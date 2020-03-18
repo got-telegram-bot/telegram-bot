@@ -16,6 +16,6 @@ public class ViewLastOrderCommand extends APlayerCommand {
 
     @Override
     public void execute(GUser currentPlayer, Chat chat, String[] arguments) {
-        execute(prepareSendMessage(StringUtils.isEmpty(currentPlayer.getLastOrderMessage()) ? "<code>Нет отданных приказов</code>" : currentPlayer.getLastOrderMessage(), chat));
+        execute(responseProducer.prepareSendMessage(StringUtils.isEmpty(currentPlayer.getLastOrderMessage()) ? "<code>Нет отданных приказов</code>" : currentPlayer.getLastOrderMessage(), chat));
     }
 }

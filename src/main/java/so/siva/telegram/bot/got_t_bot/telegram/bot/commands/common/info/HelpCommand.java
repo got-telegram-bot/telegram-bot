@@ -44,7 +44,7 @@ public class HelpCommand extends AInfoCommand {
 
     @Override
     protected SendMessage startInlineMessage(long chatId) {
-        return prepareSendMessage(prepareHelpMessage(getFilteredCommandList()), chatId)
+        return responseProducer.prepareSendMessage(prepareHelpMessage(getFilteredCommandList()), chatId)
                 .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
                     add(prepareCommandsRow());
                     add(prepareNavigateButtonRow());

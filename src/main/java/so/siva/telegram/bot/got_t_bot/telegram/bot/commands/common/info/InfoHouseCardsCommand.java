@@ -44,7 +44,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
     @Override
     protected SendPhoto startInlineMessageWithPhoto(long chatId) {
-        return prepareSendPhoto(placeHolderFileID, chatId)
+        return responseProducer.prepareSendPhoto(placeHolderFileID, chatId)
                 .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
                     add(prepareDecksRow());
                     add(prepareNavigateButtonRow());
@@ -88,7 +88,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 execute(prepareEditMessagePhoto(
                         prepareHouseButtons(houseList, deckDomainParam),
-                        prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
+                        responseProducer.prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
                         createBackButton(""),
                         chat.getId(),
                         messageId
@@ -107,7 +107,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 execute(prepareEditMessagePhoto(
                         prepareCardsButtons(cardList, deckDomainParam, finalHouseDomainParam),
-                        prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
+                        responseProducer.prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
                         createBackButton(deckDomainParam),
                         chat.getId(),
                         messageId

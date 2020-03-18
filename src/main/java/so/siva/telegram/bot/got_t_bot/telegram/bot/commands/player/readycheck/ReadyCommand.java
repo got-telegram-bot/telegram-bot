@@ -18,6 +18,6 @@ public class ReadyCommand extends APlayerCommand {
         currentPlayer.setReady(true);
         updateCurrentUser(currentPlayer);
 
-        execute(prepareSendMessage("Готовность принята", chat.getId().toString()));
+        execute(responseProducer.prepareSendMessage("Готовность принята", chat.getId().toString()));
     }
 }

@@ -27,7 +27,7 @@ public abstract class AAdminCommand extends AGUserCommand implements IRoleAccess
     public GUser validateAccess(Long chatId){
         GUser currentUser = super.getCurrentUser(chatId);
         if (currentUser == null || !currentUser.isAdmin()){
-            execute(prepareSendMessage("У вас нет прав администратора для пользования этой командой", chatId));
+            execute(responseProducer.prepareSendMessage("У вас нет прав администратора для пользования этой командой", chatId));
             throw new IllegalGUserException();
         }
         return currentUser;

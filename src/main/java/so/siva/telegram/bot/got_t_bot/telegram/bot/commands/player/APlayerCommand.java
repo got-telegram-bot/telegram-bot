@@ -27,7 +27,7 @@ public abstract class APlayerCommand extends AGUserCommand implements IRoleAcces
     public GUser validateAccess(Long chatId){
         GUser currentUser = super.getCurrentUser(chatId);
         if (currentUser == null || currentUser.getHouse() == null){
-            execute(prepareSendMessage("Вы должны быть участником игры для пользования этой командой", chatId));
+            execute(responseProducer.prepareSendMessage("Вы должны быть участником игры для пользования этой командой", chatId));
             throw new IllegalGUserException();
         }
         return currentUser;

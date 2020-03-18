@@ -22,10 +22,10 @@ public abstract class APostCommand extends AAdminCommand {
 
         messageList.forEach(m -> {
             if (AdminPostMessageType.TEXT.equals(m.getAdminPostMessageType())){
-                execute(prepareSendMessage(m.getContent(), chatIdToSend));
+                execute(responseProducer.prepareSendMessage(m.getContent(), chatIdToSend));
             }
             if (AdminPostMessageType.PHOTO.equals(m.getAdminPostMessageType())){
-                execute(prepareSendPhoto(m.getFileId(), m.getContent(), chatIdToSend));
+                execute(responseProducer.prepareSendPhoto(m.getFileId(), m.getContent(), chatIdToSend));
             }
         });
 

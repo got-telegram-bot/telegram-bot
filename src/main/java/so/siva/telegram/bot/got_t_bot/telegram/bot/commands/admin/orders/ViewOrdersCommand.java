@@ -40,6 +40,6 @@ public class ViewOrdersCommand extends AAdminCommand {
             orders.append("<code>-------------</code>");
             orders.append("\n");
         });
-        execute(prepareSendMessage(orders.toString(), chat));
+        execute(responseProducer.prepareSendMessage(orders.toString(), chat));
     }
 }

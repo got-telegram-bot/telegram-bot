@@ -18,7 +18,7 @@ public class StartReadyCheckCommand extends AReadyCheckCommand {
 
     @Override
     protected SendMessage prepareAdMessage(Long chatId) {
-        return prepareSendMessage(
+        return responseProducer.prepareSendMessage(
                 "-- Начата проверка готовности -- " +
                         "\n Отправьте /ready чтобы подтвердить готовность. " +
                         "\n Чтобы отменить, отправьте /not_ready.",

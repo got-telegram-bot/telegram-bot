@@ -18,7 +18,7 @@ public class CancelReadyCheckCommand extends AReadyCheckCommand {
 
     @Override
     protected SendMessage prepareAdMessage(Long chatId) {
-        return prepareSendMessage(
+        return responseProducer.prepareSendMessage(
                 "-- Проверка готовности окончена-- ",
                 String.valueOf(chatId));
     }
