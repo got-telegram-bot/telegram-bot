@@ -56,8 +56,6 @@ public class BattleCardsCommand extends ACommand {
 
     @Override
     public void execute(Chat chat, String[] strings) {
-        SendMessage message = new SendMessage();
-        message.setChatId(chat.getId());
 
         int attacker = new Random().nextInt(battleCards.size() -1);
         int defender;
@@ -65,7 +63,6 @@ public class BattleCardsCommand extends ACommand {
             defender = new Random().nextInt(battleCards.size() -1);
         }while (defender == attacker);
 
-        message.setText("Нападающий: " + battleCards.get(attacker) + ", Защищающийся: " + battleCards.get(defender));
-        execute(message);
+        execute(responseProducer.prepareSendMessage("Нападающий: " + battleCards.get(attacker) + ", Защищающийся: " + battleCards.get(defender), chat.getId()));
     }
 }

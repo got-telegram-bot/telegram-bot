@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 
 @Component
-public class BotResponseProducer {
+public class GeneralResponseProducer {
 
     public SendMessage prepareSendMessage(String message, String chatId){
         SendMessage sendMessage = new SendMessage();
