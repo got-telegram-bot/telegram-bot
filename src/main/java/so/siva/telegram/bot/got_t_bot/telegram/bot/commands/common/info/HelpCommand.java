@@ -105,9 +105,9 @@ public class HelpCommand extends AInfoCommand {
     }
     private List<InlineKeyboardButton> prepareCommandsRow(){
         return new ArrayList<InlineKeyboardButton>(){{
-            add(markupProducer.createButton("Общие", ""));
-            add(markupProducer.createButton("Игрок", PLAYER_COMMANDS));
-            add(markupProducer.createButton("Админ", ADMIN_COMMANDS));
+            add(createButton("Общие", ""));
+            add(createButton("Игрок", PLAYER_COMMANDS));
+            add(createButton("Админ", ADMIN_COMMANDS));
         }};
     }
 

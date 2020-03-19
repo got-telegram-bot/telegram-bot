@@ -137,7 +137,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 houseButtonRow.clear();
             }
-            houseButtonRow.add(markupProducer.createButton(buttonLabel, deck + "." + house.getHouseName()));
+            houseButtonRow.add(createButton(buttonLabel, deck + "." + house.getHouseName()));
 
         });
         rowList.add(houseButtonRow);
@@ -156,7 +156,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 cardButtonRow.clear();
             }
-            cardButtonRow.add(markupProducer.createButton(buttonLabel, deck + "." + houseName + "." + buttonLabel));
+            cardButtonRow.add(createButton(buttonLabel, deck + "." + houseName + "." + buttonLabel));
 
         });
         rowList.add(cardButtonRow);
@@ -167,9 +167,9 @@ public class InfoHouseCardsCommand extends AInfoCommand {
     private List<InlineKeyboardButton> prepareDecksRow(){
 
         return new ArrayList<InlineKeyboardButton>(){{
-            add(markupProducer.createButton("Набор А", DECK_A));
-            add(markupProducer.createButton("Набор Б", DECK_B));
-            add(markupProducer.createButton("Другие", DECK_VASSAL));
+            add(createButton("Набор А", DECK_A));
+            add(createButton("Набор Б", DECK_B));
+            add(createButton("Другие", DECK_VASSAL));
         }};
     }
 

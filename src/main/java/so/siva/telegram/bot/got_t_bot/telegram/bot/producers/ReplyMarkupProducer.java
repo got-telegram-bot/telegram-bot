@@ -15,14 +15,4 @@ public class ReplyMarkupProducer {
         return inlineKeyboardMarkup;
     }
 
-    public InlineKeyboardButton createButton(String text, String callBackData){
-        InlineKeyboardButton button = new InlineKeyboardButton();
-        button.setText(text);
-        button.setCallbackData(callBackData);
-
-        return button;
-    }
-
-
-
 }

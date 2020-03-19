@@ -42,6 +42,14 @@ public abstract class AMarkUppedCommand extends ACommand {
         execute(deleteMessage);
     }
 
+    protected InlineKeyboardButton createButton(String text, String callBackData){
+        InlineKeyboardButton button = new InlineKeyboardButton();
+        button.setText(text);
+        button.setCallbackData(getCommandIdentifier() + "." + callBackData);
+
+        return button;
+    }
+
     protected EditMessageMedia prepareEditMessagePhoto(
             List<List<InlineKeyboardButton>> commonRowList,
             InputMediaPhoto inputMediaPhoto,
@@ -93,7 +101,7 @@ public abstract class AMarkUppedCommand extends ACommand {
 
     protected List<InlineKeyboardButton> prepareNavigateButtonRow(){
         return new ArrayList<InlineKeyboardButton>(){{
-            add(markupProducer.createButton(EXIT_BUTTON_LABEL, CLOSE_BUTTON_CALLBACK));
+            add(createButton(EXIT_BUTTON_LABEL, CLOSE_BUTTON_CALLBACK));
         }};
     }
 
