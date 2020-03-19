@@ -50,7 +50,7 @@ public class StartCommand extends ACommand {
         // и устанваливаем этот список нашей клавиатуре
 //        replyKeyboardMarkup.setKeyboard(keyboard);
 
-        message.setText("Команда пока не работает");
+        message.setText("Дратути");
         execute(message);
     }
 }

@@ -20,7 +20,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.List;import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 
 
 @Component
@@ -44,7 +44,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
     @Override
     protected SendPhoto startInlineMessageWithPhoto(long chatId) {
-        return responseProducer.prepareSendPhoto(placeHolderFileID, chatId)
+        return prepareSendPhoto(placeHolderFileID, chatId)
                 .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
                     add(prepareDecksRow());
                     add(prepareNavigateButtonRow());
@@ -88,7 +88,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 execute(prepareEditMessagePhoto(
                         prepareHouseButtons(houseList, deckDomainParam),
-                        responseProducer.prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
+                        prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
                         createBackButton(""),
                         chat.getId(),
                         messageId
@@ -107,7 +107,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 execute(prepareEditMessagePhoto(
                         prepareCardsButtons(cardList, deckDomainParam, finalHouseDomainParam),
-                        responseProducer.prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
+                        prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
                         createBackButton(deckDomainParam),
                         chat.getId(),
                         messageId

@@ -12,6 +12,8 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import java.util.ArrayList;
 import java.util.List;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.DEFAULT_AUTO_CLOSABLE_LABEL;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.InlineMarkupBuilder.createAutoClosableMarkup;
 import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEFAULT_COMMAND_ERROR_MESSAGE;
 
 @Component
@@ -25,13 +27,13 @@ public class ViewPostCommand extends APostCommand {
 
     @Override
     public void execute(GUser currentAdmin, Chat chat, String[] strings) {
-        String chatId = chat.getId().toString();
+        Long chatId = chat.getId();
 
-        SendMessage errorMessage = new SendMessage();
+        SendMessage errorMessage = new SendMessage().setReplyMarkup(createAutoClosableMarkup(DEFAULT_AUTO_CLOSABLE_LABEL));
         errorMessage.setChatId(chatId);
         String errorMessageText = DEFAULT_COMMAND_ERROR_MESSAGE;
         try {
-            List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(chatId));
+            List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(chatId.toString()));
 
             if (messageList.size() > 0){
                 sendPostMessages(messageList, chatId);

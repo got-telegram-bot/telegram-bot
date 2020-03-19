@@ -16,6 +16,9 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 import java.util.Arrays;
 import java.util.List;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.DEFAULT_AUTO_CLOSABLE_LABEL;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.InlineMarkupBuilder.createAutoClosableMarkup;
+
 @Component
 public class AuthorizeCommand extends ACommand {
 
@@ -41,7 +44,7 @@ public class AuthorizeCommand extends ACommand {
     @Override
     public void execute(Chat chat, String[] strings) {
 
-        SendMessage message = new SendMessage();
+        SendMessage message = new SendMessage().setReplyMarkup(createAutoClosableMarkup(DEFAULT_AUTO_CLOSABLE_LABEL));
         Long currentChatId = chat.getId();
         message.setChatId(currentChatId);
 
@@ -94,7 +97,7 @@ public class AuthorizeCommand extends ACommand {
 
             }
         }catch (Throwable t){
-            message.setText("Ошибка обработки команды");
+            message.setText("Ошибка обработки команды. Для авторизации передайте логин и пароль через пробел.");
         }
 
         execute(message);

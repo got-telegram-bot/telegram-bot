@@ -8,7 +8,7 @@ import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.api.ISpecifiedMessageHandler;
 
 @Component
-public class UpdateHandlerFactory {
+public class MessageHandlerFactory {
 
     @Autowired
     private ISpecifiedMessageHandler adminMessageHandler;

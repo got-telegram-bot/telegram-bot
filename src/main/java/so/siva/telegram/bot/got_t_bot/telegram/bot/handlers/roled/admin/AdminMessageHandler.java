@@ -13,6 +13,9 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.api.ISpecifiedMessageHandler;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.prepareAutoClosableMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.prepareSendPhoto;
+
 @Component
 public class AdminMessageHandler implements ISpecifiedMessageHandler {
     private Logger logger = LoggerFactory.getLogger(AdminMessageHandler.class);
@@ -35,18 +38,20 @@ public class AdminMessageHandler implements ISpecifiedMessageHandler {
 
         if (message.hasText()) {
             currentAdmin.setLastOrderMessage(message.getText());
-            SendMessage answer = new SendMessage();
-            answer.setChatId(message.getChatId());
-            answer.setText(userService.updateUser(currentAdmin).getLastOrderMessage());
-            absSender.execute(answer);
+            absSender.execute(prepareAutoClosableMessage("Сохранено:\n "
+                            + "<i>"
+                            + userService.updateUser(currentAdmin).getLastOrderMessage()
+                            + "</i>"
+                    , message.getChat()));
         }
 
         if (message.hasPhoto()) {
-            SendPhoto answer = new SendPhoto();
-            answer.setChatId(message.getChatId());
-            answer.setPhoto(message.getPhoto().get(0).getFileId());
-            answer.setCaption(message.getCaption() + "\n" + message.getPhoto().get(0).getFileId());
-            absSender.execute(answer);
+            absSender.execute(
+                    prepareSendPhoto(
+                            message.getPhoto().get(0).getFileId(),
+                            message.getCaption() + "\n" + message.getPhoto().get(0).getFileId(),
+                            message.getChat())
+            );
         }
     }
 }

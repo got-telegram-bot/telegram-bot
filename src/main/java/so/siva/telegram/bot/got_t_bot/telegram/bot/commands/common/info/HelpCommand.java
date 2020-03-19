@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 
 @Component
 public class HelpCommand extends AInfoCommand {
@@ -44,7 +44,7 @@ public class HelpCommand extends AInfoCommand {
 
     @Override
     protected SendMessage startInlineMessage(long chatId) {
-        return responseProducer.prepareSendMessage(prepareHelpMessage(getFilteredCommandList()), chatId)
+        return prepareSendMessage(prepareHelpMessage(getFilteredCommandList()), chatId)
                 .setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
                     add(prepareCommandsRow());
                     add(prepareNavigateButtonRow());

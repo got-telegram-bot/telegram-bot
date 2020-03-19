@@ -8,6 +8,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.IRoleAccessible;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.AGUserCommand;
 import so.siva.telegram.bot.got_t_bot.web.exceptions.IllegalGUserException;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 
 public abstract class AAdminCommand extends AGUserCommand implements IRoleAccessible {
 
@@ -27,7 +28,7 @@ public abstract class AAdminCommand extends AGUserCommand implements IRoleAccess
     public GUser validateAccess(Long chatId){
         GUser currentUser = super.getCurrentUser(chatId);
         if (currentUser == null || !currentUser.isAdmin()){
-            execute(responseProducer.prepareSendMessage("У вас нет прав администратора для пользования этой командой", chatId));
+            execute(prepareAutoClosableMessage("У вас нет прав администратора для пользования этой командой", chatId));
             throw new IllegalGUserException();
         }
         return currentUser;

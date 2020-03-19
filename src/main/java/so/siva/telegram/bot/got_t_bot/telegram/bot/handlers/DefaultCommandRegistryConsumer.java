@@ -11,6 +11,8 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.function.BiConsumer;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.prepareAutoClosableMessage;
+
 @Component
 public class DefaultCommandRegistryConsumer implements BiConsumer<AbsSender, Message> {
 
@@ -19,11 +21,7 @@ public class DefaultCommandRegistryConsumer implements BiConsumer<AbsSender, Mes
     public void accept(AbsSender absSender, Message message) {
 
         try {
-            SendMessage errorMessage = new SendMessage();
-            errorMessage.setText("Неизвестная команда");
-            errorMessage.setChatId(message.getChatId());
-            errorMessage.setReplyToMessageId(message.getMessageId());
-            absSender.execute(errorMessage);
+            absSender.execute(prepareAutoClosableMessage("Неизвестная команда", message.getChat()).setReplyToMessageId(message.getMessageId()));
         } catch (TelegramApiException e) {
             logger.error(e.getMessage());
         }

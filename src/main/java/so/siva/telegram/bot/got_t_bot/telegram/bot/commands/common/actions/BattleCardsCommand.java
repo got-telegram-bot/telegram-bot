@@ -2,7 +2,7 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.actions;
 
 
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
@@ -63,6 +63,6 @@ public class BattleCardsCommand extends ACommand {
             defender = new Random().nextInt(battleCards.size() -1);
         }while (defender == attacker);
 
-        execute(responseProducer.prepareSendMessage("Нападающий: " + battleCards.get(attacker) + ", Защищающийся: " + battleCards.get(defender), chat.getId()));
+        execute(prepareSendMessage("Нападающий: " + battleCards.get(attacker) + ", Защищающийся: " + battleCards.get(defender), chat.getId()));
     }
 }

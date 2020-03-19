@@ -8,6 +8,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
 
 import java.util.List;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 
 public abstract class APostCommand extends AAdminCommand {
 
@@ -18,14 +19,14 @@ public abstract class APostCommand extends AAdminCommand {
         super(commandIdentifier, description, gotBotListenerController);
     }
 
-    protected void sendPostMessages(List<AdminPostMessage> messageList, String chatIdToSend){
+    protected void sendPostMessages(List<AdminPostMessage> messageList, Long chatIdToSend){
 
         messageList.forEach(m -> {
             if (AdminPostMessageType.TEXT.equals(m.getAdminPostMessageType())){
-                execute(responseProducer.prepareSendMessage(m.getContent(), chatIdToSend));
+                execute(prepareSendMessage(m.getContent(), chatIdToSend));
             }
             if (AdminPostMessageType.PHOTO.equals(m.getAdminPostMessageType())){
-                execute(responseProducer.prepareSendPhoto(m.getFileId(), m.getContent(), chatIdToSend));
+                execute(prepareSendPhoto(m.getFileId(), m.getContent(), chatIdToSend));
             }
         });
 

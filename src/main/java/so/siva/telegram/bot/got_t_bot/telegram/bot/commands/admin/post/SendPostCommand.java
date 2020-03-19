@@ -54,7 +54,7 @@ public class SendPostCommand extends APostCommand {
             List<AdminPostMessage> messageList = new ArrayList<>(adminPostMessageService.getCombinedMessages(posterChatId));
 
             if (messageList.size() > 0){
-                usersToSendPost.forEach(igUser -> sendPostMessages(messageList, igUser.getChatId().toString()));
+                usersToSendPost.forEach(igUser -> sendPostMessages(messageList, igUser.getChatId()));
 
                 if (Arrays.asList(strings).contains(CANCEL_FLAG)){
                     cancelPostCommand.execute(currentAdmin, chat, strings);

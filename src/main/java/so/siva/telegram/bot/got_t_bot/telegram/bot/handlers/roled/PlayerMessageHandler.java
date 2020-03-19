@@ -13,6 +13,8 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.api.ISpecifiedMessageHandler;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.prepareAutoClosableMessage;
+
 @Component
 public class PlayerMessageHandler implements ISpecifiedMessageHandler {
 
@@ -31,21 +33,11 @@ public class PlayerMessageHandler implements ISpecifiedMessageHandler {
 
             currentPlayer.setLastOrderMessage(message.getText());
 
-            SendMessage answer = new SendMessage();
-            answer.setChatId(message.getChatId());
-            answer.setText(userService.updateUser(currentPlayer).getLastOrderMessage());
-
-
-            absSender.execute(answer);
+            absSender.execute(prepareAutoClosableMessage("Сохранено:\n "
+                    + "<i>"
+                    + userService.updateUser(currentPlayer).getLastOrderMessage()
+                    + "</i>"
+                    , message.getChat()));
         }
-        if (message.hasPhoto()) {
-
-            SendPhoto answer = new SendPhoto();
-            answer.setChatId(message.getChatId());
-
-            answer.setPhoto(message.getPhoto().get(0).getFileId());
-            absSender.execute(answer);
-        }
-
     }
 }

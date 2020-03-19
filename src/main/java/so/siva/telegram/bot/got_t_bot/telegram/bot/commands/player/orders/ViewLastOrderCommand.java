@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.player.APlayerCommand;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 
 @Component
 public class ViewLastOrderCommand extends APlayerCommand {
@@ -16,6 +17,6 @@ public class ViewLastOrderCommand extends APlayerCommand {
 
     @Override
     public void execute(GUser currentPlayer, Chat chat, String[] arguments) {
-        execute(responseProducer.prepareSendMessage(StringUtils.isEmpty(currentPlayer.getLastOrderMessage()) ? "<code>Нет отданных приказов</code>" : currentPlayer.getLastOrderMessage(), chat));
+        execute(prepareAutoClosableMessage(StringUtils.isEmpty(currentPlayer.getLastOrderMessage()) ? "<code>Нет отданных приказов</code>" : currentPlayer.getLastOrderMessage(), chat));
     }
 }

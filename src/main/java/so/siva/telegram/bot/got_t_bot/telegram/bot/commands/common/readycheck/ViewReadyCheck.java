@@ -9,7 +9,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors;import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
 
 @Component
 public class ViewReadyCheck extends ACommand {
@@ -27,7 +27,7 @@ public class ViewReadyCheck extends ACommand {
         List<GUser> players = gUsers.stream().filter(gUser -> !gUser.isAdmin() && gUser.getHouse() != null).collect(Collectors.toList());
 
         if (gUsers.stream().noneMatch(gUser -> gUser.isAdmin() && gUser.isReady())){
-            execute(responseProducer.prepareSendMessage("Проверка готовности не была инициирована", String.valueOf(chat.getId())));
+            execute(prepareSendMessage("Проверка готовности не была инициирована", chat));
             return;
         }
 
@@ -45,6 +45,6 @@ public class ViewReadyCheck extends ACommand {
                    .append("\n");
         });
 
-        execute(responseProducer.prepareSendMessage(message.append("</pre>").toString(), String.valueOf(chat.getId())));
+        execute(prepareAutoClosableMessage(message.append("</pre>").toString(), chat));
     }
 }

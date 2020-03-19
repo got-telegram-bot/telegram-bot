@@ -15,6 +15,8 @@ import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.prepareAutoClosableMessage;
+
 @Component
 public class AlarmBean {
 
@@ -52,7 +54,7 @@ public class AlarmBean {
         try {
             usersToSendPost.forEach(igUser -> {
                 try {
-                    absSender.execute(prepareAlarmMsg(msg, igUser.getChatId()));
+                    absSender.execute(prepareAutoClosableMessage(msg, igUser.getChatId()));
                 } catch (TelegramApiException e) {
                     logger.error(e.getMessage());
                     throw new RuntimeException(e);
@@ -61,12 +63,5 @@ public class AlarmBean {
         }catch (Throwable throwable){
             logger.error(throwable.getMessage());
         }
-    }
-
-    private SendMessage prepareAlarmMsg(String msg, Long chatId){
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setText(msg);
-        sendMessage.setChatId(chatId);
-        return sendMessage;
     }
 }
