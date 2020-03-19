@@ -110,4 +110,18 @@ public class GUser {
     public void setLastOrderMessage(String lastOrderMessage) {
         this.lastOrderMessage = lastOrderMessage;
     }
+
+    @Override
+    public String toString() {
+        return "{" + "\n" +
+                " login='" + login + '\'' + ",\n" +
+                " initials='" + initials + '\'' + ",\n" +
+                " chatId=" + chatId + ",\n" +
+                " password='" + password + '\'' + ",\n" +
+                " house=" + house + ",\n" +
+                " isAdmin=" + isAdmin + ",\n" +
+                " isReady=" + isReady + ",\n" +
+                " lastOrderMessage='" + lastOrderMessage + '\'' + ",\n" +
+                '}';
+    }
 }

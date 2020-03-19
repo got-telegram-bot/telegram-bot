@@ -1,6 +1,8 @@
 package so.siva.telegram.bot.got_t_bot.service;
 
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
@@ -45,6 +47,12 @@ public class UserService implements IUserService {
     @Override
     public List<GUser> getAllUsers(){
         return transformIterable(dao.findAll());
+    }
+
+    @Override
+    public List<GUser> getAllUsersPageableByOne(int pageNumber){
+        Pageable page = PageRequest.of(pageNumber, 1);
+        return transformIterable(dao.findAll(page));
     }
 
     @Override

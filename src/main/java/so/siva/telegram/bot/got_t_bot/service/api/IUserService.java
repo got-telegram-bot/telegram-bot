@@ -11,6 +11,8 @@ public interface IUserService {
 
     List<GUser> getAllUsers();
 
+    List<GUser> getAllUsersPageableByOne(int pageNumber);
+
     List<GUser> getAllPlayers();
 
     List<GUser> getUsersForReadyCheck();

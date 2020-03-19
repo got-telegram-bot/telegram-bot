@@ -30,6 +30,11 @@ public class UserController {
         return service.getAllUsers();
     }
 
+    @GetMapping("/get_page")
+    public List<GUser> getAll(@RequestParam(name = "page") Integer pageNumber ){
+        return service.getAllUsersPageableByOne(pageNumber);
+    }
+
     @PostMapping("/authorize")
     public GUser authorizeUser(@RequestBody GUser user, @RequestParam Long chatId){
         return service.authorizeUser(user, chatId);
