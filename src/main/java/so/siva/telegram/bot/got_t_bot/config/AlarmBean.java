@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
@@ -15,7 +14,7 @@ import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.prepareAutoClosableMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.prepareAutoClosableMessage;
 
 @Component
 public class AlarmBean {

@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.producers;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.builders;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

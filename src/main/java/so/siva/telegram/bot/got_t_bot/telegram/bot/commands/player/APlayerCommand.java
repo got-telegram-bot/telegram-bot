@@ -7,7 +7,8 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.IRoleAccessible;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.AGUserCommand;
-import so.siva.telegram.bot.got_t_bot.web.exceptions.IllegalGUserException;import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.GeneralResponseProducer.*;
+import so.siva.telegram.bot.got_t_bot.web.exceptions.IllegalGUserException;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.*;
 
 public abstract class APlayerCommand extends AGUserCommand implements IRoleAccessible {
 

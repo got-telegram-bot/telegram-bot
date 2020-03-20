@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.telegram.bot.producers;
+package so.siva.telegram.bot.got_t_bot.telegram.bot.builders;
 
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -6,9 +6,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.producers.InlineMarkupBuilder.*;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
 
-public class GeneralResponseProducer {
+public class GeneralResponseBuilder {
 
     public static final String DEFAULT_AUTO_CLOSABLE_LABEL = "Ok ❎";
 
