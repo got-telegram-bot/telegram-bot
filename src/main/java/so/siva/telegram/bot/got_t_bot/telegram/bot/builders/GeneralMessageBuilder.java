@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
 
-public class GeneralResponseBuilder {
+public class GeneralMessageBuilder {
 
     public static final String DEFAULT_AUTO_CLOSABLE_LABEL = "Ok ❎";
 

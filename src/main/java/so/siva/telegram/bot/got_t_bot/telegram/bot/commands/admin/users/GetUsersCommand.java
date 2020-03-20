@@ -8,7 +8,7 @@ import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
 
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.prepareAutoClosableMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareAutoClosableMessage;
 
 
 @Component

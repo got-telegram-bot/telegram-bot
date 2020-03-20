@@ -8,7 +8,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.IRoleAccessible;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.AGUserCommand;
 import so.siva.telegram.bot.got_t_bot.web.exceptions.IllegalGUserException;
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.*;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
 
 public abstract class AAdminCommand extends AGUserCommand implements IRoleAccessible {
 

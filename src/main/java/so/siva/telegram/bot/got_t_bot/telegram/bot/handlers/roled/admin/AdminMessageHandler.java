@@ -11,8 +11,8 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.api.ISpecifiedMessageHandler;
 
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.prepareAutoClosableMessage;
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.prepareSendPhoto;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareAutoClosableMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareSendPhoto;
 
 @Component
 public class AdminMessageHandler implements ISpecifiedMessageHandler {

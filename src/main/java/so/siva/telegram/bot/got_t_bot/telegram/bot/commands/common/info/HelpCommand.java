@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.*;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
 
 @Component
 public class HelpCommand extends AInfoCommand {

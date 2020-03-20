@@ -2,7 +2,7 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.actions;
 
 
 import org.springframework.stereotype.Component;
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.*;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;

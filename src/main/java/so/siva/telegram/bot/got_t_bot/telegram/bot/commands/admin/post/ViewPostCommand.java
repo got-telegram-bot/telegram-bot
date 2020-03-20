@@ -12,7 +12,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import java.util.ArrayList;
 import java.util.List;
 
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.DEFAULT_AUTO_CLOSABLE_LABEL;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.DEFAULT_AUTO_CLOSABLE_LABEL;
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.createAutoClosableMarkup;
 import static so.siva.telegram.bot.got_t_bot.web.exceptions.DefaultException.DEFAULT_COMMAND_ERROR_MESSAGE;
 

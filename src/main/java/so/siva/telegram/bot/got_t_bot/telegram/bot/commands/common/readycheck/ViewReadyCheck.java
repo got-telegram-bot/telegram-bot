@@ -9,7 +9,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 
 import java.util.List;
-import java.util.stream.Collectors;import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.*;
+import java.util.stream.Collectors;import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
 
 @Component
 public class ViewReadyCheck extends ACommand {

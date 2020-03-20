@@ -14,7 +14,7 @@ import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.prepareAutoClosableMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareAutoClosableMessage;
 
 @Component
 public class AlarmBean {

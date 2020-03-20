@@ -19,7 +19,7 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralResponseBuilder.*;
+import java.util.List;import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
 
 
 @Component
