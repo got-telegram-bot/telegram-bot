@@ -14,6 +14,12 @@ public class InlineMarkupBuilder {
 
     public final static String AUTO_CLOSABLE_CALLBACK = "AUTO_CLOSABLE_CALLBACK";
 
+    public final static String DEFAULT_EXIT_BUTTON_LABEL = "✖ Выход ✖";
+    public final static String DEFAULT_RETURN_BUTTON_LABEL = "⬅ Назад";
+
+    public final static String CLOSE_BUTTON_CALLBACK = "CANCEL";
+    public final static String BACK_BUTTON_CALLBACK = "BACK";
+
     private final List<List<InlineKeyboardButton>> inlineKeyboard;
 
     public InlineMarkupBuilder() {
@@ -25,10 +31,28 @@ public class InlineMarkupBuilder {
         return this;
     }
 
+    public InlineMarkupBuilder addRow(List<InlineKeyboardButton> buttonRow){
+        this.inlineKeyboard.add(new ArrayList<>(buttonRow));
+        return this;
+    }
+
+    public InlineMarkupBuilder addRows(List<List<InlineKeyboardButton>> rows){
+        this.inlineKeyboard.addAll(rows);
+        return this;
+    }
+
+    /**
+     * Adds button in last row
+     * If there isn't a raw, will create new one
+     */
     public InlineMarkupBuilder addButton(String label, String callback){
         return addButton(createButton(label, callback));
     }
 
+    /**
+     * Adds button in last row
+     * If there isn't a raw, will create new one
+     */
     public InlineMarkupBuilder addButton(InlineKeyboardButton button){
         if (inlineKeyboard.size() == 0){
             addRow();
@@ -41,6 +65,13 @@ public class InlineMarkupBuilder {
         return new InlineKeyboardMarkup().setKeyboard(this.inlineKeyboard);
     }
 
+//------------------------------------------------------------------------------------------------------------
+//----------------Static builders block-----------------------------------------------------------------------
+
+    /**
+     * Не использовать для создания кнопок в командах!
+     * См. AMarkUppedCommand.createCommandButton(..)
+     */
     public static InlineKeyboardButton createButton(String label, String callback){
         return new InlineKeyboardButton().setText(label).setCallbackData(callback);
     }

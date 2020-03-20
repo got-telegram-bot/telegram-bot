@@ -7,6 +7,8 @@ import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AMarkUppedCommand;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.DEFAULT_EXIT_BUTTON_LABEL;
+
 public abstract class AGUserCommand extends AMarkUppedCommand {
 
     @Autowired
@@ -20,11 +22,6 @@ public abstract class AGUserCommand extends AMarkUppedCommand {
     public void execute(Chat chat, String[] arguments) {
         GUser currentUser = getCurrentUser(chat);
         execute(currentUser, chat, arguments);
-    }
-
-    @Override
-    protected String setExitButtonLabel() {
-        return DEFAULT_EXIT_BUTTON_LABEL;
     }
 
     public abstract void execute(GUser currentUser, Chat chat, String[] arguments);

@@ -8,6 +8,9 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AMarkUppedCommand;
 
 import java.util.Arrays;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareDeleteMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
+
 
 public abstract class AInfoCommand extends AMarkUppedCommand {
 
@@ -52,9 +55,11 @@ public abstract class AInfoCommand extends AMarkUppedCommand {
         processCallbackArguments(chat, messageId, arguments);
     }
 
-    @Override
-    protected String setExitButtonLabel() {
-        return DEFAULT_EXIT_BUTTON_LABEL;
+    /**
+     * Закрыть инфо, удалив сообщение
+     */
+    protected void cancelInfoMessage(Chat chat, Integer messageId){
+        execute(prepareDeleteMessage(chat, messageId));
     }
 
     protected abstract void processUpperLevelBackButtonCallback(Chat chat, Integer messageId, String[] arguments);

@@ -95,7 +95,7 @@ public abstract class ACommand extends BotCommand {
     }
 
     @Lookup
-    public InlineMarkupBuilder getInlineMarkupBuilder(){
+    protected InlineMarkupBuilder getInlineMarkupBuilder(){
         return null;
     }
 

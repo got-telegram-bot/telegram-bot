@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
 
 @Component
 public class HelpCommand extends AInfoCommand {
@@ -61,17 +62,13 @@ public class HelpCommand extends AInfoCommand {
             filteredCommandList = new ArrayList<>(playerCommands);
         }
 
-        execute(prepareEditMessageText(
-                prepareCommandsButtons(),
-                prepareHelpMessage(filteredCommandList),
-                null,
-                chat.getId(),
-                messageId
-
-        ).setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
-            add(prepareCommandsRow());
-            add(prepareNavigateButtonRow());
-        }})));
+        execute(prepareEditMessageText(prepareHelpMessage(filteredCommandList), chat, messageId)
+                .setReplyMarkup(
+                        getInlineMarkupBuilder()
+                                .addRow(prepareCommandsRow())
+                                .addRow(prepareNavigateButtonRow())
+                                .buildInlineMarkup())
+        );
 
     }
 
@@ -98,16 +95,11 @@ public class HelpCommand extends AInfoCommand {
         return helpMessage.toString();
     }
 
-    private List<List<InlineKeyboardButton>> prepareCommandsButtons(){
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
-        rowList.add(prepareCommandsRow());
-        return rowList;
-    }
     private List<InlineKeyboardButton> prepareCommandsRow(){
         return new ArrayList<InlineKeyboardButton>(){{
-            add(createButton("Общие", ""));
-            add(createButton("Игрок", PLAYER_COMMANDS));
-            add(createButton("Админ", ADMIN_COMMANDS));
+            add(createCommandButton("Общие", ""));
+            add(createCommandButton("Игрок", PLAYER_COMMANDS));
+            add(createCommandButton("Админ", ADMIN_COMMANDS));
         }};
     }
 

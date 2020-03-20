@@ -19,7 +19,10 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
+import java.util.List;
+
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
 
 
 @Component
@@ -53,16 +56,16 @@ public class InfoHouseCardsCommand extends AInfoCommand {
     @Override
     protected void processUpperLevelBackButtonCallback(Chat chat, Integer messageId, String[] arguments) {
         execute(prepareEditMessagePhoto(
-                new ArrayList<>(),
-                (InputMediaPhoto) new InputMediaPhoto().setMedia(placeHolderFileID),
-                null,
-                chat.getId(),
+                new InputMediaPhoto().setMedia(placeHolderFileID),
+                chat,
                 messageId
-
-        ).setReplyMarkup(new InlineKeyboardMarkup().setKeyboard(new ArrayList<List<InlineKeyboardButton>>(){{
-            add(prepareDecksRow());
-            add(prepareNavigateButtonRow());
-        }})));
+                ).setReplyMarkup(
+                        getInlineMarkupBuilder()
+                                .addRow(prepareDecksRow())
+                                .addRow(prepareNavigateButtonRow())
+                                .buildInlineMarkup()
+                )
+        );
     }
 
     @Override
@@ -86,12 +89,16 @@ public class InfoHouseCardsCommand extends AInfoCommand {
             if (Arrays.stream(Houses.values()).noneMatch(houses -> houses.getDomain().equals(finalHouseDomainParam))){
 
                 execute(prepareEditMessagePhoto(
-                        prepareHouseButtons(houseList, deckDomainParam),
                         prepareInputMediaPhoto(placeHolderFileID, "Выберите дом"),
-                        createBackButton(""),
-                        chat.getId(),
+                        chat,
                         messageId
-                ));
+                        ).setReplyMarkup(
+                                getInlineMarkupBuilder()
+                                        .addRows(prepareHouseButtons(houseList, deckDomainParam))
+                                        .addRow(prepareNavigateButtonRow(createCommandBackButton("")))
+                                        .buildInlineMarkup()
+                        )
+                );
             }else {
                 List<InfoHouseCardsCommandsConfig.Card> cardList = houseList.stream().filter(
                         house -> house.getHouseName().equals(finalHouseDomainParam)
@@ -105,12 +112,16 @@ public class InfoHouseCardsCommand extends AInfoCommand {
                         .findFirst().orElse(cardList.get(0));
 
                 execute(prepareEditMessagePhoto(
-                        prepareCardsButtons(cardList, deckDomainParam, finalHouseDomainParam),
                         prepareInputMediaPhoto(cardToShow.getFileId(), cardToShow.getCardName()),
-                        createBackButton(deckDomainParam),
-                        chat.getId(),
+                        chat,
                         messageId
-                ));
+                        ).setReplyMarkup(
+                                getInlineMarkupBuilder()
+                                        .addRows(prepareCardsButtons(cardList, deckDomainParam, finalHouseDomainParam))
+                                        .addRow(prepareNavigateButtonRow(createCommandBackButton(deckDomainParam)))
+                                        .buildInlineMarkup()
+                        )
+                );
             }
         }
     }
@@ -136,7 +147,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 houseButtonRow.clear();
             }
-            houseButtonRow.add(createButton(buttonLabel, deck + "." + house.getHouseName()));
+            houseButtonRow.add(createCommandButton(buttonLabel, deck + "." + house.getHouseName()));
 
         });
         rowList.add(houseButtonRow);
@@ -155,7 +166,7 @@ public class InfoHouseCardsCommand extends AInfoCommand {
 
                 cardButtonRow.clear();
             }
-            cardButtonRow.add(createButton(buttonLabel, deck + "." + houseName + "." + buttonLabel));
+            cardButtonRow.add(createCommandButton(buttonLabel, deck + "." + houseName + "." + buttonLabel));
 
         });
         rowList.add(cardButtonRow);
@@ -166,9 +177,9 @@ public class InfoHouseCardsCommand extends AInfoCommand {
     private List<InlineKeyboardButton> prepareDecksRow(){
 
         return new ArrayList<InlineKeyboardButton>(){{
-            add(createButton("Набор А", DECK_A));
-            add(createButton("Набор Б", DECK_B));
-            add(createButton("Другие", DECK_VASSAL));
+            add(createCommandButton("Набор А", DECK_A));
+            add(createCommandButton("Набор Б", DECK_B));
+            add(createCommandButton("Другие", DECK_VASSAL));
         }};
     }
 
