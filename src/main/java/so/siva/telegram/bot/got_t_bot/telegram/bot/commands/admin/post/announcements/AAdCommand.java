@@ -12,6 +12,8 @@ import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.APostComm
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.StartPostCommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.ViewPostCommand;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareAutoClosableMessage;
+
 /**
  * Команды для общих оповещений (ad - анонс)
  */
@@ -36,10 +38,7 @@ public abstract class AAdCommand extends APostCommand {
         try {
             checkParam(strings);
         }catch (Throwable throwable){
-            SendMessage message = new SendMessage();
-            message.setText(throwable.getMessage());
-            message.setChatId(chat.getId());
-            execute(message);
+            execute(prepareAutoClosableMessage("Error: " + throwable.getMessage(), chat));
             return;
         }
 
