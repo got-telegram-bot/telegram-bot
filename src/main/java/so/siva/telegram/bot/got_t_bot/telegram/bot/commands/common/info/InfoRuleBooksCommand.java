@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.CLOSE_BUTTON_CALLBACK;
+
 
 @Component
 public class InfoRuleBooksCommand extends AInfoCommand {
