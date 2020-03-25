@@ -33,7 +33,7 @@ public class ViewReadyCheck extends ACommand {
         }
 
         StringBuffer message = new StringBuffer();
-        message.append(HtmlTags.BOLD.getOpenTag()).append("Готовы: \n").append(HtmlTags.BOLD.getCloseTag()).append(HtmlTags.PRE.getCloseTag());
+        message.append(HtmlTags.BOLD.getOpenTag()).append("Готовы: \n").append(HtmlTags.BOLD.getCloseTag()).append(HtmlTags.PRE.getOpenTag());
         players.forEach(player -> {
             int fillCount = 15 - player.getHouse().getRusName().length();
             message.append(player.getHouse().getRusName());
