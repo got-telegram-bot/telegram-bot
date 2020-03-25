@@ -7,6 +7,7 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.parsers.HtmlTags;
 
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareAutoClosableMessage;
 
@@ -26,7 +27,7 @@ public class GetUsersCommand extends AAdminCommand {
         if (arguments.length == 0){
             execute(prepareAutoClosableMessage("Передайте порядковый номер", chat));
         }else {
-            execute(prepareAutoClosableMessage( "<pre>" + userService.getAllUsersPageableByOne(Integer.valueOf(arguments[0])).toString() + "</pre>", chat));
+            execute(prepareAutoClosableMessage( HtmlTags.PRE.getOpenTag() + userService.getAllUsersPageableByOne(Integer.valueOf(arguments[0])).toString() + HtmlTags.PRE.getCloseTag(), chat));
         }
     }
 }

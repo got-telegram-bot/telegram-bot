@@ -10,12 +10,13 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageTe
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 
+import static org.telegram.telegrambots.meta.api.methods.ParseMode.HTML;
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
 
 public class GeneralMessageBuilder {
 
     public static final String DEFAULT_AUTO_CLOSABLE_LABEL = "Ok ❎";
-    public static final String HTML_PARSE_MODE = "HTML";
+
 
     public static SendMessage prepareAutoClosableMessage(String message, Long chatId){
         return prepareAutoClosableMessage(message, DEFAULT_AUTO_CLOSABLE_LABEL, chatId);
@@ -46,7 +47,7 @@ public class GeneralMessageBuilder {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(message);
-        sendMessage.setParseMode(HTML_PARSE_MODE);
+        sendMessage.enableHtml(true);
         return sendMessage;
     }
 
@@ -57,7 +58,7 @@ public class GeneralMessageBuilder {
     public static InputMediaPhoto prepareInputMediaPhoto(String fileId, String caption){
         InputMediaPhoto sendPhoto = new InputMediaPhoto();
         sendPhoto.setMedia(fileId);
-        sendPhoto.setParseMode(HTML_PARSE_MODE);
+        sendPhoto.setParseMode(HTML);
         if (!StringUtils.isEmpty(caption)){
             sendPhoto.setCaption(caption);
         }
@@ -72,7 +73,7 @@ public class GeneralMessageBuilder {
         SendPhoto sendPhoto = new SendPhoto();
         sendPhoto.setChatId(chatId);
         sendPhoto.setPhoto(fileId);
-        sendPhoto.setParseMode(HTML_PARSE_MODE);
+        sendPhoto.setParseMode(HTML);
         if (!StringUtils.isEmpty(caption)){
             sendPhoto.setCaption(caption);
         }
@@ -92,7 +93,7 @@ public class GeneralMessageBuilder {
     }
 
     public static EditMessageText prepareEditMessageText(String newMessage, Long chatId, Integer messageId){
-        return new EditMessageText().setText(newMessage).setChatId(chatId).setMessageId(messageId).setParseMode(HTML_PARSE_MODE);
+        return new EditMessageText().setText(newMessage).setChatId(chatId).setMessageId(messageId).setParseMode(HTML);
     }
 
     public static EditMessageText prepareEditMessageText(String newMessage, Chat chat, Integer messageId){

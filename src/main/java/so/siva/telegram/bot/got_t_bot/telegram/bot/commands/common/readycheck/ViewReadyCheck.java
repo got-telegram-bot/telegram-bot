@@ -7,6 +7,7 @@ import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.parsers.HtmlTags;
 
 import java.util.List;
 import java.util.stream.Collectors;import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
@@ -32,7 +33,7 @@ public class ViewReadyCheck extends ACommand {
         }
 
         StringBuffer message = new StringBuffer();
-        message.append("<b>").append("Готовы: \n").append("</b>").append("<pre>");
+        message.append(HtmlTags.BOLD.getOpenTag()).append("Готовы: \n").append(HtmlTags.BOLD.getCloseTag()).append(HtmlTags.PRE.getCloseTag());
         players.forEach(player -> {
             int fillCount = 15 - player.getHouse().getRusName().length();
             message.append(player.getHouse().getRusName());
@@ -45,6 +46,6 @@ public class ViewReadyCheck extends ACommand {
                    .append("\n");
         });
 
-        execute(prepareAutoClosableMessage(message.append("</pre>").toString(), chat));
+        execute(prepareAutoClosableMessage(message.append(HtmlTags.PRE.getCloseTag()).toString(), chat));
     }
 }

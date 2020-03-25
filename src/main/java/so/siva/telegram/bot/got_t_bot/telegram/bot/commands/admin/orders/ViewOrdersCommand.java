@@ -5,7 +5,9 @@ import org.telegram.telegrambots.meta.api.objects.Chat;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.parsers.HtmlTags;
 
+import javax.swing.text.html.HTML;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,15 +33,15 @@ public class ViewOrdersCommand extends AAdminCommand {
         }
 
         StringBuffer orders = new StringBuffer();
-        orders.append("<b>").append("Приказы: \n").append("</b>");
+        orders.append(HtmlTags.BOLD.getOpenTag()).append("Приказы: \n").append(HtmlTags.BOLD.getCloseTag());
         players.forEach(player -> {
-            orders.append("<pre>");
+            orders.append(HtmlTags.PRE.getOpenTag());
             orders.append(player.getHouse().getRusName()).append(": \n");
-            orders.append("</pre>");
-            orders.append("<i>");
+            orders.append(HtmlTags.PRE.getCloseTag());
+            orders.append(HtmlTags.ITALIC.getOpenTag());
             orders.append(player.getLastOrderMessage());
-            orders.append("</i>\n");
-            orders.append("<code>-------------</code>");
+            orders.append(HtmlTags.ITALIC.getCloseTag()).append("\n");
+            orders.append(HtmlTags.CODE.getOpenTag()).append("-------------").append(HtmlTags.CODE.getCloseTag());
             orders.append("\n");
         });
         execute(prepareAutoClosableMessage(orders.toString(), chat));

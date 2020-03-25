@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.parsers.IncomingMessageHtmlParser.parseInHtml;
+
 @Component
 public class AdminPostMessageCollector {
 
@@ -38,7 +40,7 @@ public class AdminPostMessageCollector {
                 newAdminPostMessage.setNumberInPost(adminPostMessages.get(adminPostMessages.size() - 1).getNumberInPost() + 1);
                 newAdminPostMessage.setAdminLogin(adminPostMessageService.getLoginByChatId(telegramMessage.getChatId().toString()));
                 newAdminPostMessage.setAdminPostMessageType(AdminPostMessageType.TEXT);
-                newAdminPostMessage.setContent(telegramMessage.getText());
+                newAdminPostMessage.setContent(parseInHtml(telegramMessage));
                 adminPostMessageService.addMessage(newAdminPostMessage);
                 return null;
             }

@@ -10,8 +10,10 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.api.ISpecifiedMessageHandler;
+import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.parsers.HtmlTags;
 
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareAutoClosableMessage;
+import static so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.parsers.IncomingMessageHtmlParser.parseInHtml;
 
 @Component
 public class PlayerMessageHandler implements ISpecifiedMessageHandler {
@@ -29,12 +31,12 @@ public class PlayerMessageHandler implements ISpecifiedMessageHandler {
 
         if (message.hasText()) {
 
-            currentPlayer.setLastOrderMessage(message.getText());
+            currentPlayer.setLastOrderMessage(parseInHtml(message));
 
             absSender.execute(prepareAutoClosableMessage("Сохранено:\n "
-                    + "<i>"
+                    + HtmlTags.ITALIC.getOpenTag()
                     + userService.updateUser(currentPlayer).getLastOrderMessage()
-                    + "</i>"
+                    + HtmlTags.ITALIC.getCloseTag()
                     , message.getChat()));
         }
     }
