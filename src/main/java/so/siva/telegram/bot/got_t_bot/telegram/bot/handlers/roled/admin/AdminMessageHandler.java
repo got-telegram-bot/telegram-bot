@@ -35,12 +35,12 @@ public class AdminMessageHandler implements ISpecifiedMessageHandler {
         }
 
         if (message.hasText()) {
-            currentAdmin.setLastOrderMessage(message.getText());
-            absSender.execute(prepareAutoClosableMessage("Сохранено:\n "
-                            + "<i>"
-                            + userService.updateUser(currentAdmin).getLastOrderMessage()
-                            + "</i>"
-                    , message.getChat()));
+//            currentAdmin.setLastOrderMessage(message.getText());
+//            absSender.execute(prepareAutoClosableMessage("Сохранено:\n "
+//                            + "<i>"
+//                            + userService.updateUser(currentAdmin).getLastOrderMessage()
+//                            + "</i>"
+//                    , message.getChat()));
         }
 
         if (message.hasPhoto()) {
