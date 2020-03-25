@@ -11,26 +11,29 @@ public class IncomingMessageHtmlParser {
 
     public static String parseInHtml(Message message){
         String parsedMessage = message.getText();
-        List<ParsedEntity> parsedEntities = message.getEntities().stream().map(e -> {
-            ParsedEntity parsedEntity = new ParsedEntity(message.getText().substring(e.getOffset(), e.getOffset() + e.getLength()));
-            parsedEntity.setOffset(e.getOffset());
-            parsedEntity.setLength(e.getLength());
-            parsedEntity.setTag(e.getType() == null ? null : Arrays.stream(HtmlTags.values()).filter(tag -> tag.getType().equals(e.getType())).findFirst().orElse(null));
-            return parsedEntity;
-        }).collect(Collectors.toList());
+        if (message.getEntities() != null){
+            List<ParsedEntity> parsedEntities = message.getEntities().stream().map(e -> {
+                ParsedEntity parsedEntity = new ParsedEntity(message.getText().substring(e.getOffset(), e.getOffset() + e.getLength()));
+                parsedEntity.setOffset(e.getOffset());
+                parsedEntity.setLength(e.getLength());
+                parsedEntity.setTag(e.getType() == null ? null : Arrays.stream(HtmlTags.values()).filter(tag -> tag.getType().equals(e.getType())).findFirst().orElse(null));
+                return parsedEntity;
+            }).collect(Collectors.toList());
 
-        Integer parserOffset = 0;
-        StringBuffer stringBuffer = new StringBuffer(parsedMessage);
-        for (ParsedEntity parsedEntity : parsedEntities){
-            if (parsedEntity.getTag() != null){
-                stringBuffer.insert(parsedEntity.getOffset() + parserOffset, parsedEntity.getTag().getOpenTag());
-                parserOffset += parsedEntity.getTag().getOpenTag().length();
-                stringBuffer.insert(parsedEntity.getOffset() + parsedEntity.getLength() + parserOffset, parsedEntity.getTag().getCloseTag());
-                parserOffset += parsedEntity.getTag().getCloseTag().length();
+            Integer parserOffset = 0;
+            StringBuffer stringBuffer = new StringBuffer(parsedMessage);
+            for (ParsedEntity parsedEntity : parsedEntities){
+                if (parsedEntity.getTag() != null){
+                    stringBuffer.insert(parsedEntity.getOffset() + parserOffset, parsedEntity.getTag().getOpenTag());
+                    parserOffset += parsedEntity.getTag().getOpenTag().length();
+                    stringBuffer.insert(parsedEntity.getOffset() + parsedEntity.getLength() + parserOffset, parsedEntity.getTag().getCloseTag());
+                    parserOffset += parsedEntity.getTag().getCloseTag().length();
+                }
             }
-        }
 
-        return stringBuffer.toString();
+            return stringBuffer.toString();
+        }
+        return parsedMessage;
     }
 
     private static class ParsedEntity{
