@@ -18,4 +18,6 @@ public interface IUserDao extends PagingAndSortingRepository<GUser, String> {
     GUser findByChatId(Long chatId);
 
     List<GUser> findByHouseIsNotNull();
+
+    List<GUser> findByIsAdminTrue();
 }

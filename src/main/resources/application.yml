@@ -52,6 +52,8 @@ alarm:
 #   Edit configuration -> Override parameters:
 #   Параметры можно посмотреть в настройках Heroku, раздел Config Vars
 telegram:
+  game_channel:
+    id: -1001268717230
   bot:
     token: ${TELEGRAM_BOT_TOKEN}
     username: ${BOT_USER_NAME}

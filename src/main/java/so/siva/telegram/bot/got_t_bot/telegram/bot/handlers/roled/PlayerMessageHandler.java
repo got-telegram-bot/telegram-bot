@@ -33,11 +33,15 @@ public class PlayerMessageHandler implements ISpecifiedMessageHandler {
 
             currentPlayer.setLastOrderMessage(parseInHtml(message));
 
+            Long adminChatId = userService.getAdmins().get(0).getChatId();
+
             absSender.execute(prepareAutoClosableMessage("Сохранено:\n "
                     + HtmlTags.ITALIC.getOpenTag()
                     + userService.updateUser(currentPlayer).getLastOrderMessage()
                     + HtmlTags.ITALIC.getCloseTag()
                     , message.getChat()));
+            absSender.execute(prepareAutoClosableMessage("Игрок " + currentPlayer.getHouse().getRusName() + " \n"
+                    + currentPlayer.getLastOrderMessage(), adminChatId));
         }
     }
 }
