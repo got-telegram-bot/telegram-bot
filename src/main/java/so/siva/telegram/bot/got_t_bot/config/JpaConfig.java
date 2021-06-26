@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("so.siva.telegram.bot.got_t_bot.dao.*")
+@EnableJpaRepositories("so.siva.telegram.bot.got_t_bot.essences.*")
 public class JpaConfig {
 
     @Bean

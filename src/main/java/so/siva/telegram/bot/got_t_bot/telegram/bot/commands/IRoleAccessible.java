@@ -1,6 +1,6 @@
 package so.siva.telegram.bot.got_t_bot.telegram.bot.commands;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
 
 public interface IRoleAccessible {
 

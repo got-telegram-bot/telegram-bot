@@ -1,6 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.service.api;
-
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+package so.siva.telegram.bot.got_t_bot.essences.users;
 
 import java.util.List;
 

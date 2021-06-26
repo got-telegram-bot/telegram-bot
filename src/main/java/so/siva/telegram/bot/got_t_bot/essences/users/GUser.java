@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.dao.dto;
+package so.siva.telegram.bot.got_t_bot.essences.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

@@ -2,12 +2,10 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.AMarkUppedCommand;
-
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.DEFAULT_EXIT_BUTTON_LABEL;
 
 public abstract class AGUserCommand extends AMarkUppedCommand {
 

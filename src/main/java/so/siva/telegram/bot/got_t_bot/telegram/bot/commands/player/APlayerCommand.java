@@ -3,7 +3,7 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.player;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.bots.AbsSender;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.IRoleAccessible;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.common.AGUserCommand;

@@ -2,8 +2,8 @@ package so.siva.telegram.bot.got_t_bot.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 
 import java.util.List;
 

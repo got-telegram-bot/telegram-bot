@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.dao.api;
+package so.siva.telegram.bot.got_t_bot.essences.admin;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -24,9 +24,9 @@ INSERT INTO users.users(
     login, initials, chat_id, password, house, is_admin, is_ready)
 VALUES ('rainbow', 'Артем', '416724770', '111', 'BARATHEON', false, false);
 
-INSERT INTO users.users(
-    login, initials, chat_id, password, house, is_admin, is_ready)
-VALUES ('Drenal', 'Астахов А.с.', '427924506', '123', 'TYRELL', false, false);
+-- INSERT INTO users.users(
+--     login, initials, chat_id, password, house, is_admin, is_ready)
+-- VALUES ('Drenal', 'Астахов А.с.', '427924506', '123', 'TYRELL', false, false);
 
 INSERT INTO users.users(
     login, initials, chat_id, password, house, is_admin, is_ready)
