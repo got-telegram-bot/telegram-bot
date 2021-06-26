@@ -1,13 +1,10 @@
-package so.siva.telegram.bot.got_t_bot.service;
+package so.siva.telegram.bot.got_t_bot.essences.users;
 
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import so.siva.telegram.bot.got_t_bot.dao.api.IUserDao;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,12 +3,12 @@ package so.siva.telegram.bot.got_t_bot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import so.siva.telegram.bot.got_t_bot.dao.api.IAdminPostMessageDao;
+import so.siva.telegram.bot.got_t_bot.essences.admin.IAdminPostMessageDao;
 import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
 import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 
 import java.util.ArrayList;
 import java.util.List;

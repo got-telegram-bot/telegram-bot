@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.dao.api;
+package so.siva.telegram.bot.got_t_bot.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

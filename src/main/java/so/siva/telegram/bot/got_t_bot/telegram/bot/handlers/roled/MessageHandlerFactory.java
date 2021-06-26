@@ -3,8 +3,8 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.roled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.handlers.api.ISpecifiedMessageHandler;
 
 @Component
