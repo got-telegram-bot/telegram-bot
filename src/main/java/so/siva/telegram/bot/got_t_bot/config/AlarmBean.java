@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 
 import javax.annotation.PreDestroy;
 import java.util.List;

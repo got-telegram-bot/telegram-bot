@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Service;
-import so.siva.telegram.bot.got_t_bot.dao.dto.GUser;
+import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
 import so.siva.telegram.bot.got_t_bot.service.api.IAdminService;
-import so.siva.telegram.bot.got_t_bot.service.api.IUserService;
+import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 
 import javax.sql.DataSource;
 import java.io.*;
