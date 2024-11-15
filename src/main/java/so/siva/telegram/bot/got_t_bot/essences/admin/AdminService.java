@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.service;
+package so.siva.telegram.bot.got_t_bot.essences.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,7 +6,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Service;
 import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
-import so.siva.telegram.bot.got_t_bot.service.api.IAdminService;
+import so.siva.telegram.bot.got_t_bot.essences.admin.IAdminService;
 import so.siva.telegram.bot.got_t_bot.essences.users.IUserService;
 
 import javax.sql.DataSource;

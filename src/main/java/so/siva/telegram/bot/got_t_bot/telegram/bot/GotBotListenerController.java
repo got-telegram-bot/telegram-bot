@@ -31,7 +31,7 @@ public class GotBotListenerController extends TelegramLongPollingCommandBot {
                                     @Value("${telegram.bot.username}") String botUserName,
                                     DefaultCommandRegistryConsumer defaultCommandRegistryConsumer
     ) {
-        super(new DefaultBotOptions(), false);
+        super(new DefaultBotOptions(), true);
         this.botToken = botToken;
         this.botUserName = botUserName;
         registerDefaultAction(defaultCommandRegistryConsumer);

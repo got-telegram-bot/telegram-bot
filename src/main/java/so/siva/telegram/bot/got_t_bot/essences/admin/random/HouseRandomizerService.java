@@ -1,8 +1,8 @@
-package so.siva.telegram.bot.got_t_bot.service.house.random;
+package so.siva.telegram.bot.got_t_bot.essences.admin.random;
 
 import org.springframework.stereotype.Service;
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IPlayerStartList;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
+import so.siva.telegram.bot.got_t_bot.essences.admin.dto.api.IPlayerStartList;
+import so.siva.telegram.bot.got_t_bot.core.Houses;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static so.siva.telegram.bot.got_t_bot.dao.emuns.Houses.*;
+import static so.siva.telegram.bot.got_t_bot.core.Houses.*;
 
 @Service
 public class HouseRandomizerService implements IHouseRandomizerService {

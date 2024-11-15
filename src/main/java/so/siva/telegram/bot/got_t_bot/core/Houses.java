@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.dao.emuns;
+package so.siva.telegram.bot.got_t_bot.core;
 
 public enum Houses {
     BARATHEON("Баратеон", "bar"),

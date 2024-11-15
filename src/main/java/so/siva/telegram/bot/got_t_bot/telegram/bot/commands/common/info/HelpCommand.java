@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
+import so.siva.telegram.bot.got_t_bot.core.Houses;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.ACommand;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.AAdminCommand;
@@ -21,7 +21,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.*;
-import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.InlineMarkupBuilder.*;
 
 @Component
 public class HelpCommand extends AInfoCommand {

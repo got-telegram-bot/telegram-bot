@@ -1,4 +1,4 @@
-package so.siva.telegram.bot.got_t_bot.dao.emuns;
+package so.siva.telegram.bot.got_t_bot.essences.admin;
 
 public enum AdminPostMessageType {
     START_POST,

@@ -7,16 +7,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
-import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
+import so.siva.telegram.bot.got_t_bot.essences.admin.dto.AdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.essences.admin.AdminPostMessageType;
 import so.siva.telegram.bot.got_t_bot.essences.users.GUser;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareSendMessage;
 import static so.siva.telegram.bot.got_t_bot.telegram.bot.builders.GeneralMessageBuilder.prepareSendPhoto;

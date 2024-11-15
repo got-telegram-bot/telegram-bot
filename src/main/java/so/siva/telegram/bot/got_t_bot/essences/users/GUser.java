@@ -2,14 +2,13 @@ package so.siva.telegram.bot.got_t_bot.essences.users;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
+import so.siva.telegram.bot.got_t_bot.core.Houses;
 
 import javax.persistence.*;
 
 /**
  * Сущность пользователя системы, G - от GoT - от Game of thrones
  */
-@JsonDeserialize
 @Entity
 @Table(name = "users", schema = "users")
 public class GUser {
@@ -87,8 +86,6 @@ public class GUser {
     public boolean isAdmin() {
         return isAdmin;
     }
-
-    @JsonProperty("is_admin")
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
@@ -97,8 +94,6 @@ public class GUser {
     public boolean isReady() {
         return isReady;
     }
-
-    @JsonProperty("is_ready")
     public void setReady(boolean ready) {
         isReady = ready;
     }

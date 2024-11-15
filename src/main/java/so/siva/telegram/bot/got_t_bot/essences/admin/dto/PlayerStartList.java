@@ -1,7 +1,7 @@
-package so.siva.telegram.bot.got_t_bot.dao.dto;
+package so.siva.telegram.bot.got_t_bot.essences.admin.dto;
 
-import so.siva.telegram.bot.got_t_bot.dao.dto.api.IPlayerStartList;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
+import so.siva.telegram.bot.got_t_bot.essences.admin.dto.api.IPlayerStartList;
+import so.siva.telegram.bot.got_t_bot.core.Houses;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package so.siva.telegram.bot.got_t_bot.telegram.bot.commands.admin.post.announce
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.Houses;
+import so.siva.telegram.bot.got_t_bot.core.Houses;
 import so.siva.telegram.bot.got_t_bot.telegram.bot.GotBotListenerController;
 
 import java.util.Arrays;

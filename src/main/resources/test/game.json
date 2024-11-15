@@ -1,0 +1,222 @@
+{
+  "field": {
+    "name": "GOT_CLASSIC",
+    "locations": [
+      {
+        "name": "WINTERFELL",
+        "type": "LAND",
+        "owner": "HOUSE_STARK",
+        "resources": [
+          {
+            "type": "STRONGHOLD"
+          },
+          {
+            "type": "POWER_ICON"
+          },
+          {
+            "type": "SUPPLY_ICON"
+          }
+        ],
+        "assets": [
+          {
+            "type": "HOUSE_SHIELD",
+            "owner": "HOUSE_STARK"
+          },
+          {
+            "type": "GARRISON",
+            "owner": "HOUSE_STARK",
+            "combatStrength": 2
+          }
+        ],
+        "units": [
+          {
+            "type": "KNIGHT",
+            "id": 1,
+            "owner": "HOUSE_STARK",
+            "combatStrength": 2,
+            "isRetreated": false
+          },
+          {
+            "type": "SIEGE_ENGINE",
+            "id": 1,
+            "owner": "HOUSE_STARK",
+            "combatStrength": 0
+          }
+        ],
+        "order": {
+          "visible": true,
+          "owner": "HOUSE_STARK",
+          "sign": {
+            "type": "DEFENCE",
+            "isSpecial": true,
+            "isAllowed": true,
+            "combatStrength": 2
+          }
+        },
+        "adjacentLocations": [
+          "THE_SHIVERING_SEA",
+          "WINTERFELL_PORT"
+        ]
+      }
+    ]
+  },
+  "players": [
+    {
+      "role": "PLAYER",
+      "house": "HOUSE_STARK",
+      "powerTokens": {
+        "current": 5,
+        "max": 20
+      },
+      "ordersPool": [
+        {
+          "type": "DEFENCE",
+          "isSpecial": true,
+          "isAllowed": true,
+          "combatStrength": 2
+        }
+      ],
+      "houseDeck": {
+        "name": "HOUSE_STARK_DECK",
+        "cards": [
+          {
+            "name": "EDDARD_STARK_CARD",
+            "combatStrength": 4,
+            "abilityType": "COMBAT_ICONS",
+            "combatIcons": [
+              {
+                "type": "SWORD_COMBAT_ICON",
+                "count": 2
+              }
+            ],
+            "isDiscarded": false
+          },
+          {
+            "name": "ROBB_STARK_CARD",
+            "combatStrength": 3,
+            "abilityType": "TEXT_ABILITY",
+            "ability": {
+              "combatPhase": "RETREATING",
+              "action": "TODO"
+            },
+            "isDiscarded": false
+          }
+        ],
+        "dominanceTokens": [
+          {
+            "type": "THE_FIEFDOMS_DOMINANCE_TOKEN",
+            "isUsable": true,
+            "isUsed": false
+          }
+        ],
+        "permissions": ["TODO"],
+        "taskPool": [
+          {
+            "name": "TODO",
+            "isBlocking": false
+          }
+        ]
+      }
+    }
+  ],
+  "roundInfo": {
+    "current": 1,
+    "max": 10,
+    "phase": "WESTEROS_PHASE",
+    "dragons": [2, 4, 6, 8, 10],
+    "decks": [
+      {
+        "name": "WESTEROS_DECK_1",
+        "cards": [
+          {
+            "name": "MUSTERING",
+            "action": "TODO",
+            "wildlingsMark": false
+          }
+        ]
+      }
+    ]
+  },
+  "influenceTracks": [
+    {
+      "name": "IRON_THRONE_TRACK",
+      "positions": [
+        {
+          "house": "BARATHEON"
+        },
+        {
+          "house": "LANNISTER"
+        },
+        {
+          "house": "STARK"
+        }
+      ]
+    },
+    {
+      "name": "KINGS_COURT_TRACK",
+      "positions": [
+        {
+          "house": "LANNISTER",
+          "starsCount": 3
+        },
+        {
+          "house": "STARK",
+          "starsCount": 2
+        },
+        {
+          "house": "BARATHEON",
+          "starsCount": 1
+        }
+      ]
+    }
+  ],
+  "victoryTrack": {
+    "HOUSE_STARK": 2,
+    "HOUSE_LANNISTER": 1,
+    "HOUSE_BARATHEON": 1
+  },
+  "supplyTrack": [
+    {
+      "barrel": 1,
+      "limits": [
+        {
+          "armyLimit": 3,
+          "maxArmiesCount": 1
+        },
+        {
+          "armyLimit": 2,
+          "maxArmiesCount": 2
+        }
+      ],
+      "players": [
+        "HOUSE_BARATHEON",
+        "HOUSE_LANNISTER"
+      ]
+    }
+  ],
+  "wildlingsInfo": {
+    "power": {
+      "current": 2,
+      "max": 12,
+      "step": 2
+    },
+    "deck": {
+      "name": "WILDLINGS_DECK",
+      "cards": [
+        {
+          "name": "THE_KING_BEYOND_THE_WALL_CARD",
+          "todo": "TODO"
+        }
+      ]
+    }
+  },
+  "eventsPool": [
+    "TODO"
+  ],
+  "currentPhase": {
+    "type": "COMBAT",
+    "info": {
+      "TODO": "TODO"
+    }
+  }
+}

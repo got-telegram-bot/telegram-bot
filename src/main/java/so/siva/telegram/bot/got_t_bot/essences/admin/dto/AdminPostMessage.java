@@ -1,7 +1,7 @@
-package so.siva.telegram.bot.got_t_bot.dao.dto;
+package so.siva.telegram.bot.got_t_bot.essences.admin.dto;
 
 
-import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
+import so.siva.telegram.bot.got_t_bot.essences.admin.AdminPostMessageType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -85,7 +85,7 @@ public class AdminPostMessage {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage.NumberAndLoginPrimaryKey that = (so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage.NumberAndLoginPrimaryKey) o;
+            so.siva.telegram.bot.got_t_bot.essences.admin.dto.AdminPostMessage.NumberAndLoginPrimaryKey that = (so.siva.telegram.bot.got_t_bot.essences.admin.dto.AdminPostMessage.NumberAndLoginPrimaryKey) o;
             return Objects.equals(numberInPost, that.numberInPost) &&
                     Objects.equals(adminLogin, that.adminLogin);
         }

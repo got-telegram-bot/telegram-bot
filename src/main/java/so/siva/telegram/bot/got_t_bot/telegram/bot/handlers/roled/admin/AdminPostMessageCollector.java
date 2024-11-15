@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
-import so.siva.telegram.bot.got_t_bot.dao.dto.AdminPostMessage;
-import so.siva.telegram.bot.got_t_bot.dao.emuns.AdminPostMessageType;
-import so.siva.telegram.bot.got_t_bot.service.api.IAdminPostMessageService;
+import so.siva.telegram.bot.got_t_bot.essences.admin.dto.AdminPostMessage;
+import so.siva.telegram.bot.got_t_bot.essences.admin.AdminPostMessageType;
+import so.siva.telegram.bot.got_t_bot.essences.admin.IAdminPostMessageService;
 
 import java.util.ArrayList;
 import java.util.Comparator;

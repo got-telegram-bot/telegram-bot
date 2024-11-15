@@ -53,7 +53,7 @@ alarm:
 #   Параметры можно посмотреть в настройках Heroku, раздел Config Vars
 telegram:
   game_channel:
-    id: -1001268717230
+    id: -516892420
   bot:
     token: ${TELEGRAM_BOT_TOKEN}
     username: ${BOT_USER_NAME}
